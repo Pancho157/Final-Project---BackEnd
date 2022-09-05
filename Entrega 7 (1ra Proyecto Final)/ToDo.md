@@ -15,6 +15,7 @@ Deberás entregar el estado de avance de tu aplicación eCommerce Backend, que i
 ---
 
 1. El **router base '/api/productos'** implementará cuatro funcionalidades:
+   
    a - GET: '/:id?' - Me permite listar todos los productos disponibles ó un producto por su id (disponible para usuarios y administradores)
 
    b- POST: '/' - Para incorporar productos al listado (disponible para administradores)
