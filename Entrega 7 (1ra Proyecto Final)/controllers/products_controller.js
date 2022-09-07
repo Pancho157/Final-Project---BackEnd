@@ -47,8 +47,13 @@ class Contenedor {
       throw new Error(`Error al traer los productos: ${Error}`);
     }
     const filteredProduct = products.find((product) => product.id === id);
-    console.log(`Devuelto el elemento con ID = ${id}`);
-    return filteredProduct;
+
+    if (filteredProduct) {
+      console.log(`Devuelto el elemento con ID = ${id}`);
+      return filteredProduct;
+    } else {
+      return console.log('No se ha encontrado el producto solicitado');
+    }
   }
 
   async getAll() {
@@ -95,4 +100,6 @@ class Contenedor {
   }
 }
 
-module.exports = { Contenedor };
+const products = new Contenedor("../data/products.txt");
+
+module.exports = products;

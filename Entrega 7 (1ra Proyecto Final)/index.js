@@ -1,11 +1,11 @@
 const express = require("express");
 const path = require("path");
 const { Server: HttpServer } = require("http");
-const { Server: IOServer } = require("socket.io");
+// const { Server: IOServer } = require("socket.io");
 
 var app = express();
 const httpServer = new HttpServer(app);
-const io = new IOServer(httpServer);
+// const io = new IOServer(httpServer);
 
 const PORT = process.env.PORT || 8080;
 const connectedServer = httpServer.listen(PORT, () => {
@@ -18,13 +18,13 @@ connectedServer.on("error", (err) => {
 });
 
 // ----------------------- Manejo con sockets -----------------------
-io.on(`connection`, async (socket) => {
-  console.log("Nuevo cliente conectado");
-});
+// io.on(`connection`, async (socket) => {
+//   console.log("Nuevo cliente conectado");
+// });
 
 // ----------------------- Router -----------------------
-app.use("/api/productos", require("./router/apiProductos"));
-app.use("/api/carrito", require("./router/apiCarrito"));
+app.use("/api/productos", require("./routes/apiProductos"));
+app.use("/api/carrito", require("./routes/apiCarrito"));
 
 // ----------------------- Error 404 -----------------------
 app.use((req, res) => {
