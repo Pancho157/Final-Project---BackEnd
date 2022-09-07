@@ -1,4 +1,5 @@
 const { promises: fs } = require("fs");
+const md5 = require("md5");
 
 class Contenedor {
   constructor(ruta) {
@@ -6,7 +7,7 @@ class Contenedor {
   }
 
   async save(newObject) {
-    // Obtiene los datos del archivo
+    // Obtiene los datos del archivo con los productos
     let objetos = [];
     try {
       objetos = await this.getAll();
@@ -19,17 +20,20 @@ class Contenedor {
       return console.log(`Ya existe el producto ingresado`);
     }
 
-    // Genera el id
+    // Obtiene el último ID y genera el siguiente
     let newId;
     if (objetos.length == 0) {
       newId = 1;
     } else {
-      const ultimoId = objetos[objetos.length - 1].id;
-      newId = ultimoId + 1;
+      const lastId = objetos[objetos.length - 1].id;
+      newId = lastId + 1;
     }
 
-    // Agrega el nuevo objeto al array
-    objetos.push({ ...newObject, id: newId });
+    const timestamp = new Date().toDateString();
+    const code = md5(newId); // Encripta el código (es igual al id de producto)
+
+    // Agrega el nuevo objeto al array que se sube al archivo
+    objetos.push({ ...newObject, id: newId, timestamp: timestamp, code: code });
 
     try {
       await fs.writeFile(this.ruta, JSON.stringify(objetos, null, 2));
@@ -52,7 +56,7 @@ class Contenedor {
       console.log(`Devuelto el elemento con ID = ${id}`);
       return filteredProduct;
     } else {
-      return console.log('No se ha encontrado el producto solicitado');
+      return console.log("No se ha encontrado el producto solicitado");
     }
   }
 
