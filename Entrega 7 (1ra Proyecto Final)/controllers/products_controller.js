@@ -37,7 +37,7 @@ class Contenedor {
 
     try {
       await fs.writeFile(this.ruta, JSON.stringify(objetos, null, 2));
-      return console.log(`Se guardó el producto con el id: ${newId}`);
+      return `Se guardó el producto con el id: ${newId}`;
     } catch (err) {
       throw new Error(`Error al guardar: ${err}`);
     }
@@ -88,7 +88,7 @@ class Contenedor {
 
     try {
       await fs.writeFile(this.ruta, JSON.stringify(filteredProducts, null, 2));
-      console.log(`Eliminado el elemento con el ID = ${id}`);
+      return console.log(`Eliminado el elemento con el ID = ${id}`);
     } catch {
       throw new Error(`Error al guardar: ${Error}`);
     }
@@ -103,7 +103,7 @@ class Contenedor {
     }
   }
 
-  update(id, newInfo) {
+  async update(id, newInfo) {
     const { title, price, thumbnail, description, stock } = newInfo;
     let productIndex = this.products.findIndex((product) => {
       return product.id == id;
@@ -130,6 +130,13 @@ class Contenedor {
       }
       if (stock) {
         this.products[productIndex].stock = stock;
+      }
+
+      try {
+        await fs.writeFile(this.ruta, JSON.stringify(objetos, null, 2));
+        return `Se guardó el producto con el id: ${newId}`;
+      } catch (err) {
+        throw new Error(`Error al guardar: ${err}`);
       }
     }
   }

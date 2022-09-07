@@ -17,7 +17,6 @@ apiProducts.get("/:id", async (req, res) => {
   } else {
     // /api/productos/:id --> Devuelve el producto con ese id
     try {
-      // TODO: Solucionar el getById, no lo encuentra al buscar, pese a existir
       const product = await products.getById(req.params.id);
       if (product) {
         res.send(product);
@@ -62,29 +61,35 @@ apiProducts.post("/", async (req, res) => {
 
 apiProducts.put("/:id", async (req, res) => {
   // Actualiza un producto (solo para administradores)
-  if (administrador) {
-    const { title, description, thumbnail, price, stock } = req.body;
-
-    if (!title || !description || !thumbnail || !price || !stock) {
-      res.status(400).end("No se rellenaron todos los campos requeridos");
-    } else {
-      const response = await products.save({
-        title: title,
-        price: price,
-        thumbnail: thumbnail,
-        description: description,
-        stock: stock,
-      });
-
-      res.send(response);
-    }
-  } else {
+  if (!administrador) {
     res.status(401).end("Funcionalidad disponible solo para administradores");
+  }
+
+  const { title, description, thumbnail, price, stock } = req.body;
+
+  if (!title && !description && !thumbnail && !price && !stock) {
+    res.status(400).end("No se rellenaron todos los campos requeridos");
+  } else {
+    try {
+      const response = await products.update(req.params.id, req.body);
+      res.send(response);
+    } catch (err) {
+      console.log(err);
+    }
   }
 });
 
 apiProducts.delete("/:id", async (req, res) => {
   // Elimina un producto (solo para administradores)
+  if (!administrador) {
+    res.status(401).end("Funcionalidad disponible solo para administradores");
+  }
+  try {
+    const response = await products.deleteById(req.params.id);
+    res.send(response);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = apiProducts;
