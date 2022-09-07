@@ -50,7 +50,7 @@ class Contenedor {
     } catch {
       throw new Error(`Error al traer los productos: ${Error}`);
     }
-    const filteredProduct = products.find((product) => product.id === id);
+    const filteredProduct = products.find((product) => product.id == id);
 
     if (filteredProduct) {
       console.log(`Devuelto el elemento con ID = ${id}`);
@@ -100,6 +100,37 @@ class Contenedor {
       console.log(`Eliminados todos los productos`);
     } catch {
       throw new Error(`Error al borrar: ${Error}`);
+    }
+  }
+
+  update(id, newInfo) {
+    const { title, price, thumbnail, description, stock } = newInfo;
+    let productIndex = this.products.findIndex((product) => {
+      return product.id == id;
+    });
+
+    if (productIndex == -1) {
+      throw new Error(
+        `No se encontró un producto con el ID ingresado ( ${id} )`
+      );
+    } else if (!title && !description && !thumbnail && !price && !stock) {
+      throw new Error(`No se ingresaron datos para actualizar el producto`);
+    } else {
+      if (title) {
+        this.products[productIndex].title = title;
+      }
+      if (price) {
+        this.products[productIndex].price = price;
+      }
+      if (thumbnail) {
+        this.products[productIndex].thumbnail = thumbnail;
+      }
+      if (description) {
+        this.products[productIndex].description = description;
+      }
+      if (stock) {
+        this.products[productIndex].stock = stock;
+      }
     }
   }
 }
