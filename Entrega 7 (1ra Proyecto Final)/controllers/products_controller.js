@@ -38,8 +38,8 @@ class Contenedor {
     try {
       await fs.writeFile(this.ruta, JSON.stringify(objetos, null, 2));
       return console.log(`Se guardó el producto con el id: ${newId}`);
-    } catch {
-      throw new Error(`Error al guardar: ${Error}`);
+    } catch (err) {
+      throw new Error(`Error al guardar: ${err}`);
     }
   }
 
@@ -104,6 +104,6 @@ class Contenedor {
   }
 }
 
-const products = new Contenedor("../data/products.txt");
+const products = new Contenedor("./data/products.txt");
 
 module.exports = products;

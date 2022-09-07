@@ -23,20 +23,24 @@ apiProducts.get("/:id", async (req, res) => {
 });
 
 // Incorpora productos al listado (solo para administradores)
-// Products structure --> id timestamp, title, description, code, thumbnail, price, stock
+// Products structure --> id, timestamp, title, description, code, thumbnail, price, stock
 apiProducts.post("/", async (req, res) => {
   if (administrador) {
     const { title, description, thumbnail, price, stock } = req.body;
 
-    const response = await products.save({
-      title: title,
-      price: price,
-      thumbnail: thumbnail,
-      description: description,
-      stock: stock,
-    });
+    if (!title || !description || !thumbnail || !price || !stock) {
+      res.status(400).end("No se rellenaron todos los campos requeridos");
+    } else {
+      const response = await products.save({
+        title: title,
+        price: price,
+        thumbnail: thumbnail,
+        description: description,
+        stock: stock,
+      });
 
-    res.send(response);
+      res.send(response);
+    }
   } else {
     res.status(401).end("Funcionalidad disponible solo para administradores");
   }

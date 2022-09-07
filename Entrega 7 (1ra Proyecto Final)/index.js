@@ -12,6 +12,9 @@ const connectedServer = httpServer.listen(PORT, () => {
   console.log(`Http - Socket Server On - Port: ${PORT}`);
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // En caso de fallar el servidor de sockets
 connectedServer.on("error", (err) => {
   console.log(err);
