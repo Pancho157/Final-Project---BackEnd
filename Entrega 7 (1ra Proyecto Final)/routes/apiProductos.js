@@ -3,6 +3,7 @@ const apiProducts = express.Router();
 const products = require("../controllers/products_controller");
 
 const administrador = true;
+const route = "/api/productos";
 
 // Lista todos los productos o uno solo por su id
 apiProducts.get("/:id", async (req, res) => {
@@ -35,7 +36,10 @@ apiProducts.get("/:id", async (req, res) => {
 // Products structure --> id, timestamp, title, description, code, thumbnail, price, stock
 apiProducts.post("/", async (req, res) => {
   if (!administrador) {
-    res.status(401).end("Funcionalidad disponible solo para administradores");
+    res.status(401).end({
+      error: "-1",
+      descripción: `ruta ${route} - método POST - no autorizada`,
+    });
   }
 
   const { title, description, thumbnail, price, stock } = req.body;
@@ -62,7 +66,10 @@ apiProducts.post("/", async (req, res) => {
 apiProducts.put("/:id", async (req, res) => {
   // Actualiza un producto (solo para administradores)
   if (!administrador) {
-    res.status(401).end("Funcionalidad disponible solo para administradores");
+    res.status(401).end({
+      error: "-1",
+      descripción: `ruta ${route} - método PUT - no autorizada`,
+    });
   }
 
   const { title, description, thumbnail, price, stock } = req.body;
@@ -82,7 +89,10 @@ apiProducts.put("/:id", async (req, res) => {
 apiProducts.delete("/:id", async (req, res) => {
   // Elimina un producto (solo para administradores)
   if (!administrador) {
-    res.status(401).end("Funcionalidad disponible solo para administradores");
+    res.status(401).end({
+      error: "-1",
+      descripción: `ruta ${route} - método DELETE - no autorizada`,
+    });
   }
   try {
     const response = await products.deleteById(req.params.id);
