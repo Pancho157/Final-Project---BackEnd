@@ -104,8 +104,14 @@ class Contenedor {
   }
 
   async update(id, newInfo) {
+    let objets = [];
+    try {
+      objets = await products.getAll();
+    } catch (err) {
+      console.log(err);
+    }
     const { title, price, thumbnail, description, stock } = newInfo;
-    let productIndex = this.products.findIndex((product) => {
+    let productIndex = objets.findIndex((product) => {
       return product.id == id;
     });
 
@@ -117,24 +123,28 @@ class Contenedor {
       throw new Error(`No se ingresaron datos para actualizar el producto`);
     } else {
       if (title) {
-        this.products[productIndex].title = title;
+        objets[productIndex].title = title;
       }
       if (price) {
-        this.products[productIndex].price = price;
+        objets;
+        objets[productIndex].price = price;
       }
       if (thumbnail) {
-        this.products[productIndex].thumbnail = thumbnail;
+        objets;
+        objets[productIndex].thumbnail = thumbnail;
       }
       if (description) {
-        this.products[productIndex].description = description;
+        objets;
+        objets[productIndex].description = description;
       }
       if (stock) {
-        this.products[productIndex].stock = stock;
+        objets;
+        objets[productIndex].stock = stock;
       }
 
       try {
-        await fs.writeFile(this.ruta, JSON.stringify(objetos, null, 2));
-        return `Se guardó el producto con el id: ${newId}`;
+        await fs.writeFile(this.ruta, JSON.stringify(objets, null, 2));
+        return `Se actualizó el producto con el id: ${objets[productIndex].id}`;
       } catch (err) {
         throw new Error(`Error al guardar: ${err}`);
       }
