@@ -14,15 +14,14 @@ class CartTemplate {
   async saveCartProducts(cartProducts) {}
 
   async addProductToCart(productId) {
-    try {
-      const carts = await this.getCarts();
-    } catch (err) {
-      return err;
-    }
-
     const product = products.getById(productId);
 
-    if (product) this.cartProducts.push(product);
+    if (product) {
+      this.cartProducts.push(product);
+      return this.cartProducts;
+    } else {
+      return `No se ha encontrado el producto con ID = ${productId}`;
+    }
   }
 
   async getProducts() {
