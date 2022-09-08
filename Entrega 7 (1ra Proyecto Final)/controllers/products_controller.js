@@ -12,7 +12,7 @@ class Contenedor {
     try {
       objetos = await this.getAll();
     } catch {
-      throw new Error(`Error al traer los productos: ${Error}`);
+      return `Error al traer los productos: ${Error}`;
     }
 
     let isUnique = objetos.find((product) => product.title === newObject.title);
@@ -39,7 +39,7 @@ class Contenedor {
       await fs.writeFile(this.ruta, JSON.stringify(objetos, null, 2));
       return `Se guardó el producto con el id: ${newId}`;
     } catch (err) {
-      throw new Error(`Error al guardar: ${err}`);
+      return `Error al guardar: ${err}`;
     }
   }
 
@@ -48,7 +48,7 @@ class Contenedor {
     try {
       products = await this.getAll();
     } catch {
-      throw new Error(`Error al traer los productos: ${Error}`);
+      return `Error al traer los productos: ${Error}`;
     }
     const filteredProduct = products.find((product) => product.id == id);
 
@@ -75,31 +75,20 @@ class Contenedor {
     try {
       products = await this.getAll();
     } catch {
-      throw new Error(`Error al traer los productos: ${Error}`);
+      return `Error al traer los productos: ${Error}`;
     }
 
     const filteredProducts = products.filter((product) => product.id != id);
 
     if (filteredProducts.length === products.length) {
-      throw new Error(
-        `Error al borrar: No se encontró el id ingresado (${id})`
-      );
+      return `Error al borrar: No se encontró el id ingresado (${id})`;
     }
 
     try {
       await fs.writeFile(this.ruta, JSON.stringify(filteredProducts, null, 2));
-      return console.log(`Eliminado el elemento con el ID = ${id}`);
+      return `Eliminado el elemento con el ID = ${id}`;
     } catch {
-      throw new Error(`Error al guardar: ${Error}`);
-    }
-  }
-
-  async deleteAll() {
-    try {
-      await fs.writeFile(this.ruta, JSON.stringify([], null, 2));
-      console.log(`Eliminados todos los productos`);
-    } catch {
-      throw new Error(`Error al borrar: ${Error}`);
+      return `Error al guardar: ${Error}`;
     }
   }
 
@@ -108,7 +97,7 @@ class Contenedor {
     try {
       objets = await products.getAll();
     } catch (err) {
-      console.log(err);
+      return err;
     }
     const { title, price, thumbnail, description, stock } = newInfo;
     let productIndex = objets.findIndex((product) => {
@@ -116,11 +105,9 @@ class Contenedor {
     });
 
     if (productIndex == -1) {
-      throw new Error(
-        `No se encontró un producto con el ID ingresado ( ${id} )`
-      );
+      return `No se encontró un producto con el ID ingresado ( ${id} )`;
     } else if (!title && !description && !thumbnail && !price && !stock) {
-      throw new Error(`No se ingresaron datos para actualizar el producto`);
+      return `No se ingresaron datos para actualizar el producto`;
     } else {
       if (title) {
         objets[productIndex].title = title;
@@ -146,7 +133,7 @@ class Contenedor {
         await fs.writeFile(this.ruta, JSON.stringify(objets, null, 2));
         return `Se actualizó el producto con el id: ${objets[productIndex].id}`;
       } catch (err) {
-        throw new Error(`Error al guardar: ${err}`);
+        return `Error al guardar: ${err}`;
       }
     }
   }

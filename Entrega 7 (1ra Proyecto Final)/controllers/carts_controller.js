@@ -1,15 +1,15 @@
 const fs = require("fs");
 const CartTemplate = require("./carts_template");
+const products = require("./products_controller");
 
 const cartsFile = "./data/carts.txt";
 
 const getCarts = async () => {
   try {
-    // Obtenemos la información (JSON)
+    // Obtiene la información (JSON)
     const data = await fs.promises.readFile(cartsFile, "utf-8", (err, data) => {
       return data;
     });
-
     return JSON.parse(data); // Devuelve la informacion parseada
   } catch (err) {
     return err;
@@ -20,6 +20,7 @@ const addCart = async () => {
   let carts = [];
   try {
     carts = await getCarts();
+    return carts;
   } catch (err) {
     return err;
   }
@@ -71,7 +72,7 @@ const getProductsFromCart = async (id) => {
   try {
     carts = await getCarts();
     cartIndex = carts.findIndex((cart) => {
-      return cart.id == id;
+      return cart.cartId == id;
     });
   } catch (err) {
     return err;
@@ -79,7 +80,7 @@ const getProductsFromCart = async (id) => {
 
   if (cartIndex == -1) return `No se encontró el producto con el ID = ${id}`;
 
-  return carts[cartIndex].getProducts();
+  return carts[cartIndex].cartProducts;
 };
 
 const deleteCartProductById = async (cartId, productId) => {
@@ -97,7 +98,24 @@ const deleteCartProductById = async (cartId, productId) => {
 
   if (cartIndex == -1) return `No se encontró el carrito con el ID = ${cartId}`;
 
-  return carts[cartIndex].deleteProductById(productId);
+  let allCartProducts = carts[cartIndex].cartProducts;
+
+  let cartProducts = allCartProducts.filter(
+    (product) => product.id != productId
+  );
+
+  if (carts[cartIndex].cartProducts.length == cartProducts.length) {
+    return `No se encontró un producto con el id: ${productId} dentro del carrito con id: ${cartId}`;
+  }
+
+  carts[cartIndex].cartProducts = cartProducts;
+
+  try {
+    await fs.promises.writeFile(cartsFile, JSON.stringify(carts, null, 2));
+    return `Se eliminó el producto con el id: ${productId} al carrito con id: ${cartId}`;
+  } catch {
+    return `Error al agregar el producto al carrito: ${Error}`;
+  }
 };
 
 const addCartProductById = async (cartId, productId) => {
@@ -116,7 +134,26 @@ const addCartProductById = async (cartId, productId) => {
   if (cartIndex == -1)
     return `No se encontró el carrito con el ID = ${productId}`;
 
-  return carts[cartIndex].addProductToCart(productId);
+  let productToAdd;
+  try {
+    productToAdd = await products.getById(productId);
+  } catch (err) {
+    return `${err}`;
+  }
+
+  if (!productToAdd) {
+    return `Error al encontrar el producto con el id: ${productId}`;
+  }
+
+  let cartProducts = carts[cartIndex].cartProducts;
+  cartProducts.push(productToAdd);
+
+  try {
+    await fs.promises.writeFile(cartsFile, JSON.stringify(carts, null, 2));
+    return `Se agregó el producto con el id: ${productId} al carrito con id: ${cartId}`;
+  } catch {
+    return `Error al agregar el producto al carrito: ${Error}`;
+  }
 };
 
 module.exports = {

@@ -50,24 +50,6 @@ class CartTemplate {
       return `No se ha encontrado el producto con ID = ${productId}`;
     }
   }
-
-  async getProducts() {
-    return this.cartProducts;
-  }
-
-  async deleteProductById(id) {
-    let products = this.cartProducts.filter((product) => {
-      if (product.id != id) return product;
-    });
-
-    if (products.length == this.cartProducts.length) {
-      return `No se ha encontrado un producto con el ID = ${id}`;
-    } else {
-      this.cartProducts = products;
-    }
-
-    await this.saveCartProducts();
-  }
 }
 
 module.exports = CartTemplate;
