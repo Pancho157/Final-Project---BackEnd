@@ -6,29 +6,29 @@ const cartsFile = "./data/carts.txt";
 const getCarts = async () => {
   try {
     // Obtenemos la información (JSON)
-    const data = await fs.readFile(cartsFile, "utf-8", (err, data) => {
+    const data = await fs.promises.readFile(cartsFile, "utf-8", (err, data) => {
       return data;
     });
 
     return JSON.parse(data); // Devuelve la informacion parseada
-  } catch (error) {
-    console.error(`El error es: ${error}`);
+  } catch (err) {
+    return err;
   }
 };
 
 const addCart = async () => {
-  let carts;
+  let carts = [];
   try {
     carts = await getCarts();
   } catch (err) {
     return err;
   }
 
-  const newCart = new CartTemplate(route);
+  const newCart = new CartTemplate(cartsFile);
   carts.push(newCart);
 
   try {
-    await fs.writeFile(newCart.route, JSON.stringify(carts, null, 2));
+    fs.promises.writeFile(newCart.route, JSON.stringify(carts, null, 2));
     return `Se guardó el carrito con el id: ${newCart.cartId}`;
   } catch {
     return `Error al guardar el carrito: ${Error}`;
@@ -42,18 +42,25 @@ const deleteCartById = async (id) => {
   try {
     carts = await getCarts();
     filteredCarts = carts.filter((cart) => {
-      if (cart.id != id) return cart;
+      if (cart.cartId != id) return cart;
     });
   } catch (err) {
     return err;
   }
 
+  if (filteredCarts.length === carts.length) {
+    return `No se ha encontrado un carrito con el ID  = ${id}`;
+  }
+
   // Guarda todos los carritos, a excepción de el que posee el id mandado como param
   try {
-    await fs.writeFile(newCart.route, JSON.stringify(filteredCarts, null, 2));
-    return `Se guardó el carrito con el id: ${newCart.cartId}`;
+    await fs.promises.writeFile(
+      cartsFile,
+      JSON.stringify(filteredCarts, null, 2)
+    );
+    return `Se eliminó con el id: ${id}}`;
   } catch {
-    return `Error al guardar el carrito: ${Error}`;
+    return `Error al eliminar el carrito: ${Error}`;
   }
 };
 

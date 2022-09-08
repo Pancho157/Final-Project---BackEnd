@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "route": "./data/carts.txt",
+    "cartId": 1,
+    "timestapm": "Thu Sep 08 2022",
+    "cartProducts": []
+  },
+  {
+    "route": "./data/carts.txt",
+    "cartId": 3,
+    "timestapm": "Thu Sep 08 2022",
+    "cartProducts": []
+  }
+]
