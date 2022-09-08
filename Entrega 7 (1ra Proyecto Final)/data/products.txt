@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "title": "Producto de prueb5asdf",
+    "price": 200,
+    "thumbnail": "https://github.com/Pancho157/Coderhouse-Backend---Exercices-deliveries/tree/master/Entregables/Entrega%204%20(API%20REST)",
+    "description": "Una descripción random para probar si funciona",
+    "stock": 11,
+    "id": 1,
+    "timestamp": "Thu Sep 08 2022",
+    "code": "55a54008ad1ba589aa210d2629c1df41"
+  }
+]

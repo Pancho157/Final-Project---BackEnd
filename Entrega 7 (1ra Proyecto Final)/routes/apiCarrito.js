@@ -44,7 +44,7 @@ apiCarts.get("/:id/productos", async (req, res) => {
 apiCarts.post("/:id/productos", async (req, res) => {
   // Sumar productos a un carrito
   try {
-    const response = await addCartProductById(req.params.id);
+    const response = await addCartProductById(req.params.id, req.body.id);
     res.send(response);
   } catch (err) {
     res.status(500).end(`UPS: Hubo un error ${err}`);
@@ -54,7 +54,10 @@ apiCarts.post("/:id/productos", async (req, res) => {
 apiCarts.delete("/:id/productos/:id__prod", async (req, res) => {
   // Elimina un producto del carrito
   try {
-    const response = await deleteCartProductById(req.params.id);
+    const response = await deleteCartProductById(
+      req.params.id,
+      req.params.id__prod
+    );
     res.send(response);
   } catch (err) {
     res.status(500).end(`UPS: Hubo un error ${err}`);

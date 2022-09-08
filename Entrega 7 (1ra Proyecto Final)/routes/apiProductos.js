@@ -81,7 +81,7 @@ apiProducts.put("/:id", async (req, res) => {
       const response = await products.update(req.params.id, req.body);
       res.send(response);
     } catch (err) {
-      console.log(err);
+      res.status(400).end(`${err}`);
     }
   }
 });
@@ -98,7 +98,7 @@ apiProducts.delete("/:id", async (req, res) => {
     const response = await products.deleteById(req.params.id);
     res.send(response);
   } catch (err) {
-    console.log(err);
+    res.status(400).end(`${err}`);
   }
 });
 

@@ -12,7 +12,6 @@ class CartTemplate {
   }
 
   async saveCartProducts() {
-    // TODO: hacer que se guarden los productos con persistencia permanente
     let carts;
     try {
       // Obtenemos la información (JSON)

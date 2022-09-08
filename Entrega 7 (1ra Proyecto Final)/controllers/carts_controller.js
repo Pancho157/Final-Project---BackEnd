@@ -75,40 +75,41 @@ const getProductsFromCart = async (id) => {
   return carts[cartIndex].getProducts();
 };
 
-const deleteCartProductById = async (id) => {
+const deleteCartProductById = async (cartId, productId) => {
   let carts;
   let cartIndex;
   // Trae los carritos y los filtra
   try {
     carts = await getCarts();
     cartIndex = carts.findIndex((cart) => {
-      return cart.id == id;
+      return cart.cartId == cartId;
     });
   } catch (err) {
     return err;
   }
 
-  if (cartIndex == -1) return `No se encontró el producto con el ID = ${id}`;
+  if (cartIndex == -1) return `No se encontró el carrito con el ID = ${cartId}`;
 
-  return carts[cartIndex].deleteProductById(id);
+  return carts[cartIndex].deleteProductById(productId);
 };
 
-const addCartProductById = async (id) => {
+const addCartProductById = async (cartId, productId) => {
   let carts;
   let cartIndex;
   // Trae los carritos y los filtra
   try {
     carts = await getCarts();
     cartIndex = carts.findIndex((cart) => {
-      return cart.id == id;
+      return cart.cartId == cartId;
     });
   } catch (err) {
     return err;
   }
 
-  if (cartIndex == -1) return `No se encontró el producto con el ID = ${id}`;
+  if (cartIndex == -1)
+    return `No se encontró el carrito con el ID = ${productId}`;
 
-  return carts[cartIndex].addProductToCart(id);
+  return carts[cartIndex].addProductToCart(productId);
 };
 
 module.exports = {
