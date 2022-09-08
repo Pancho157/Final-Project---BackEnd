@@ -1,6 +1,5 @@
 const express = require("express");
 const apiCarts = express.Router();
-const CartTemplate = require("../controllers/carts_template");
 const {
   addCart,
   deleteCartById,

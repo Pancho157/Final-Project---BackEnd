@@ -1,3 +1,4 @@
+const fs = require("fs");
 const CartTemplate = require("./carts_template");
 
 const cartsFile = "./data/carts.txt";
