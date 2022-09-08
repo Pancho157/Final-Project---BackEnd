@@ -1,24 +1,34 @@
 const express = require("express");
-const cart = express.Router();
+const apiCarts = express.Router();
+const CartTemplate = require("../controllers/carts_template");
+const { addCart } = require("../controllers/carts_controller");
 
-cart.post("/", (req, res) => {
-  // Crea un carrito y devuelve su id
+const route = "./data/carts.txt";
+
+// Crea un carrito y devuelve su id
+apiCarts.post("/", async (req, res) => {
+  // Trae todos los carritos
+  try {
+    res.send(addCart());
+  } catch (err) {
+    res.status(500).end(`UPS: Hubo un error ${err}`);
+  }
 });
 
-cart.delete("/:id", (req, res) => {
+apiCarts.delete("/:id", async (req, res) => {
   // Vacía un carrito y lo elimina
 });
 
-cart.get("/:id/productos", (req, res) => {
+apiCarts.get("/:id/productos", async (req, res) => {
   // Lista todos los productos de un carrito (:id = carrito)
 });
 
-cart.post("/:id/productos", (req, res) => {
+apiCarts.post("/:id/productos", async (req, res) => {
   // Sumar productos a un carrito
 });
 
-cart.delete("/:id/productos/:id__prod", (req, res) => {
+apiCarts.delete("/:id/productos/:id__prod", async (req, res) => {
   // Elimina un producto del carrito
 });
 
-module.exports = cart;
+module.exports = apiCarts;
