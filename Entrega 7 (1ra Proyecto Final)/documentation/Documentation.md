@@ -8,17 +8,30 @@
 
 ---
 
+                                                Mensaje 404
+    {
+        error: -2,
+        descripción: `ruta ${req.url} método ${req.method} no implementada`,
+    }
+
+---
+
+---
+
                                                 /api/productos
 
 ---
 
 ---
 
+    GET --> /api/productos/all
     GET --> /api/productos/:id
 
 - GET --> /api/productos/all --> Trae todos los productos
 
 - GET --> /api/productos/:id --> Trae un producto en específico (en caso de no encontrarlo devuelve un status 400 y el siguiente mensaje: No se ha encontrado el producto que estás buscando)
+
+<img src="./assets/GET - api_productos.gif" width=1500px/>
 
 ---
 
@@ -47,6 +60,8 @@
 
   - En caso de existir un producto con el mismo nombre el servidor enviará un status 400 y el siguiente mensaje: "Ya existe el producto ingresado"
 
+<img src="./assets/POST - api_productos.gif" width=1500px/>
+
 ---
 
     PUT --> /api/productos/:id
@@ -74,6 +89,8 @@
 
   - En caso de no encontrar un producto con el id enviado mediante params el servidor enviará un status 400 y el siguiente mensaje: "No se encontró un producto con el ID ingresado ( ${id} )"
 
+<img src="./assets/PUT - api_productos.gif" width=1500px/>
+
 ---
 
     DELETE --> /api/productos/:id
@@ -95,6 +112,8 @@
 
   - En caso de no poder traer los productos para eliminar el producto con el id especificado por params, el servidor enviará un status 400 y el siguiente mensaje: "Error al traer los productos: ${Error}"
 
+<img src="./assets/DELETE - api_productos.gif" width=1500px/>
+
 ---
 
 ---
@@ -113,6 +132,8 @@
 
   - En caso de haber un error al guardar el carrito en el archivo, servidor enviará un status 400 con el siguiente mensaje: "Error al guardar el carrito: ${err}"
 
+<img src="./assets/" width=1500px/>
+
 ---
 
     DELETE --> /api/carrito/:id
@@ -125,6 +146,8 @@
 
   - En caso de no encontrar un carrito con el id especificado mediante params el servidor enviará un status 400 con el siguiente mensaje: "No se ha encontrado un carrito con el ID = ${id}"
 
+<img src="./assets/" width=1500px/>
+
 ---
 
     GET --> /api/carrito/:id/productos
@@ -136,6 +159,8 @@
   - En caso de no encontrar un carrito con el id especificado mediante params, el servidor enviará un status 400 con el siguiente mensaje: "No se encontró el carrito con el ID = ${id}"
 
   - En caso de haber un error al traer los carritos para buscar el carrito en particular el seervidor enviará un status 500 y el mensaje: "UPS: Hubo un error ${err}"
+
+<img src="./assets/" width=1500px/>
 
 ---
 
@@ -151,6 +176,8 @@
 
   - En caso de haber un error al guardar el producto en el carrito el servidor enviará un status 400 con el mensaje: "Error al agregar el producto al carrito: ${Error}"
 
+<img src="./assets/" width=1500px/>
+
 ---
 
     DELETE --> /api/carrito/:id/productos/:id_prod
@@ -164,3 +191,5 @@
   - En caso de no encontrar el carrito con el id especificado el servidor enviará un status 400 con el mensaje: "No se encontró el carrito con el ID = ${cartId}"
 
   - En caso de haber un error al guardar el producto en el carrito el servidor enviará un status 400 con el mensaje: "Error al eliminar el producto al carrito: ${Error}"
+
+<img src="./assets/" width=1500px/>
