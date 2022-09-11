@@ -56,6 +56,10 @@ apiProducts.post("/", async (req, res) => {
         stock: stock,
       });
 
+      if (response == "Ya existe el producto ingresado") {
+        res.status(400).send(response);
+      }
+
       res.send(response);
     } catch (err) {
       console.log(err);
