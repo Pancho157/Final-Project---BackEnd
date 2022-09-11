@@ -75,7 +75,7 @@ const getProductsFromCart = async (id) => {
     return err;
   }
 
-  if (cartIndex == -1) return `No se encontró el producto con el ID = ${id}`;
+  if (cartIndex == -1) return `No se encontró el carrito con el ID = ${id}`;
 
   return carts[cartIndex].cartProducts;
 };
