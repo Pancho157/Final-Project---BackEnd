@@ -17,7 +17,7 @@ class Contenedor {
 
     let isUnique = objetos.find((product) => product.title === newObject.title);
     if (isUnique !== undefined) {
-      return console.log(`Ya existe el producto ingresado`);
+      return `Ya existe el producto ingresado`;
     }
 
     // Obtiene el último ID y genera el siguiente
@@ -56,7 +56,7 @@ class Contenedor {
       console.log(`Devuelto el elemento con ID = ${id}`);
       return filteredProduct;
     } else {
-      return console.log("No se ha encontrado el producto solicitado");
+      return "No se ha encontrado el producto solicitado";
     }
   }
 

@@ -89,7 +89,7 @@ apiProducts.put("/:id", async (req, res) => {
 apiProducts.delete("/:id", async (req, res) => {
   // Elimina un producto (solo para administradores)
   if (!administrador) {
-    res.status(401).end({
+    res.status(401).send({
       error: "-1",
       descripción: `ruta ${route} - método DELETE - no autorizada`,
     });
@@ -98,7 +98,7 @@ apiProducts.delete("/:id", async (req, res) => {
     const response = await products.deleteById(req.params.id);
     res.send(response);
   } catch (err) {
-    res.status(400).end(`${err}`);
+    res.status(400).send(`${err}`);
   }
 });
 
