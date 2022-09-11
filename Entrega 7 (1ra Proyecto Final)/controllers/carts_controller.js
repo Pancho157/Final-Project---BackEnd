@@ -128,8 +128,9 @@ const addCartProductById = async (cartId, productId) => {
     return err;
   }
 
-  if (cartIndex == -1)
+  if (cartIndex == -1) {
     return `No se encontró el carrito con el ID = ${productId}`;
+  }
 
   let productToAdd;
   try {
@@ -138,7 +139,7 @@ const addCartProductById = async (cartId, productId) => {
     return `${err}`;
   }
 
-  if (!productToAdd) {
+  if (productToAdd == "No se ha encontrado el producto solicitado") {
     return `Error al encontrar el producto con el id: ${productId}`;
   }
 

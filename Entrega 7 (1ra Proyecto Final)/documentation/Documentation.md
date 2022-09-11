@@ -4,6 +4,12 @@
 
 # Desafio 7 (1ra Entrega del Proyecto Final)
 
+# Observaciones
+
+- Es posible que necesite reiniciar el servidor para poder pasar de una prueva a otra al rechazar las conexiones
+
+- El id en la generación de productos se reiniciará a 1 cuando se reinicie el servidor (Implemente esto debido a querer comprender mejor como funcionan las variables estáticas dentro de las clases)
+
 # Funcionamiento de los diferentes endpoints
 
 ---
@@ -160,7 +166,7 @@
 
   - En caso de haber un error al traer los carritos para buscar el carrito en particular el seervidor enviará un status 500 y el mensaje: "UPS: Hubo un error ${err}"
 
-<img src="./assets/" width=1500px/>
+<img src="./assets/GET - api_carrito_id_productos.gif" width=1500px/>
 
 ---
 
@@ -176,7 +182,7 @@
 
   - En caso de haber un error al guardar el producto en el carrito el servidor enviará un status 400 con el mensaje: "Error al agregar el producto al carrito: ${Error}"
 
-<img src="./assets/" width=1500px/>
+<img src="./assets/POST - api_carrito_id_productos.gif" width=1500px/>
 
 ---
 
@@ -192,4 +198,4 @@
 
   - En caso de haber un error al guardar el producto en el carrito el servidor enviará un status 400 con el mensaje: "Error al eliminar el producto al carrito: ${Error}"
 
-<img src="./assets/" width=1500px/>
+<img src="./assets/DELETE - api_carrito_id_productos_idProd.gif" width=1500px/>
