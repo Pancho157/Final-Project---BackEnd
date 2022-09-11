@@ -1,23 +1,6 @@
 [
   {
     "route": "./data/carts.txt",
-    "cartId": 1,
-    "timestapm": "Sun Sep 11 2022",
-    "cartProducts": [
-      {
-        "title": "Producto de prueba",
-        "price": 200,
-        "thumbnail": "https://github.com/Pancho157/Coderhouse-Backend---Exercices-deliveries/tree/master/Entregables/Entrega%204%20(API%20REST)",
-        "description": "Una descripción random para probar si funciona",
-        "stock": 11,
-        "id": 2,
-        "timestamp": "Thu Sep 08 2022",
-        "code": "9e688c58a5487b8eaf69c9e1005ad0bf"
-      }
-    ]
-  },
-  {
-    "route": "./data/carts.txt",
     "cartId": 2,
     "timestapm": "Sun Sep 11 2022",
     "cartProducts": []
@@ -25,6 +8,12 @@
   {
     "route": "./data/carts.txt",
     "cartId": 3,
+    "timestapm": "Sun Sep 11 2022",
+    "cartProducts": []
+  },
+  {
+    "route": "./data/carts.txt",
+    "cartId": 2,
     "timestapm": "Sun Sep 11 2022",
     "cartProducts": []
   }

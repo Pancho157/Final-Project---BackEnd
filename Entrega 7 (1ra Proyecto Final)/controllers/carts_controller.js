@@ -18,7 +18,7 @@ const getCarts = async () => {
 };
 
 const addCart = async () => {
-  let carts = [];
+  let carts;
   try {
     carts = await getCarts();
   } catch (err) {

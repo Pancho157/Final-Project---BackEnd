@@ -1,6 +1,6 @@
 [
   {
-    "title": "Producto de prueb5asdf",
+    "title": "Nuevo título para el producto",
     "price": 200,
     "thumbnail": "https://github.com/Pancho157/Coderhouse-Backend---Exercices-deliveries/tree/master/Entregables/Entrega%204%20(API%20REST)",
     "description": "Una descripción random para probar si funciona",

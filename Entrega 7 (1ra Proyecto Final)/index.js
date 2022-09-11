@@ -19,5 +19,10 @@ app.use("/api/carrito", require("./routes/apiCarrito"));
 
 // ----------------------- Error 404 -----------------------
 app.use((req, res) => {
-  res.status(404).send("No se encontró la página que estás buscando");
+  res
+    .status(404)
+    .send({
+      error: -2,
+      descripción: `ruta ${req.url} método ${req.method} no implementada`,
+    });
 });

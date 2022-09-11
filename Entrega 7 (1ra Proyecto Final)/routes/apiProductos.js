@@ -83,6 +83,14 @@ apiProducts.put("/:id", async (req, res) => {
   } else {
     try {
       const response = await products.update(req.params.id, req.body);
+
+      if (
+        response ==
+        `No se encontró un producto con el ID ingresado ( ${req.params.id} )`
+      ) {
+        res.status(400).send(response);
+      }
+
       res.send(response);
     } catch (err) {
       res.status(400).end(`${err}`);
