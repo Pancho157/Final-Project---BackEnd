@@ -88,7 +88,7 @@ class Contenedor {
       await fs.writeFile(this.ruta, JSON.stringify(filteredProducts, null, 2));
       return `Eliminado el elemento con el ID = ${id}`;
     } catch {
-      return `Error al guardar: ${Error}`;
+      return `Error al guardar: No fue posible eliminar el producto (${id})`;
     }
   }
 

@@ -38,7 +38,7 @@ apiProducts.post("/", async (req, res) => {
   if (!administrador) {
     res.status(401).end({
       error: "-1",
-      descripción: `ruta ${route} - método POST - no autorizada`,
+      descripción: `ruta ${req.url} - método ${req.method} - no autorizada`,
     });
   }
 
@@ -72,14 +72,14 @@ apiProducts.put("/:id", async (req, res) => {
   if (!administrador) {
     res.status(401).end({
       error: "-1",
-      descripción: `ruta ${route} - método PUT - no autorizada`,
+      descripción: `ruta ${req.url} - método ${req.method} - no autorizada`,
     });
   }
 
   const { title, description, thumbnail, price, stock } = req.body;
 
   if (!title && !description && !thumbnail && !price && !stock) {
-    res.status(400).end("No se rellenaron todos los campos requeridos");
+    res.status(400).end("No se envió información para actualizar el producto");
   } else {
     try {
       const response = await products.update(req.params.id, req.body);
@@ -103,11 +103,16 @@ apiProducts.delete("/:id", async (req, res) => {
   if (!administrador) {
     res.status(401).send({
       error: "-1",
-      descripción: `ruta ${route} - método DELETE - no autorizada`,
+      descripción: `ruta ${req.url} - método ${req.method} - no autorizada`,
     });
   }
   try {
     const response = await products.deleteById(req.params.id);
+
+    if (response != `Eliminado el elemento con el ID = ${req.params.id}`) {
+      res.status(400).send(response);
+    }
+
     res.send(response);
   } catch (err) {
     res.status(400).send(`${err}`);

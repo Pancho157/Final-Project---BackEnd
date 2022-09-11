@@ -56,7 +56,7 @@ const deleteCartById = async (id) => {
   // Guarda todos los carritos, a excepción de el que posee el id mandado como param
   try {
     fs.promises.writeFile(cartsFile, JSON.stringify(filteredCarts, null, 2));
-    return `Se eliminó con el id: ${id}`;
+    return `Se eliminó el carrito con el id: ${id}`;
   } catch {
     return `Error al eliminar el carrito: ${Error}`;
   }
@@ -111,7 +111,7 @@ const deleteCartProductById = async (cartId, productId) => {
     await fs.promises.writeFile(cartsFile, JSON.stringify(carts, null, 2));
     return `Se eliminó el producto con el id: ${productId} al carrito con id: ${cartId}`;
   } catch {
-    return `Error al agregar el producto al carrito: ${Error}`;
+    return `Error al eliminar el producto al carrito: ${Error}`;
   }
 };
 
