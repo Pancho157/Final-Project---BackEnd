@@ -16,7 +16,7 @@ apiCarts.post("/", async (req, res) => {
   try {
     const response = await addCart();
 
-    if (response.includes(`Se guardó el carrito con el id:`)) {
+    if (!response.includes(`Se guardó el carrito con el id:`)) {
       res.status(400).end(`UPS: Hubo un error ${response}`);
     }
 
@@ -46,7 +46,7 @@ apiCarts.get("/:id/productos", async (req, res) => {
   try {
     const response = await getProductsFromCart(req.params.id);
 
-    if (response != `No se encontró el carrito con el ID = ${req.params.id}`) {
+    if (response == `No se encontró el carrito con el ID = ${req.params.id}`) {
       res.status(400).end(`UPS: Hubo un error ${response}`);
     }
 

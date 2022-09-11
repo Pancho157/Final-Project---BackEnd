@@ -1,19 +1,7 @@
 [
   {
     "route": "./data/carts.txt",
-    "cartId": 2,
-    "timestapm": "Sun Sep 11 2022",
-    "cartProducts": []
-  },
-  {
-    "route": "./data/carts.txt",
     "cartId": 3,
-    "timestapm": "Sun Sep 11 2022",
-    "cartProducts": []
-  },
-  {
-    "route": "./data/carts.txt",
-    "cartId": 2,
     "timestapm": "Sun Sep 11 2022",
     "cartProducts": []
   }

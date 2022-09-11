@@ -132,7 +132,7 @@
 
   - En caso de haber un error al guardar el carrito en el archivo, servidor enviará un status 400 con el siguiente mensaje: "Error al guardar el carrito: ${err}"
 
-<img src="./assets/" width=1500px/>
+<img src="./assets/POST - api_carrito.gif" width=1500px/>
 
 ---
 
@@ -146,7 +146,7 @@
 
   - En caso de no encontrar un carrito con el id especificado mediante params el servidor enviará un status 400 con el siguiente mensaje: "No se ha encontrado un carrito con el ID = ${id}"
 
-<img src="./assets/" width=1500px/>
+<img src="./assets/DELETE - api_carrito_id.gif" width=1500px/>
 
 ---
 
