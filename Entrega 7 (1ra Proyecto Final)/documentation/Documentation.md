@@ -10,6 +10,12 @@
 
 - El id en la generación de productos se reiniciará a 1 cuando se reinicie el servidor (Implemente esto debido a querer comprender mejor como funcionan las variables estáticas dentro de las clases)
 
+---
+## Link a gliph.com
+---
+- https://helix-iridescent-wildebeest.glitch.me
+---
+
 # Funcionamiento de los diferentes endpoints
 
 ---
