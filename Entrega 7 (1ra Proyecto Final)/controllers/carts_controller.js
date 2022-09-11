@@ -6,10 +6,11 @@ const cartsFile = "./data/carts.txt";
 
 const getCarts = async () => {
   try {
-    // Obtiene la información (JSON)
+    // Obtenemos la información (JSON)
     const data = await fs.promises.readFile(cartsFile, "utf-8", (err, data) => {
       return data;
     });
+
     return JSON.parse(data); // Devuelve la informacion parseada
   } catch (err) {
     return err;
@@ -20,7 +21,6 @@ const addCart = async () => {
   let carts = [];
   try {
     carts = await getCarts();
-    return carts;
   } catch (err) {
     return err;
   }
@@ -31,8 +31,8 @@ const addCart = async () => {
   try {
     fs.promises.writeFile(newCart.route, JSON.stringify(carts, null, 2));
     return `Se guardó el carrito con el id: ${newCart.cartId}`;
-  } catch {
-    return `Error al guardar el carrito: ${Error}`;
+  } catch (err) {
+    return `Error al guardar el carrito: ${err}`;
   }
 };
 
@@ -55,11 +55,8 @@ const deleteCartById = async (id) => {
 
   // Guarda todos los carritos, a excepción de el que posee el id mandado como param
   try {
-    await fs.promises.writeFile(
-      cartsFile,
-      JSON.stringify(filteredCarts, null, 2)
-    );
-    return `Se eliminó con el id: ${id}}`;
+    fs.promises.writeFile(cartsFile, JSON.stringify(filteredCarts, null, 2));
+    return `Se eliminó con el id: ${id}`;
   } catch {
     return `Error al eliminar el carrito: ${Error}`;
   }
