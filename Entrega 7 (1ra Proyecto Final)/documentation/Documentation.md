@@ -13,7 +13,8 @@
 ---
 ## Link a gliph.com
 ---
-- https://entrega-parcial---proyecto-final.glitch.me
+- [Página de Glitch.com](https://entrega-parcial---proyecto-final.glitch.me)
+- [Código en Glitch.com](https://glitch.com/edit/#!/entrega-parcial---proyecto-final)
 ---
 
 # Funcionamiento de los diferentes endpoints
