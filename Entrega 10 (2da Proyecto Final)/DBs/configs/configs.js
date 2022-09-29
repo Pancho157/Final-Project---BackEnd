@@ -1,0 +1,45 @@
+export default {
+  fileSystem: {
+    path: "./DB",
+  },
+  mongodb: {
+    cnxStr: "mongodb://localhost/ecommerce",
+    options: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      serverSelectionTimeoutMS: 5000,
+    },
+  },
+  firebase: {
+    type: "service_account",
+    project_id: "probando-dao",
+    private_key_id: "d12aa083b2bee8e9787edfa07397a92dc6186b84",
+    private_key:
+      "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDU+lShP9bZk5NP\nqQ6ycX8Ph0E5+p/FyRXrrf81mBG0CClvz8ZbC3NCQERzt18QsfiVZcKChoq6XYjx\nrK8JUDa9HRPGmnNiIV5lOr/fDr5ilG8qy9fSTJpV8hN6EhvELTBt/8vBz5ZhcISU\nWJog4l/gN/gTKhhnFAF1l5OSeKJhLPpfiXWf4pUBk7wyNTXcEXIrjldQ10gNEDIJ\nJgauqlNoHFgd/z8XU8Cy44Nuoz0tU/IFkmwuqv7G4YXWjI22XThZEcSQKHmcElQG\nNrgeKNy/gdykZSK88zFD5QkSilqfwTakE/eBaMMCIbreaX5eY6l1pYPA3QziIg13\ncfY8F0CbAgMBAAECggEAIDdbvOaUv+XQZ0Dp7bk4YKdziOst5vPDgpqX28oMh4Ci\nj/zMgvIo9bEWCbEHytU5BpRVh3wFmSpT8EbQVWbSWOoAl06+vG3SwxpPctTenLfa\nVw1tsKyQvgZ3xsPdel/hjwoeDsuxcjzceTor2mST3y1oM7Hu7gy7KcgLdSEVYwBt\njk9e6z3K1tZr3sCKfnt4XSleeRo+Oa5dBs08Uk4QbKxT8aBtOLD5b1wEwzqq1QBV\nDyLV74TmCqtv2ItVLFePLAQc9Wk6E7U3V4nu0pJYO6ftQmgoI2Cf98agDZuHpmOQ\nPzIc9i79Tls9+WCgGpt53vd+K582bOt6mmaqBffv0QKBgQDzBr7dRZWVB57D+9NH\nf4qUhRk1AEnEy0qQOIRRLrGoI0KtvzTeNUqNaXTYaVnvaGUWrYshN4fzYAYVI9pP\nazW09VOJJfmaS+a9Bg8Yy+QT5NDvfID1lcE3RtQjfGSe0wB0U0n8GW4yiCHoUBDs\nDC3YpgPmsFvOab3GN5dKsNzGiwKBgQDgWO9wbUnVn2nXPpIjEPtBd5G3j8NIC79J\nfqlZei1N1XewSPXROXgEoNh55fBGsHa5lKN/HpLOeEM/8al1MIZCQtmD3+GYn5Ud\noxfZDKUB7ISdnHkcjDw7fflPxCZLiOjSDFkGzK2jBY97drBvomPE1+lFFM62gb4D\nkcjrIWfAMQKBgH6+Xt5BgxB1J+zoMbkRIDHy9EF7A/35U8rBXuiD5K1erlC07pqQ\nym/TtteCoh/EnyvjmDLbpjBcPO/bgeh3bkwQwd8+Cd3Zhd3BAjCZbTqe1ASCNzNd\nRaZRbyOOpV9bhdok8enjTWBXNO/WiezBMUvS0SgHg+mzpgBxT5rpgEqfAoGBALRs\nkdPW8MROei5S8fAlnguef6AijCiK2gHfTY7aRUkNXj51zsu+7hi6yp3uIHiZPkIt\nmfeHvQUzjtIEJgZLSg5L+OanzKST4rZ9DZbPJn0Pm++tgXFGDsLBoxlVZH7m0mbq\n60YeoZ4zwJrIb0i4TohmJAIco8n/ObNhMTZ4HRphAoGAepx3+/Yc605iIQ2szvKQ\nvUiHosjEUXuybmZb3EvbSmrlnBEWbpnS1zKkHFaZgemXjgLEYXv29j7UrV3zbbrW\nm9jE5BHJId07E9vMrOcaR999VUUHQi8Das8GFi9EhrajbXuvZxUyCNCMbbwPKmtH\nTnqUwa8O8lpjptfy0F+cMAw=\n-----END PRIVATE KEY-----\n",
+    client_email:
+      "firebase-adminsdk-dd4oh@probando-dao.iam.gserviceaccount.com",
+    client_id: "100449707811223321154",
+    auth_uri: "https://accounts.google.com/o/oauth2/auth",
+    token_uri: "https://oauth2.googleapis.com/token",
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+    client_x509_cert_url:
+      "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-dd4oh%40probando-dao.iam.gserviceaccount.com",
+  },
+  sqlite3: {
+    client: "sqlite3",
+    connection: {
+      filename: `./DB/ecommerce.sqlite`,
+    },
+    useNullAsDefault: true,
+  },
+  mariadb: {
+    client: "mysql",
+    connection: {
+      host: "localhost",
+      user: "coderhouse",
+      password: "coderhouse",
+      database: "coderhouse",
+    },
+  },
+};
