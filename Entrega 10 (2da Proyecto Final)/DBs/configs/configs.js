@@ -1,7 +1,4 @@
 export default {
-  fileSystem: {
-    path: "./DB",
-  },
   mongodb: {
     cnxStr: "mongodb://localhost/ecommerce",
     options: {
@@ -37,9 +34,9 @@ export default {
     client: "mysql",
     connection: {
       host: "localhost",
-      user: "coderhouse",
-      password: "coderhouse",
-      database: "coderhouse",
+      user: "root",
+      password: "rootUs3rs",
+      database: "ecommerce",
     },
   },
 };
