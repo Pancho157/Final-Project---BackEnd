@@ -2,7 +2,7 @@
 
 # Comisión #32095
 
-# Desafio 7 (1ra Entrega del Proyecto Final)
+# Desafio 10 (2da Entrega del Proyecto Final)
 
 ## Consigna:
 
