@@ -197,7 +197,33 @@
 
 ## Inputs
 
+    No requiere, solo se debe llamar al método
+
 ## Outputs
+
+- En caso de éxito:
+
+    - Devuelve un array de objets, los cuales representan a cada carrito
+
+            [
+                {
+                    cartId: int,
+                    timestamp: {
+                        date: "string"
+                        time: "string"
+                    }
+                    cartProducts: []
+                },
+                {
+                    cartId: int,
+                    timestamp: {
+                        date: "string"
+                        time: "string"
+                    }
+                    cartProducts: []
+                }
+            ]
+
 
 ---
 
