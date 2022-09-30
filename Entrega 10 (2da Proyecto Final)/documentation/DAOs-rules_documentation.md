@@ -86,7 +86,7 @@
   - `{error: -5, errorStatus: 401, message: "No se ha ingresado ningún ID de producto"}`
 
 - En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
-  - `{error: -5, errorStatus: 401, message: "Los datos ingresados son válidos (id = int)"}`
+  - `{error: -3, errorStatus: 401, message: "Los datos ingresados son válidos (id = int)"}`
 
 ---
 
@@ -120,7 +120,7 @@
         ]
 
 - En caso de haber un error al buscar la BBDD:
-  - `{error: -6, errorStatus: 401, message: "No se ha encontrado la BBDD deseada"}`
+  - `{error: -6, errorStatus: 500, message: "No se ha encontrado la BBDD deseada"}`
 
 ---
 
@@ -128,7 +128,24 @@
 
 ## Inputs
 
+    id = int
+
 ## Outputs
+
+- En caso de éxito:
+
+  - Devuelve un mensaje diciendo lo siguiente: "Se eliminó exitosamente el producto con id = {id}"
+
+- En caso de haber un error al buscar el producto:
+
+  - `{error: -4, errorStatus: 401, message: "No se ha encontrado el producto deseado"}`
+
+- En caso de ingresar no ingresar el id:
+
+  - `{error: -5, errorStatus: 401, message: "No se ha ingresado ningún ID de producto"}`
+
+- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+  - `{error: -3, errorStatus: 401, message: "Los datos ingresados son válidos (id = int)"}`
 
 ---
 
@@ -136,13 +153,41 @@
 
 ## Inputs
 
+- Donde newInfo es un objeto con las propiedades e id es un interger:
+
+        id = int
+
+        newInfo = {
+            "id": int,
+            "title": "",
+            "price": int,
+            "thumbnail": "",
+            "stock": int
+        }
+
 ## Outputs
 
----
+- En caso de éxito:
+
+  - Devuelve un mensaje diciendo lo siguiente: "Se modifico exitosamente el producto con id = {id}"
+
+- En caso de haber un error al modificar el producto:
+
+  - `{error: -6, errorStatus: 500, message: "Ha ocurrido un error al modificar el producto: ${err}"}`
+
+- En caso de no haber ingresado los datos necesarios:
+
+  - `{error: -2, errorStatus: 401, message: "No ingresaron todos los campos necesarios(id - y por lo menos uno de los siguientes: title, price, thumbnail, stock)"}`
+
+- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+
+  - `{error: -3, errorStatus: 401, message: "No todos los datos ingresados son válidos (id = int, title = string, price = int, thumbnail = string, stock = int)"}`
 
 ---
 
-                                Productos DAO - Métodos y errores
+---
+
+                                Carritos DAO - Métodos y errores
 
 ---
 
