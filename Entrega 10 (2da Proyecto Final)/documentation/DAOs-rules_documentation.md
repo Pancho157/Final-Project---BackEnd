@@ -24,7 +24,7 @@
 
 ---
 
-    save(newObject) {}
+                    save(newObject) {}
 
 ## Inputs
 
@@ -40,9 +40,91 @@
 
 ## Outputs
 
+- En caso de éxito:
+
+  - ID del nuevo producto
+
+- En caso de haber un error al generar el producto:
+
+  - `{error: -1, errorStatus: 500, message: "Ha ocurrido un error al generar el producto: ${err}"}`
+
+- En caso de no haber ingresado todas las propiedades en el objeto:
+
+  - `{error: -2, errorStatus: 401, message: "No ingresaron todos los campos necesarios(id, title, price, thumbnail, stock)"}`
+
+- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+  - `{error: -3, errorStatus: 401, message: "No todos los datos ingresados son válidos(id = int, title = string, price = int, thumbnail = string, stock = int)"}`
+
 ---
 
-    getById(id) {}
+                    getById(id) {}
+
+## Inputs
+
+    id = int
+
+## Outputs
+
+- En caso de éxito:
+
+  - Objeto con todas las propiedades del producto
+
+        {
+            "id": int,
+            "title": "",
+            "price": int,
+            "thumbnail": "",
+            "stock": int
+        }
+
+- En caso de haber un error al buscar el producto:
+
+  - `{error: -4, errorStatus: 401, message: "No se ha encontrado el producto deseado"}`
+
+- En caso de ingresar no ingresar el id:
+
+  - `{error: -5, errorStatus: 401, message: "No se ha ingresado ningún ID de producto"}`
+
+- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+  - `{error: -5, errorStatus: 401, message: "Los datos ingresados son válidos (id = int)"}`
+
+---
+
+                    getAll() {}
+
+## Inputs
+
+    No requiere, solo se debe llamar al método
+
+## Outputs
+
+- En caso de éxito:
+
+  - Array de objetos (cada uno representa un producto)
+
+        [
+            {
+                "id": int,
+                "title": "",
+                "price": int,
+                "thumbnail": "",
+                "stock": int
+            },
+            {
+                "id": int,
+                "title": "",
+                "price": int,
+                "thumbnail": "",
+                "stock": int
+            }
+        ]
+
+- En caso de haber un error al buscar la BBDD:
+  - `{error: -6, errorStatus: 401, message: "No se ha encontrado la BBDD deseada"}`
+
+---
+
+                    deleteById(id) {}
 
 ## Inputs
 
@@ -50,23 +132,7 @@
 
 ---
 
-    getAll() {}
-
-## Inputs
-
-## Outputs
-
----
-
-    deleteById(id) {}
-
-## Inputs
-
-## Outputs
-
----
-
-    update(id, newInfo) {}
+                    update(id, newInfo) {}
 
 ## Inputs
 
@@ -82,7 +148,7 @@
 
 ---
 
-    getCarts() {}
+                    getCarts() {}
 
 ## Inputs
 
@@ -90,7 +156,7 @@
 
 ---
 
-    addCart() {}
+                    addCart() {}
 
 ## Inputs
 
@@ -98,7 +164,7 @@
 
 ---
 
-    deleteCartById(id) {}
+                    deleteCartById(id) {}
 
 ## Inputs
 
@@ -106,7 +172,7 @@
 
 ---
 
-    getProductsFromCart(id) {}
+                    getProductsFromCart(id) {}
 
 ## Inputs
 
@@ -114,7 +180,7 @@
 
 ---
 
-    deleteCartProductById(cartId, productId) {}
+                    deleteCartProductById(cartId, productId) {}
 
 ## Inputs
 
@@ -122,7 +188,7 @@
 
 ---
 
-    addCartProductById(cartId, productId) {}
+                    addCartProductById(cartId, productId) {}
 
 ## Inputs
 
