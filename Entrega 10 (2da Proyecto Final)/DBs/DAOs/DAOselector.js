@@ -3,21 +3,6 @@ import CartsControllerFirebase from "./carts/CartDao-Firebase.js";
 let productosDao;
 let carritosDao;
 
-// Funciones de los productso:
-//    save(newObject) {}
-//    getById(id) {}
-//    getAll() {}
-//    deleteById(id) {}
-//    update(id, newInfo) {}
-
-// Funciones de los carritos:
-//    getCarts() {}
-//    addCart() {}
-//    deleteCartById(id) {}
-//    getProductsFromCart(id) {}
-//    deleteCartProductById(cartId, productId) {}
-//    addCartProductById(cartId, productId) {}
-
 switch (process.env.PERS) {
   case "firebase":
     const { default: ProductosDaoFirebase } = await import(
