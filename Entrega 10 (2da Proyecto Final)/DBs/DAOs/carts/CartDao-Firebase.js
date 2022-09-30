@@ -1,3 +1,11 @@
+// Funciones de los carritos:
+//    getCarts() {}
+//    addCart() {}
+//    deleteCartById(id) {}
+//    getProductsFromCart(id) {}
+//    deleteCartProductById(cartId, productId) {}
+//    addCartProductById(cartId, productId) {}
+
 import admin from "firebase-admin";
 import config from "../../configs/configs";
 

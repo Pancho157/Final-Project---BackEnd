@@ -1,9 +1,7 @@
 const express = require("express");
 const apiProducts = express.Router();
-const products = require("../controllers/products_controller");
-
-const administrador = true;
-const route = "/api/productos";
+import { productosDao as products } from "../DBs/DAOs/DAOselector";
+import adminVerif from "./adminVerif";
 
 // Lista todos los productos o uno solo por su id
 apiProducts.get("/:id", async (req, res) => {
@@ -34,14 +32,7 @@ apiProducts.get("/:id", async (req, res) => {
 
 // Incorpora productos al listado (solo para administradores)
 // Products structure --> id, timestamp, title, description, code, thumbnail, price, stock
-apiProducts.post("/", async (req, res) => {
-  if (!administrador) {
-    res.status(401).end({
-      error: "-1",
-      descripción: `ruta ${req.url} - método ${req.method} - no autorizada`,
-    });
-  }
-
+apiProducts.post("/", adminVerif, async (req, res) => {
   const { title, description, thumbnail, price, stock } = req.body;
 
   if (!title || !description || !thumbnail || !price || !stock) {
@@ -56,26 +47,15 @@ apiProducts.post("/", async (req, res) => {
         stock: stock,
       });
 
-      if (response == "Ya existe el producto ingresado") {
-        res.status(400).send(response);
-      }
-
       res.send(response);
     } catch (err) {
-      console.log(err);
+      res.send(`${err}`);
     }
   }
 });
 
-apiProducts.put("/:id", async (req, res) => {
+apiProducts.put("/:id", adminVerif, async (req, res) => {
   // Actualiza un producto (solo para administradores)
-  if (!administrador) {
-    res.status(401).end({
-      error: "-1",
-      descripción: `ruta ${req.url} - método ${req.method} - no autorizada`,
-    });
-  }
-
   const { title, description, thumbnail, price, stock } = req.body;
 
   if (!title && !description && !thumbnail && !price && !stock) {
@@ -83,39 +63,20 @@ apiProducts.put("/:id", async (req, res) => {
   } else {
     try {
       const response = await products.update(req.params.id, req.body);
-
-      if (
-        response ==
-        `No se encontró un producto con el ID ingresado ( ${req.params.id} )`
-      ) {
-        res.status(400).send(response);
-      }
-
       res.send(response);
     } catch (err) {
-      res.status(400).end(`${err}`);
+      res.send(`${err}`);
     }
   }
 });
 
-apiProducts.delete("/:id", async (req, res) => {
+apiProducts.delete("/:id", adminVerif, async (req, res) => {
   // Elimina un producto (solo para administradores)
-  if (!administrador) {
-    res.status(401).send({
-      error: "-1",
-      descripción: `ruta ${req.url} - método ${req.method} - no autorizada`,
-    });
-  }
   try {
     const response = await products.deleteById(req.params.id);
-
-    if (response != `Eliminado el elemento con el ID = ${req.params.id}`) {
-      res.status(400).send(response);
-    }
-
     res.send(response);
   } catch (err) {
-    res.status(400).send(`${err}`);
+    res.send(`${err}`);
   }
 });
 
