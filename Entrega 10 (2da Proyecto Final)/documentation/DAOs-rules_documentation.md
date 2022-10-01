@@ -38,22 +38,31 @@
             "stock": int
         }
 
+- El DAO debe generar a su vez de manera automática dos propiedades para el nuevo producto:
+
+      "code": "",
+      "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
+
 ## Outputs
 
 - En caso de éxito:
 
   - ID del nuevo producto
 
+- En caso de no poder encontrar la BBDD:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
 - En caso de haber un error al generar el producto:
 
-  - `{error: -1, errorStatus: 500, message: "Ha ocurrido un error al generar el producto: ${err}"}`
+  - `{error: -11, errorStatus: 500, message: "Ha ocurrido un error al generar el producto: ${err}"}`
 
-- En caso de no haber ingresado todas las propiedades en el objeto:
+- En caso de no haber ingresado todas las propiedades necesarias del nuevo producto:
 
-  - `{error: -2, errorStatus: 401, message: "No ingresaron todos los campos necesarios(id, title, price, thumbnail, stock)"}`
+  - `{error: -20, errorStatus: 400, message: "No ingresaron todos los campos necesarios (id, title, price, thumbnail, stock)"}`
 
 - En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
-  - `{error: -3, errorStatus: 401, message: "No todos los datos ingresados son válidos(id = int, title = string, price = int, thumbnail = string, stock = int)"}`
+  - `{error: -21, errorStatus: 400, message: "No todos los datos ingresados son válidos (id = int, title = string, price = int, thumbnail = string, stock = int)"}`
 
 ---
 
@@ -71,22 +80,25 @@
 
         {
             "id": int,
+            "code": "",
+            "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
             "title": "",
             "price": int,
             "thumbnail": "",
             "stock": int
         }
 
-- En caso de haber un error al buscar el producto:
-
-  - `{error: -4, errorStatus: 401, message: "No se ha encontrado el producto deseado"}`
-
 - En caso de ingresar no ingresar el id:
 
-  - `{error: -5, errorStatus: 401, message: "No se ha ingresado ningún ID de producto"}`
+  - `{error: -20, errorStatus: 400, message: "No se ha ingresado ningún ID de producto"}`
 
 - En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
-  - `{error: -3, errorStatus: 401, message: "Los datos ingresados son válidos (id = int)"}`
+
+  - `{error: -21, errorStatus: 400, message: "Los datos ingresados son válidos (id = int)"}`
+
+- En caso de haber un error al buscar el producto:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto deseado"}`
 
 ---
 
@@ -105,6 +117,8 @@
         [
             {
                 "id": int,
+                "code": "",
+                "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
                 "title": "",
                 "price": int,
                 "thumbnail": "",
@@ -112,6 +126,8 @@
             },
             {
                 "id": int,
+                "code": "",
+                "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
                 "title": "",
                 "price": int,
                 "thumbnail": "",
@@ -120,7 +136,8 @@
         ]
 
 - En caso de haber un error al buscar la BBDD:
-  - `{error: -6, errorStatus: 500, message: "No se ha encontrado la BBDD deseada"}`
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD deseada"}`
 
 ---
 
@@ -134,18 +151,19 @@
 
 - En caso de éxito:
 
-  - Devuelve un mensaje diciendo lo siguiente: "Se eliminó exitosamente el producto con id = {id}"
-
-- En caso de haber un error al buscar el producto:
-
-  - `{error: -4, errorStatus: 401, message: "No se ha encontrado el producto deseado"}`
+  - Devuelve un mensaje diciendo lo siguiente: `Se eliminó exitosamente el producto con id = {id}`
 
 - En caso de ingresar no ingresar el id:
 
-  - `{error: -5, errorStatus: 401, message: "No se ha ingresado ningún ID de producto"}`
+  - `{error: -20, errorStatus: 400, message: "No se ha ingresado ningún ID de producto"}`
 
 - En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
-  - `{error: -3, errorStatus: 401, message: "Los datos ingresados son válidos (id = int)"}`
+
+  - `{error: -21, errorStatus: 400, message: "Los datos ingresados son válidos (id = int)"}`
+
+- En caso de haber un error al buscar el producto:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto deseado"}`
 
 ---
 
@@ -171,17 +189,17 @@
 
   - Devuelve un mensaje diciendo lo siguiente: "Se modifico exitosamente el producto con id = {id}"
 
-- En caso de haber un error al modificar el producto:
-
-  - `{error: -6, errorStatus: 500, message: "Ha ocurrido un error al modificar el producto: ${err}"}`
-
 - En caso de no haber ingresado los datos necesarios:
 
-  - `{error: -2, errorStatus: 401, message: "No ingresaron todos los campos necesarios(id - y por lo menos uno de los siguientes: title, price, thumbnail, stock)"}`
+  - `{error: -20, errorStatus: 400, message: "No ingresaron todos los campos necesarios(id - y por lo menos uno de los siguientes: title, price, thumbnail, stock)"}`
 
 - En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
 
-  - `{error: -3, errorStatus: 401, message: "No todos los datos ingresados son válidos (id = int, title = string, price = int, thumbnail = string, stock = int)"}`
+  - `{error: -21, errorStatus: 400, message: "No todos los datos ingresados son válidos (id = int, title = string, price = int, thumbnail = string, stock = int)"}`
+
+- En caso de haber un error al buscar la BBDD:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD deseada"}`
 
 ---
 
@@ -203,7 +221,9 @@
 
 - En caso de éxito:
 
-    - Devuelve un array de objets, los cuales representan a cada carrito
+  - Devuelve un array de objets, los cuales representan a cada carrito
+
+    (Se guardan los id de los productos debido a que pueden modificarse luego y los carritos no se enterarian si se guardara toda la info del producto)
 
             [
                 {
@@ -212,7 +232,7 @@
                         date: "string"
                         time: "string"
                     }
-                    cartProducts: []
+                    cartProducts: [prodId, prodId, prodId]
                 },
                 {
                     cartId: int,
@@ -224,6 +244,9 @@
                 }
             ]
 
+- En caso de haber un error al buscar los carritos:
+
+  - `{error: -11, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
 
 ---
 
