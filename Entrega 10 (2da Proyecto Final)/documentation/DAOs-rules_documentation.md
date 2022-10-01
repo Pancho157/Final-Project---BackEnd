@@ -31,7 +31,6 @@
 - Donde newObject es un objeto con las propiedades:
 
         {
-            "id": int,
             "title": "",
             "price": int,
             "thumbnail": "",
@@ -40,6 +39,7 @@
 
 - El DAO debe generar a su vez de manera automática dos propiedades para el nuevo producto:
 
+      "id": int,
       "code": "",
       "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
 
@@ -59,10 +59,10 @@
 
 - En caso de no haber ingresado todas las propiedades necesarias del nuevo producto:
 
-  - `{error: -20, errorStatus: 400, message: "No ingresaron todos los campos necesarios (id, title, price, thumbnail, stock)"}`
+  - `{error: -20, errorStatus: 400, message: "No ingresaron todos los campos necesarios (title, price, thumbnail, stock)"}`
 
 - En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
-  - `{error: -21, errorStatus: 400, message: "No todos los datos ingresados son válidos (id = int, title = string, price = int, thumbnail = string, stock = int)"}`
+  - `{error: -21, errorStatus: 400, message: "No todos los datos ingresados son válidos (title = string, price = int, thumbnail = string, stock = int)"}`
 
 ---
 
@@ -176,7 +176,6 @@
         id = int
 
         newInfo = {
-            "id": int,
             "title": "",
             "price": int,
             "thumbnail": "",
@@ -254,7 +253,25 @@
 
 ## Inputs
 
+    No requiere, solo se debe llamar al método
+
+- El DAO debe generar a su vez de manera automática dos propiedades para el nuevo carrito:
+
+      "id": int,
+      "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
+      "cartProducts": []
+
 ## Outputs
+
+- En caso de éxito devuelve el ID del nuevo carrito
+
+- En caso de no encontrar la BBDD:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
+- En caso de haber un error al generar el carrito:
+
+  - `{error: -11, errorStatus: 500, message: "Error de generación"}`
 
 ---
 
@@ -262,7 +279,29 @@
 
 ## Inputs
 
+    id = int
+
 ## Outputs
+
+- En caso de éxito:
+
+  - Devuelve el ID del carrito eliminado con el siguiente mensaje: `Se ha eliminado el producto con el id = {id}`
+
+- En caso de no encontrar la BBDD:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
+- En caso de no ingresar el ID:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresaron todos los campos necesarios"}`
+
+En caso de que el ID sea del tipo incorrecto:
+
+- `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`
+
+- En caso de no encontrar el producto con el ID especificado:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto deseado"}`
 
 ---
 
@@ -270,7 +309,31 @@
 
 ## Inputs
 
+    id = int
+
 ## Outputs
+
+- En caso de éxito:
+
+  - Devuelve un array con los ID de los productos del carrito con el ID solicitado: `[int, int, int, int]`
+
+    (Donde cada `int` representa el ID de un producto)
+
+- En caso de no encontrar la BBDD del carrito:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
+- En caso de no encontrar el carrito:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el carrito"}`
+
+- En caso de no ingresar el id:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresó el id del carrito"}`
+
+- En caso de que el id sea de tipo incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`
 
 ---
 
@@ -278,7 +341,30 @@
 
 ## Inputs
 
+    cartId = int
+    productId = int
+
 ## Outputs
+
+- En caso de éxito:
+
+  - Devuelve el siguiente mensaje: `Se eliminó el producto con el ID = {prodId} del carrito con ID = {cartId}`
+
+- En caso de no encontrar el carrito:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el carrito deseado"}`
+
+- En caso de no encontrar el ID del producto dentro del carrito:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto dentro del carrito"}`
+
+- En caso de faltar alguno de los id:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresaron todos los campos necesarios"}`
+
+- En caso de que uno o ambos id sean del tipo incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`
 
 ---
 
@@ -286,4 +372,27 @@
 
 ## Inputs
 
+    cartId = int
+    productId = int
+
 ## Outputs
+
+- En caso de éxito:
+
+  - Devuelve el siguiente mensaje: `Se agregó el producto con el ID = {prodId} al carrito con ID = {cartId}`
+
+- En caso de no encontrar el carrito:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el carrito deseado"}`
+
+- En caso de no encontrar el ID del producto:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto con el id especificado"}`
+
+- En caso de faltar alguno de los id:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresaron todos los campos necesarios"}`
+
+- En caso de que uno o ambos id sean del tipo incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`
