@@ -92,7 +92,7 @@
 
   - `{error: -20, errorStatus: 400, message: "No se ha ingresado ningún ID de producto"}`
 
-- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+- En caso de haber ingresado el ID con el tipo de dato incorrecto:
 
   - `{error: -21, errorStatus: 400, message: "Los datos ingresados son válidos (id = int)"}`
 

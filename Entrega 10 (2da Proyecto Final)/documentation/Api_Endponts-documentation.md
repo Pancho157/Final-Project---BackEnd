@@ -33,7 +33,21 @@
 
 ## Errores que retorna
 
-- añlskdfja
+- En caso de haber un error al buscar la BBDD:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD deseada"}`
+
+- En caso de ingresar no ingresar el id:
+
+  - `{error: -20, errorStatus: 400, message: "No se ha ingresado ningún ID de producto"}`
+
+- En caso de haber ingresado el ID con el tipo de dato incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los datos ingresados son válidos (id = int)"}`
+
+- En caso de haber un error al buscar el producto:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto deseado"}`
 
 ---
 
@@ -60,9 +74,20 @@
             descripción: `ruta /api/productos - método POST - no autorizada`,
         }
 
-- En caso de no rellenar alguno de los campos el servidor no generará el producto y enviará un status 400 y el siguiente mensaje: "No se rellenaron todos los campos requeridos"
+- En caso de no poder encontrar la BBDD:
 
-- En caso de existir un producto con el mismo nombre el servidor enviará un status 400 y el siguiente mensaje: "Ya existe el producto ingresado"
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
+- En caso de haber un error al generar el producto:
+
+  - `{error: -11, errorStatus: 500, message: "Ha ocurrido un error al generar el producto: ${err}"}`
+
+- En caso de no haber ingresado todas las propiedades necesarias del nuevo producto:
+
+  - `{error: -20, errorStatus: 400, message: "No ingresaron todos los campos necesarios (title, price, thumbnail, stock)"}`
+
+- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+  - `{error: -21, errorStatus: 400, message: "No todos los datos ingresados son válidos (title = string, price = int, thumbnail = string, stock = int)"}`
 
 ---
 
@@ -89,9 +114,17 @@
             descripción: `ruta /api/productos/:id - método PUT - no autorizada`,
         }
 
-- En caso de no rellenar al menos uno de los campos el servidor no actaulizará el producto y enviará un status 400 y el siguiente mensaje: "No se envió información para actualizar el producto"
+- En caso de no haber ingresado los datos necesarios:
 
-- En caso de no encontrar un producto con el id enviado mediante params el servidor enviará un status 400 y el siguiente mensaje: "No se encontró un producto con el ID ingresado ( ${id} )"
+  - `{error: -20, errorStatus: 400, message: "No ingresaron todos los campos necesarios(id - y por lo menos uno de los siguientes: title, price, thumbnail, stock)"}`
+
+- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "No todos los datos ingresados son válidos (id = int, title = string, price = int, thumbnail = string, stock = int)"}`
+
+- En caso de haber un error al buscar la BBDD:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD deseada"}`
 
 ---
 
@@ -110,11 +143,17 @@
             descripción: `ruta /api/productos/:id - método DELETE - no autorizada`,
         }
 
-- En caso de no encontrar un producto con el id enviado mediante params el servidor enviará un status 400 y el siguiente mensaje: "Error al borrar: No se encontró el id ingresado (${id})"
+- En caso de ingresar no ingresar el id:
 
-- En caso de tener un error al guardar nuevamente los productos (sin el eliminado) el servidor enviará un status 400 y el siguiente mensaje: "Error al guardar: No fue posible eliminar el producto (${id})"
+  - `{error: -20, errorStatus: 400, message: "No se ha ingresado ningún ID de producto"}`
 
-- En caso de no poder traer los productos para eliminar el producto con el id especificado por params, el servidor enviará un status 400 y el siguiente mensaje: "Error al traer los productos: ${Error}"
+- En caso de haber ingresado una o más propiedades con el tipo de dato incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los datos ingresados son válidos (id = int)"}`
+
+- En caso de haber un error al buscar el producto:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto deseado"}`
 
 ---
 
@@ -132,7 +171,13 @@
 
 ## Errores que retorna
 
-- En caso de haber un error al guardar el carrito en el archivo, servidor enviará un status 400 con el siguiente mensaje: "Error al guardar el carrito: ${err}"
+- En caso de no encontrar la BBDD:
+
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
+- En caso de haber un error al generar el carrito:
+
+  - `{error: -11, errorStatus: 500, message: "Error de generación"}`
 
 ---
 
@@ -144,9 +189,21 @@
 
 ## Errores que retorna
 
-- En caso de haber un error al guardar el nuevo array (sin incluir el carrito a eliminar), el servidor enviará un status 500 con el siguiente mensaje: "Error al eliminar el carrito: ${Error}"
+- En caso de no encontrar la BBDD:
 
-- En caso de no encontrar un carrito con el id especificado mediante params el servidor enviará un status 400 con el siguiente mensaje: "No se ha encontrado un carrito con el ID = ${id}"
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
+- En caso de no ingresar el ID:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresaron todos los campos necesarios"}`
+
+En caso de que el ID sea del tipo incorrecto:
+
+- `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`
+
+- En caso de no encontrar el producto con el ID especificado:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto deseado"}`
 
 ---
 
@@ -158,9 +215,21 @@
 
 ## Errores que retorna
 
-- En caso de no encontrar un carrito con el id especificado mediante params, el servidor enviará un status 400 con el siguiente mensaje: "No se encontró el carrito con el ID = ${id}"
+- En caso de no encontrar la BBDD del carrito:
 
-- En caso de haber un error al traer los carritos para buscar el carrito en particular el seervidor enviará un status 500 y el mensaje: "UPS: Hubo un error ${err}"
+  - `{error: -10, errorStatus: 500, message: "No se ha encontrado la BBDD requerida"}`
+
+- En caso de no encontrar el carrito:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el carrito"}`
+
+- En caso de no ingresar el id:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresó el id del carrito"}`
+
+- En caso de que el id sea de tipo incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`
 
 ---
 
@@ -172,11 +241,21 @@
 
 ## Errores que retorna
 
-- En caso de no encontrar el producto con el id especificado el servidor enviará un status 400 con el mensaje: "Error al encontrar el producto con el id: ${productId}"
+- En caso de no encontrar el carrito:
 
-- En caso de no encontrar el carrito con el id especificado el servidor enviará un status 400 con el mensaje: "No se encontró el carrito con el ID = ${cartId}"
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el carrito deseado"}`
 
-- En caso de haber un error al guardar el producto en el carrito el servidor enviará un status 400 con el mensaje: "Error al agregar el producto al carrito: ${Error}"
+- En caso de no encontrar el ID del producto:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto con el id especificado"}`
+
+- En caso de faltar alguno de los id:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresaron todos los campos necesarios"}`
+
+- En caso de que uno o ambos id sean del tipo incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`
 
 ---
 
@@ -188,8 +267,18 @@
 
 ## Errores que retorna
 
-- En caso de no encontrar el producto con el id especificado dentro del carrito el servidor enviará un status 400 con el mensaje: "Error al encontrar el producto con el id: ${productId}"
+- En caso de no encontrar el carrito:
 
-- En caso de no encontrar el carrito con el id especificado el servidor enviará un status 400 con el mensaje: "No se encontró el carrito con el ID = ${cartId}"
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el carrito deseado"}`
 
-- En caso de haber un error al guardar el producto en el carrito el servidor enviará un status 400 con el mensaje: "Error al eliminar el producto al carrito: ${Error}"
+- En caso de no encontrar el ID del producto dentro del carrito:
+
+  - `{error: -22, errorStatus: 400, message: "No se ha encontrado el producto dentro del carrito"}`
+
+- En caso de faltar alguno de los id:
+
+  - `{error: -20, errorStatus: 400, message: "No se ingresaron todos los campos necesarios"}`
+
+- En caso de que uno o ambos id sean del tipo incorrecto:
+
+  - `{error: -21, errorStatus: 400, message: "Los valores ingresados son del tipo incorrecto"}`

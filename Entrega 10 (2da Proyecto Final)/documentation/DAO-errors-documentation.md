@@ -10,6 +10,12 @@
 
 ---
 
+- En caso de que el usuario quiera realizar una acción para la cual no está autorizado:
+
+(Sin bien no va al caso, ya que en realidad lo da un middleware, es bueno tenerlo con los errores)
+
+    `{ error: -1, errorStatus: 401, descripción: "ruta ${req.url} método ${req.method} no implementada"}`
+
 - El mensaje para un mismo código de error puede variar, ya que son para casos generales
 
 EJemplo:
@@ -27,10 +33,6 @@ Sin embargo ambos apuntan al mismo tipo de error, uno de busqueda
 ## Timpos de errores para los DAO
 
 ---
-
-- Errores de autorización:
-
-`{ error: -1, errorStatus: 401, descripción: "ruta ${req.url} método ${req.method} no implementada"}`
 
 - Errores del servidor:
 
