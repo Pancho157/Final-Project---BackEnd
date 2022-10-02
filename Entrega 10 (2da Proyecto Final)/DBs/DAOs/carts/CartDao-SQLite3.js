@@ -28,4 +28,4 @@ class CartsControllerSQLite3 {
   async addCartProductById(cartId, productId) {}
 }
 
-export default CartsControllerSQLite3;
+module.export = CartsControllerSQLite3;

@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   mongodb: {
     cnxStr: "mongodb://localhost/ecommerce",
     options: {
@@ -40,3 +40,5 @@ export default {
     },
   },
 };
+
+

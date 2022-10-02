@@ -11,4 +11,4 @@ function adminVerif(req, res, next) {
   }
 }
 
-export default adminVerif;
+module.exports = adminVerif;

@@ -1,28 +1,58 @@
-import CartsControllerFirebase from "./carts/CartDao-Firebase.js";
+// Por default se encuentra SQLite3
+
+const config = require("../configs/configs");
+const admin = require("firebase-admin");
+
+admin.initializeApp({
+  credential: admin.credential.cert(config.firebase),
+});
 
 let productosDao;
 let carritosDao;
 
 switch (process.env.PERS) {
   case "firebase":
-    const { default: ProductosDaoFirebase } = await import(
-      "./productos/ProductosDaoFirebase.js"
-    );
-    const { default: CartsControllerFirebase } = await import(
-      "../DAOs/carts/CartDao-Firebase"
-    );
+    const {
+      ProductsControllerFirebase,
+    } = require("./products/ProductsDao-Firebase");
+    const { CartsControllerFirebase } = require("./carts/CartDao-Firebase");
 
-    productosDao = new ProductosDaoFirebase();
+    productosDao = new ProductsControllerFirebase();
     carritosDao = new CartsControllerFirebase();
     break;
   case "mongodb":
+    const {
+      default: ProductsControllerMongo,
+    } = require("./products/ProductsDao-MongoDB");
+    const {
+      default: CartsControllerMongo,
+    } = require("./carts/CartDao-MongoDB");
+
+    productosDao = new ProductsControllerMongo();
+    carritosDao = new CartsControllerMongo();
     break;
   case "mariadb":
-    break;
-  case "sqlite3":
+    const {
+      default: ProductsControllerMariadb,
+    } = require("./products/ProductsDao-MariaDB");
+    const {
+      default: CartsControllerMariadb,
+    } = require("./carts/CartDao-MariaDB");
+
+    productosDao = new ProductsControllerMariadb();
+    carritosDao = new CartsControllerMariadb();
     break;
   default:
+    const {
+      default: ProductsControllerSQLite3,
+    } = require("./products/ProductsDao-SQLite3");
+    const {
+      default: CartsControllerSQLite3,
+    } = require("./carts/CartDao-SQLite3");
+
+    productosDao = new ProductsControllerSQLite3();
+    carritosDao = new CartsControllerSQLite3();
     break;
 }
 
-export { productosDao, carritosDao };
+module.exports = { productosDao, carritosDao };

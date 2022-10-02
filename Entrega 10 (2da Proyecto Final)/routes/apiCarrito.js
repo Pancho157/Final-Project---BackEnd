@@ -1,8 +1,7 @@
 const express = require("express");
 const apiCarts = express.Router();
-import {
-  carritoDao as carts,
-} from "../DBs/DAOs/DAOselector";
+
+const { carritoDao: carts } = require("../DBs/DAOs/DAOselector");
 
 apiCarts.post("/", async (req, res) => {
   // Crea un carrito y devuelve su id

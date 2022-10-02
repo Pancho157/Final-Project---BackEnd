@@ -1,7 +1,8 @@
 const express = require("express");
 const apiProducts = express.Router();
-import { productosDao as products } from "../DBs/DAOs/DAOselector";
-import adminVerif from "./adminVerif";
+
+const { productosDao: products } = require("../DBs/DAOs/DAOselector");
+const adminVerif = require("./adminVerif");
 
 // Lista todos los productos o uno solo por su id
 apiProducts.get("/:id", async (req, res) => {

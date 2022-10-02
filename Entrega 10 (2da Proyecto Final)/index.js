@@ -1,12 +1,13 @@
+require("dotenv").config();
+
 const express = require("express");
-const { Server: HttpServer } = require("http");
+const { Server } = require("http");
 
 var app = express();
-const httpServer = new HttpServer(app);
-// const io = new IOServer(httpServer);
+const httpServer = new Server(app);
 
 const PORT = process.env.PORT || 8080;
-const server = httpServer.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Http - Socket Server On - Port: ${PORT}`);
 });
 

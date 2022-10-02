@@ -6,16 +6,12 @@
 //    deleteCartProductById(cartId, productId) {}
 //    addCartProductById(cartId, productId) {}
 
-import admin from "firebase-admin";
-import config from "../../configs/configs";
-
-admin.initializeApp({
-  credential: admin.credential.cert(config.firebase),
-});
+const config = require("../../configs/configs");
+const admin = require("firebase-admin");
 
 class CartsControllerFirebase {
   constructor() {
-    this.coleccion = db.collection("Carts");
+    // this.coleccion = db.collection("Carts");
   }
 
   async getCarts() {}
@@ -31,4 +27,4 @@ class CartsControllerFirebase {
   async addCartProductById(cartId, productId) {}
 }
 
-export default CartsControllerFirebase;
+module.exports = { CartsControllerFirebase };
