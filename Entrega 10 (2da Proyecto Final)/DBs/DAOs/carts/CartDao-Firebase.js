@@ -15,8 +15,8 @@ class CartsControllerFirebase {
 
   async getCarts() {
     try {
-      const querySnapshot = await this.coleccion.get();
-      const carts = querySnapshot.docs.map((doc) => ({
+      const query = await this.coleccion.get();
+      const carts = query.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
@@ -48,7 +48,18 @@ class CartsControllerFirebase {
     }
   }
 
-  async deleteCartById(id) {}
+  async deleteCartById(id) {
+    try {
+      const query = await this.coleccion.doc(id).delete();
+      return query;
+    } catch (err) {
+      return {
+        error: -11,
+        errorStatus: 500,
+        message: `UPS: ha ocurrido un error: ${err}`,
+      };
+    }
+  }
 
   async getProductsFromCart(id) {}
 
