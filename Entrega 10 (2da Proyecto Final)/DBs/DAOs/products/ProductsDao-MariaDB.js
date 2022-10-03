@@ -4,3 +4,25 @@
 //      getAll() {}
 //      deleteById(id) {}
 //      update(id, newInfo) {}
+
+class ProductsControllerMariadb {
+  constructor() {
+    // this.coleccion = db.collection("Carts");
+  }
+
+  async save(newObject) {}
+
+  async getById(id) {
+    const data = await this.coleccion.doc(`${id}`).get();
+    console.log(data);
+    return data;
+  }
+
+  async getAll() {}
+
+  async deleteById(id) {}
+
+  async update(id, newInfo) {}
+}
+
+module.exports = { ProductsControllerMariadb };

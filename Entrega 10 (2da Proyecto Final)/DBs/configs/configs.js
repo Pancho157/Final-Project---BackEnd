@@ -1,3 +1,5 @@
+// Normally it would be on .env file, but for this delivery it's here
+
 module.exports = {
   mongodb: {
     cnxStr: "mongodb://localhost/ecommerce",

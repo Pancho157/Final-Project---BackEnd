@@ -7,7 +7,6 @@
 //    addCartProductById(cartId, productId) {}
 
 import knex from "knex";
-import config from "../../configs/configs";
 
 class CartsControllerSQLite3 {
   constructor(config, tabla) {

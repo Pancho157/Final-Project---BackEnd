@@ -41,7 +41,7 @@
 
       "id": int,
       "code": "",
-      "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
+      "timestamp": [ "date": "DD/MM/YYYY", "time": "HH:MM:SS" ]
 
 ## Outputs
 
@@ -81,7 +81,7 @@
         {
             "id": int,
             "code": "",
-            "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
+            "timestamp": [ "date": "DD/MM/YYYY", "time": "HH:MM:SS" ]
             "title": "",
             "price": int,
             "thumbnail": "",
@@ -118,16 +118,16 @@
             {
                 "id": int,
                 "code": "",
-                "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
+                "timestamp": [ "date": "DD/MM/YYYY", "time": "HH:MM:SS" ]
                 "title": "",
                 "price": int,
                 "thumbnail": "",
                 "stock": int
-            },
+            ],
             {
                 "id": int,
                 "code": "",
-                "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
+                "timestamp": [ "date": "DD/MM/YYYY", "time": "HH:MM:SS" ]
                 "title": "",
                 "price": int,
                 "thumbnail": "",
@@ -227,18 +227,18 @@
             [
                 {
                     cartId: int,
-                    timestamp: {
+                    timestamp: [
                         date: "string"
                         time: "string"
-                    }
+                    ]
                     cartProducts: [prodId, prodId, prodId]
                 },
                 {
                     cartId: int,
-                    timestamp: {
+                    timestamp: [
                         date: "string"
                         time: "string"
-                    }
+                    ]
                     cartProducts: []
                 }
             ]
@@ -258,7 +258,7 @@
 - El DAO debe generar a su vez de manera automática dos propiedades para el nuevo carrito:
 
       "id": int,
-      "timestamp": { "date": "DD/MM/YYYY", "time": "HH:MM:SS" }
+      "timestamp": [ "date": "DD/MM/YYYY", "time": "HH:MM:SS" ]
       "cartProducts": []
 
 ## Outputs
