@@ -6,6 +6,7 @@
 //    deleteCartProductById(cartId, productId) {}
 //    addCartProductById(cartId, productId) {}
 
+const { Timestamp } = require("firebase-admin/firestore");
 const { db } = require("../../db_initialization/firebase");
 
 class CartsControllerFirebase {
@@ -31,17 +32,12 @@ class CartsControllerFirebase {
   }
 
   async addCart() {
-    const newDate = new Date();
-    const date =
-      newDate.getDay() + "/" + newDate.getMonth() + "/" + newDate.getFullYear();
-
-    const time = newDate.getHours() + ":" + newDate.getMinutes();
-
+    var docData = {
+      timestamp: new Timestamp(),
+      cartProducts: [],
+    };
     try {
-      const response = await this.coleccion.add(
-        (timestamp = [date, time, newDate]),
-        (cartProducts = 12)
-      );
+      const response = await this.coleccion.add(docData);
       return response.id;
     } catch (err) {
       return {
@@ -66,7 +62,7 @@ class CartsControllerFirebase {
   async getProductsFromCart(id) {
     try {
       const doc = await this.coleccion.doc(id).get();
-      return doc.data.cartProducts;
+      return doc;
     } catch (err) {
       return {
         error: true,

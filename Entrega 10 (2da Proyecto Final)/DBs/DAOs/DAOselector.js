@@ -49,4 +49,3 @@ switch (process.env.PERS) {
 }
 
 module.exports = { productsDao, cartsDao };
-// module.exports = carritosDao;
