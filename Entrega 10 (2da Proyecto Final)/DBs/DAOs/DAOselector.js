@@ -1,12 +1,5 @@
 // Por default se encuentra SQLite3
 
-const config = require("../configs/configs");
-const admin = require("firebase-admin");
-
-admin.initializeApp({
-  credential: admin.credential.cert(config.firebase),
-});
-
 let productosDao;
 let carritosDao;
 

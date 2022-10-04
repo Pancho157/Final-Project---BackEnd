@@ -39,10 +39,11 @@ class CartsControllerFirebase {
     const time = newDate.getHours() + ":" + newDate.getMinutes();
 
     try {
-      await this.coleccion.add(
+      const response = await this.coleccion.add(
         (timestamp = [date, time, newDate]),
         (cartProducts = 12)
       );
+      return response.id;
     } catch (err) {
       return `{error: -11, errorStatus: 500, message: "Error de generación"}`;
     }
