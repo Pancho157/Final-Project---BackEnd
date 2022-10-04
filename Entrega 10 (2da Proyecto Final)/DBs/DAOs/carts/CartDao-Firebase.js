@@ -6,6 +6,7 @@
 //    deleteCartProductById(cartId, productId) {}
 //    addCartProductById(cartId, productId) {}
 
+const { firebase, firestore, FieldValue } = require("firebase-admin/firestore");
 const { db } = require("../../db_initialization/firebase");
 
 class CartsControllerFirebase {
@@ -32,7 +33,7 @@ class CartsControllerFirebase {
 
   async addCart() {
     var docData = {
-      timestamp: new Timestamp(),
+      timestamp: FieldValue.serverTimestamp(),
       cartProducts: [],
     };
     try {
