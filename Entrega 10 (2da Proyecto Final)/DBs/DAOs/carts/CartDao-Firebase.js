@@ -24,8 +24,7 @@ class CartsControllerFirebase {
       return carts;
     } catch (err) {
       return {
-        error: -11,
-        errorStatus: 500,
+        error: true,
         message: `UPS: ha ocurrido un error al traer los datos: ${err}`,
       };
     }
@@ -45,7 +44,10 @@ class CartsControllerFirebase {
       );
       return response.id;
     } catch (err) {
-      return `{error: -11, errorStatus: 500, message: "Error de generación"}`;
+      return {
+        error: true,
+        message: `UPS: ha ocurrido un error: ${err}`,
+      };
     }
   }
 
@@ -55,14 +57,23 @@ class CartsControllerFirebase {
       return query;
     } catch (err) {
       return {
-        error: -11,
-        errorStatus: 500,
+        error: true,
         message: `UPS: ha ocurrido un error: ${err}`,
       };
     }
   }
 
-  async getProductsFromCart(id) {}
+  async getProductsFromCart(id) {
+    try {
+      const doc = await this.coleccion.doc(id).get();
+      return doc.data.cartProducts;
+    } catch (err) {
+      return {
+        error: true,
+        message: `UPS: ha ocurrido un error: ${err}`,
+      };
+    }
+  }
 
   async deleteCartProductById(cartId, productId) {}
 

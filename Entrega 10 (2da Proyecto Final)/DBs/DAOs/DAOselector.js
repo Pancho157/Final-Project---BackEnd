@@ -1,7 +1,7 @@
 // Por default se encuentra SQLite3
 
-let productosDao;
-let carritosDao;
+let productsDao;
+let cartsDao;
 
 switch (process.env.PERS) {
   case "firebase":
@@ -10,8 +10,8 @@ switch (process.env.PERS) {
     } = require("./products/ProductsDao-Firebase");
     const { CartsControllerFirebase } = require("./carts/CartDao-Firebase");
 
-    productosDao = new ProductsControllerFirebase();
-    carritosDao = new CartsControllerFirebase();
+    productsDao = new ProductsControllerFirebase();
+    cartsDao = new CartsControllerFirebase();
     break;
   case "mongodb":
     const {
@@ -21,8 +21,8 @@ switch (process.env.PERS) {
       default: CartsControllerMongo,
     } = require("./carts/CartDao-MongoDB");
 
-    productosDao = new ProductsControllerMongo();
-    carritosDao = new CartsControllerMongo();
+    productsDao = new ProductsControllerMongo();
+    cartsDao = new CartsControllerMongo();
     break;
   case "mariadb":
     const {
@@ -32,8 +32,8 @@ switch (process.env.PERS) {
       default: CartsControllerMariadb,
     } = require("./carts/CartDao-MariaDB");
 
-    productosDao = new ProductsControllerMariadb();
-    carritosDao = new CartsControllerMariadb();
+    productsDao = new ProductsControllerMariadb();
+    cartsDao = new CartsControllerMariadb();
     break;
   default:
     const {
@@ -43,9 +43,10 @@ switch (process.env.PERS) {
       default: CartsControllerSQLite3,
     } = require("./carts/CartDao-SQLite3");
 
-    productosDao = new ProductsControllerSQLite3();
-    carritosDao = new CartsControllerSQLite3();
+    productsDao = new ProductsControllerSQLite3();
+    cartsDao = new CartsControllerSQLite3();
     break;
 }
 
-module.exports = { productosDao, carritosDao };
+module.exports = { productsDao, cartsDao };
+// module.exports = carritosDao;
