@@ -6,7 +6,7 @@
 //    deleteCartProductById(cartId, productId) {}
 //    addCartProductById(cartId, productId) {}
 
-const { firebase, firestore, FieldValue } = require("firebase-admin/firestore");
+const { FieldValue, FieldPath } = require("firebase-admin/firestore");
 const { db } = require("../../db_initialization/firebase");
 
 class CartsControllerFirebase {
@@ -32,12 +32,29 @@ class CartsControllerFirebase {
   }
 
   async addCart() {
+    let allCarts;
+    let newId;
+
+    // Consigue el ultimo id y genera el nuevo (como int)
+    try {
+      allCarts = await this.coleccion.get();
+      newId = allCarts.size + 1;
+    } catch (err) {
+      return {
+        error: true,
+        message: `UPS: ha ocurrido un error: ${err}`,
+      };
+    }
+
+    // Información del nuevo carrito
     var docData = {
       timestamp: FieldValue.serverTimestamp(),
       cartProducts: [],
     };
+
+    // Agrega el carrito a la colección
     try {
-      const response = await this.coleccion.add(docData);
+      const response = await this.coleccion.doc(`${newId}`).set(docData);
       return response.id;
     } catch (err) {
       return {
