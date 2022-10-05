@@ -55,7 +55,7 @@ class CartsControllerFirebase {
     // Agrega el carrito a la colección
     try {
       const response = await this.coleccion.doc(`${newId}`).set(docData);
-      return response.id;
+      return `${newId}`;
     } catch (err) {
       return {
         error: true,
@@ -67,7 +67,7 @@ class CartsControllerFirebase {
   async deleteCartById(id) {
     try {
       const query = await this.coleccion.doc(id).delete();
-      return query;
+      return id;
     } catch (err) {
       return {
         error: true,

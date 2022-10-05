@@ -7,7 +7,7 @@ apiCarts.post("/", async (req, res) => {
   // Crea un carrito y devuelve su id
   try {
     const response = await dao.cartsDao.addCart();
-    res.send(response);
+    res.send(`Se generó un carrito con el ID = ${response}`);
   } catch (err) {
     res.send(`UPS: Hubo un error ${err}`);
   }
@@ -17,7 +17,7 @@ apiCarts.delete("/:id", async (req, res) => {
   // Vacía un carrito y lo elimina
   try {
     const response = await dao.cartsDao.deleteCartById(req.params.id);
-    res.send(response);
+    res.send(`Se eliminó el carrito con el ID = ${response}`);
   } catch (err) {
     res.send(`UPS: Hubo un error ${err}`);
   }
