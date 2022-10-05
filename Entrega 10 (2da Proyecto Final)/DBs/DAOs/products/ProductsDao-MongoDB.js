@@ -5,6 +5,8 @@
 //      deleteById(id) {}
 //      update(id, newInfo) {}
 
+const { ProductSchema } = require("../../utils/mongoSchemas");
+
 class ProductsControllerMongo {
   constructor() {
     // this.coleccion = db.collection("Carts");
@@ -12,11 +14,7 @@ class ProductsControllerMongo {
 
   async save(newObject) {}
 
-  async getById(id) {
-    const data = await this.coleccion.doc(`${id}`).get();
-    console.log(data);
-    return data;
-  }
+  async getById(id) {}
 
   async getAll() {}
 

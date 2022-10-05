@@ -11,7 +11,7 @@ const ProductSchema = new mongoose.Schema({
 
 const CartSchema = new mongoose.Schema({
   _id: { type: String, required: true },
-  timestamp: Date,
+  timestamp: { type: String, required: true },
   cartProducts: [],
 });
 

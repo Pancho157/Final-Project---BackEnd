@@ -8,6 +8,7 @@
 
 const { FieldValue, FieldPath } = require("firebase-admin/firestore");
 const { db } = require("../../db_initialization/firebase");
+const { productosDao: products } = require("../DAOselector");
 
 class CartsControllerFirebase {
   constructor() {
@@ -89,19 +90,79 @@ class CartsControllerFirebase {
   }
 
   async deleteCartProductById(cartId, productId) {
+    let cart;
     // Trae el carrito
     try {
-      const query = await this.coleccion.doc(cartId).get();
-      return query.data();
+      cart = await this.coleccion.doc(cartId).get();
     } catch (err) {
       return {
         error: true,
         message: `UPS: ha ocurrido un error: ${err}`,
       };
     }
+
+    const index = cart.cartProducts.indexOf(productId);
+    if (index > -1) {
+      // Cuando no encuentra nada devuelve -1
+      array.splice(index, 1);
+
+      try {
+        const response = await this.coleccion.doc(cartId).set(cart);
+        return `Se ha eliminado el producto con ID = ${productId} del carrito con ID = ${cartId}`;
+      } catch (err) {
+        return {
+          error: true,
+          message: `UPS: ha ocurrido un error: ${err}`,
+        };
+      }
+    }
+
+    return `No se ha encontrado el producto con ID = ${productId} dentro carrito especificado (${cartId})`;
   }
 
-  async addCartProductById(cartId, productId) {}
+  async addCartProductById(cartId, productId) {
+    let cart;
+    let product;
+    // Trae el carrito
+    try {
+      cart = await this.coleccion.doc(cartId).get();
+    } catch (err) {
+      return {
+        error: true,
+        message: `UPS: ha ocurrido un error: ${err}`,
+      };
+    }
+
+    // Verifica que exista el producto
+    try {
+      const productExists = await products.getById(productId);
+      if (!productExists) {
+        return `No existe el producto con ID = ${productId}`;
+      }
+    } catch (err) {
+      return {
+        error: true,
+        message: `UPS: ha ocurrido un error: ${err}`,
+      };
+    }
+
+    // Agrega el indice del producto al array
+    const index = cart.cartProducts.indexOf(productId);
+    if (index > -1) {
+      array.splice(index, 1);
+
+      // Actualiza el carrito (en caso de encontrar el producto en el array)
+      try {
+        const response = await this.coleccion.doc(cartId).set(cart);
+        return `Se ha agregado el producto con ID = ${productId} del carrito con ID = ${cartId}`;
+      } catch (err) {
+        return {
+          error: true,
+          message: `UPS: ha ocurrido un error: ${err}`,
+        };
+      }
+    }
+  }
 }
 
 module.exports = { CartsControllerFirebase };
