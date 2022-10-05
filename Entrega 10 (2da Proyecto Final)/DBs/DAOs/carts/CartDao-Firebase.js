@@ -79,7 +79,7 @@ class CartsControllerFirebase {
   async getProductsFromCart(id) {
     try {
       const doc = await this.coleccion.doc(id).get();
-      return doc.data.cartProducts;
+      return doc.data().cartProducts;
     } catch (err) {
       return {
         error: true,
@@ -88,7 +88,18 @@ class CartsControllerFirebase {
     }
   }
 
-  async deleteCartProductById(cartId, productId) {}
+  async deleteCartProductById(cartId, productId) {
+    // Trae el carrito
+    try {
+      const query = await this.coleccion.doc(cartId).get();
+      return query.data();
+    } catch (err) {
+      return {
+        error: true,
+        message: `UPS: ha ocurrido un error: ${err}`,
+      };
+    }
+  }
 
   async addCartProductById(cartId, productId) {}
 }
