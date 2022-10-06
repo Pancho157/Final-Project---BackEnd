@@ -8,7 +8,9 @@
 
 const { FieldValue, FieldPath } = require("firebase-admin/firestore");
 const { db } = require("../../db_initialization/firebase");
-const { productosDao: products } = require("../DAOselector");
+const {
+  ProductsControllerFirebase: products,
+} = require("../products/ProductsDao-Firebase");
 
 class CartsControllerFirebase {
   constructor() {

@@ -1,7 +1,7 @@
 const express = require("express");
 const apiProducts = express.Router();
 
-const { productosDao: products } = require("../DBs/DAOs/DAOselector");
+const { productsDao: products } = require("../DBs/DAOs/DAOselector");
 const adminVerif = require("./adminVerif");
 
 // Lista todos los productos o uno solo por su id
