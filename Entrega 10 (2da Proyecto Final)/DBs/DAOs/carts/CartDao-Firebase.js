@@ -82,7 +82,8 @@ class CartsControllerFirebase {
     const cartProducts = [];
     try {
       cart = await this.coleccion.doc(id).get();
-      cart = cart.data().cartProducts;
+      return cart.data().cartProducts;
+      // cart = cart.data().cartProducts;
     } catch (err) {
       return {
         error: true,
@@ -90,7 +91,7 @@ class CartsControllerFirebase {
       };
     }
 
-    cart.forEach(async (prodId) => {
+    /*     cart.forEach(async (prodId) => {
       try {
         const product = await this.productsCollection.doc(`${prodId}`).get();
         console.log(product.data());
@@ -101,7 +102,7 @@ class CartsControllerFirebase {
       }
     });
 
-    return cartProducts;
+    return cartProducts; */
   }
 
   async deleteCartProductById(cartId, productId) {
