@@ -5,6 +5,7 @@
 //    deleteById(id) {}
 //    update(id, newInfo) {}
 
+const { FieldValue } = require("firebase-admin/firestore");
 const { db } = require("../../db_initialization/firebase");
 
 class ProductsControllerFirebase {
@@ -12,8 +13,19 @@ class ProductsControllerFirebase {
     this.coleccion = db.collection("Products");
   }
 
+  generateCode() {
+    var text = "";
+    var possible =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 10; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+
   async save(newObject) {
-    const { title, price, thumbnail, stock } = newObject;
+    const { title, description, price, thumbnail, stock } = newObject;
     let allProducts;
     let newId;
 
@@ -30,12 +42,13 @@ class ProductsControllerFirebase {
 
     // Información del nuevo carrito
     var docData = {
-      code: md5(newId),
+      code: this.generateCode(),
       timestamp: FieldValue.serverTimestamp(),
       title: title,
       price: price,
       thumbnail: thumbnail,
       stock: stock,
+      description: description,
     };
 
     // Agrega el carrito a la colección
@@ -91,7 +104,26 @@ class ProductsControllerFirebase {
     }
   }
 
-  async update(id, newInfo) {}
+  async update(id, newInfo) {
+    const { title, price, thumbnail, stock, description } = newInfo;
+    let infoToUpdate = {};
+
+    if (title) infoToUpdate.title = title;
+    if (price) infoToUpdate.price = price;
+    if (thumbnail) infoToUpdate.thumbnail = thumbnail;
+    if (stock) infoToUpdate.stock = stock;
+    if (description) infoToUpdate.description = description;
+
+    try {
+      const response = await this.coleccion.doc(id).update(infoToUpdate);
+      return "Producto actualizado";
+    } catch (err) {
+      return {
+        error: true,
+        message: `${err}`,
+      };
+    }
+  }
 }
 
 module.exports = { ProductsControllerFirebase };

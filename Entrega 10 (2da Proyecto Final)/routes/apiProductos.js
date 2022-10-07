@@ -48,7 +48,7 @@ apiProducts.post("/", adminVerif, async (req, res) => {
         stock: stock,
       });
 
-      res.send(response);
+      res.send(`Producto agregado con éxito (ID = ${response})`);
     } catch (err) {
       res.send(`${err}`);
     }
@@ -75,7 +75,7 @@ apiProducts.delete("/:id", adminVerif, async (req, res) => {
   // Elimina un producto (solo para administradores)
   try {
     const response = await products.deleteById(req.params.id);
-    res.send(response);
+    res.send(`Se ha eliminado el producto con ID = ${response}`);
   } catch (err) {
     res.send(`${err}`);
   }
