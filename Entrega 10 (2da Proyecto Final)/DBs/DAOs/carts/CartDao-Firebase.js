@@ -79,10 +79,10 @@ class CartsControllerFirebase {
 
   async getProductsFromCart(id) {
     let cart;
+    const cartProducts = [];
     try {
       cart = await this.coleccion.doc(id).get();
       cart = cart.data().cartProducts;
-      // return doc.data().cartProducts;
     } catch (err) {
       return {
         error: true,
@@ -90,12 +90,14 @@ class CartsControllerFirebase {
       };
     }
 
-    const cartProducts = cart.map(async (prodId) => {
+    cart.forEach(async (prodId) => {
       try {
         const product = await this.productsCollection.doc(`${prodId}`).get();
-        return product;
+        console.log(product.data());
+        // Todo: ver por qué no agrega el producto al array
+        cartProducts.push(product.data());
       } catch (err) {
-        return "Producto no encontrado";
+        cartProducts.push("Producto no encontrado");
       }
     });
 
