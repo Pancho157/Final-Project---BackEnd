@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { connection } = require("../db_initialization/mongoose");
 
 const ProductSchema = mongoose.Schema(
   {
@@ -22,7 +21,7 @@ const CartSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-let Product = connection.model("products", ProductSchema);
-let Cart = connection.model("carts", CartSchema);
+let Product = mongoose.model("products", ProductSchema);
+let Cart = mongoose.model("carts", CartSchema);
 
 module.exports = { Product, Cart };
