@@ -5,7 +5,7 @@
 //      deleteById(id) {}
 //      update(id, newInfo) {}
 
-const { ProductSchema } = require("../../utils/mongoSchemas");
+const { Product } = require("../../utils/mongoSchemasModels");
 
 class ProductsControllerMongo {
   constructor() {

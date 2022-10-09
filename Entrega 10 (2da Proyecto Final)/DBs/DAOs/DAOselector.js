@@ -15,11 +15,9 @@ switch (process.env.PERS) {
     break;
   case "mongodb":
     const {
-      default: ProductsControllerMongo,
+      ProductsControllerMongo,
     } = require("./products/ProductsDao-MongoDB");
-    const {
-      default: CartsControllerMongo,
-    } = require("./carts/CartDao-MongoDB");
+    const { CartsControllerMongo } = require("./carts/CartDao-MongoDB");
 
     productsDao = new ProductsControllerMongo();
     cartsDao = new CartsControllerMongo();

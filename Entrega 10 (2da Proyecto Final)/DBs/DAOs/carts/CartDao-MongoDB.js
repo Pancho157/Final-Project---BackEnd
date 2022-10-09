@@ -6,14 +6,16 @@
 //    deleteCartProductById(cartId, productId) {}
 //    addCartProductById(cartId, productId) {}
 
+const { Cart } = require("../../utils/mongoSchemasModels");
+
 class CartsControllerMongo {
-  constructor() {
-    // this.coleccion = db.collection("Carts");
-  }
+  constructor() {}
 
   async getCarts() {}
 
-  async addCart() {}
+  async addCart() {
+    const cart = await Cart.create({ _id: "1", cartProducts: [] });
+  }
 
   async deleteCartById(id) {}
 
