@@ -11,15 +11,46 @@ const { Cart } = require("../../utils/mongoSchemasModels");
 class CartsControllerMongo {
   constructor() {}
 
-  async getCarts() {}
-
-  async addCart() {
-    const cart = await Cart.create({ _id: "1", cartProducts: [] });
+  async getCarts() {
+    try {
+      let carts = await Cart.find();
+      console.log(carts);
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
-  async deleteCartById(id) {}
+  async addCart() {
+    try {
+      let lastCart = await Cart.find().sort({ _id: -1 }).limit(1);
+      // Devuelve el último id + 1 como string
+      const newId = `${parseInt(lastCart[0]._id) + 1}`;
 
-  async getProductsFromCart(id) {}
+      const cart = await Cart.create({ _id: newId, cartProducts: [] });
+      return newId;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  async deleteCartById(id) {
+    try {
+      const cartRemoved = await Cart.deleteOne({ _id: `${id}` });
+      return id;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  async getProductsFromCart(id) {
+    try {
+      let lastCart = await Cart.find({ _id: `${id}` });
+      const cartProducts = lastCart[0].cartProducts;
+      return cartProducts;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
   async deleteCartProductById(cartId, productId) {}
 
