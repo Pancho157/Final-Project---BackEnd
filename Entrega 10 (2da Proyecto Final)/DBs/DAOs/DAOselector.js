@@ -14,6 +14,9 @@ switch (process.env.PERS) {
     cartsDao = new CartsControllerFirebase();
     break;
   case "mongodb":
+    const { connectToMongo } = require("../db_initialization/mongoose");
+    connectToMongo();
+
     const {
       ProductsControllerMongo,
     } = require("./products/ProductsDao-MongoDB");
