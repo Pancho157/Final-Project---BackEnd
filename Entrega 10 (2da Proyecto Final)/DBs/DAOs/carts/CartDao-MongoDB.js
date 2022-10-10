@@ -6,7 +6,7 @@
 //    deleteCartProductById(cartId, productId) {}
 //    addCartProductById(cartId, productId) {}
 
-const { Cart } = require("../../utils/mongoSchemasModels");
+const { Cart, Product } = require("../../utils/mongoSchemasModels");
 
 class CartsControllerMongo {
   constructor() {}
@@ -52,9 +52,31 @@ class CartsControllerMongo {
     }
   }
 
-  async deleteCartProductById(cartId, productId) {}
+  async deleteCartProductById(cartId, productId) {
+    try {
+      await Cart.updateOne(
+        { _id: cartId },
+        { $pull: { cartProducts: `${productId}` } }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
 
-  async addCartProductById(cartId, productId) {}
+    return "Producto eliminado";
+  }
+
+  async addCartProductById(cartId, productId) {
+    try {
+      await Cart.updateOne(
+        { _id: cartId },
+        { $push: { cartProducts: `${productId}` } }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+
+    return "Producto agregado al carrito";
+  }
 }
 
 module.exports = { CartsControllerMongo };
