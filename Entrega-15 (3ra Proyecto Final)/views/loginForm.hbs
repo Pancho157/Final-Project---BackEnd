@@ -1,0 +1,30 @@
+<div class="login-form__container">
+  <a href="/register" class="login--redirectionButton">Register Form</a>
+  <h2 class="messages__title">Iniciar sesión</h2>
+
+  <form class="login-form" action="/login" method="post">
+    <label for="userAlias">Usuario:</label>
+    <input
+      class="login__input"
+      id="user"
+      name="user"
+      type="text"
+      required
+      placeholder="Nombre de usuario / Email"
+    />
+
+    <label for="userPass">Contraseña:</label>
+    <input
+      class="login__input"
+      id="userPass"
+      name="userPass"
+      type="password"
+      required
+      placeholder="Contraseña de usuario"
+    />
+
+    <button type="submit" class="login-form__button" onclick="login()">
+      Enviar
+    </button>
+  </form>
+</div>

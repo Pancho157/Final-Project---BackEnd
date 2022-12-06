@@ -1,0 +1,16 @@
+<div class="errorContainer">
+  <h1 class="errorTitle">Error al registrarse</h1>
+  {{#if email}}
+    <p class="errorText">El Email: (<b>{{email}}</b>) ingresado ya se encuentra
+      registrado</p>
+  {{/if}}
+
+  {{#if alias}}
+    <p class="errorText">El Alias: (<b>{{alias}}</b>) ingresado ya se encuentra
+      registrado</p>
+  {{/if}}
+</div>
+
+<script type="text/javascript">
+  setTimeout( () => { window.location.href = "/register" }, 3000 );
+</script>

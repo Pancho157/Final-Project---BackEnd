@@ -1,0 +1,396 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  list-style: none;
+}
+
+body {
+  background-color: #131316;
+}
+
+/* ----------Estilos del navbar------------- */
+.navbar {
+  width: 100%;
+  padding: 0 50px;
+  background-color: #333333;
+}
+
+.navbar__ul {
+  height: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: center;
+  column-gap: 50px;
+  row-gap: 30px;
+}
+
+.navbar__item {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+/* ----------Estilos del formulario (login)------------- */
+
+#errorMessage {
+  padding: 30px 60px;
+  background-color: #f42f2f;
+  color: #fff;
+  font-weight: bold;
+
+  position: absolute;
+  top: -100px;
+  transition: all 300ms;
+}
+
+.login-form__container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 40px;
+}
+
+.login--redirectionButton {
+  padding: 5px 15px;
+  margin-top: 50px;
+  color: #131316;
+  background-color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 300ms;
+  box-shadow: inset -3px -3px #1bc72f;
+}
+
+.login--redirectionButton:hover {
+  box-shadow: inset -0px -0px #1bc72f;
+}
+
+.login-form {
+  width: 400px;
+  background-color: #333333;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+}
+
+.login-form > label {
+  color: #fff;
+  font-weight: bold;
+}
+
+.login__input {
+  width: 80%;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.login-form__button {
+  background-color: #3dda44;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.login-form__button:hover {
+  box-shadow: inset -3px -3px #fff;
+}
+
+.login-form__button:disabled {
+  background-color: #333333;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+/* ----------Estilos del log out------------- */
+
+.logout__container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout__title {
+  color: #fff;
+  background-color: #333333;
+  padding: 8px 30px;
+  border-radius: 8px;
+}
+
+/* ----------Estilos del formulario------------- */
+
+.form__container {
+  width: 100%;
+  height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 400px;
+  max-width: 90%;
+  background-color: #333333;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+}
+
+.form__inputContainer {
+  width: 90%;
+}
+
+.form__label {
+  color: #fff;
+}
+
+.form__input {
+  width: 100%;
+  height: 2rem;
+  margin-top: 3px;
+  border-top: none;
+  border-right: none;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.form__button {
+  width: fit-content;
+  padding: 8px 20px;
+  border-radius: 8px;
+  background-color: #e57e1f;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: inset 0px 0px #fff;
+  cursor: pointer;
+  transition: box-shadow 300ms;
+}
+
+.form__button:hover {
+  box-shadow: inset -200px 0px #fff;
+  background-color: #e57e1f;
+  color: #333333;
+}
+
+/* ----------Estilos del nav de la pág chat-tabla------------ */
+.nav__container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+.welcome-message__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-message__container > h2 {
+  color: #fff;
+}
+
+.log-out__button {
+  background-color: #f42f2f;
+  text-align: center;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.log-out__button:hover {
+  box-shadow: inset -3px -3px #fff;
+}
+
+/* ----------Estilos de la tabla------------- */
+
+.table {
+  width: 80%;
+  min-width: 600px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border-collapse: collapse;
+}
+
+.table__th,
+.table__td {
+  border: 1px solid #333333;
+  padding: 5px 10px;
+}
+
+.table__td {
+  background-color: #fff;
+}
+
+.table__th {
+  background-color: #333333;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.table__td > img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* ---------- Estilos del chat ------------- */
+
+.messages__title {
+  color: #fff;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.chat__container {
+  max-width: 900px;
+  background-color: #333333;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 35px auto;
+  display: flex;
+  justify-content: space-around;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.chat__messagesContainer {
+  width: 100%;
+  max-width: 490px;
+  min-width: 300px;
+  height: 390px;
+  padding: 10px 10px 10px 10px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: auto;
+}
+
+.chat__messageForm {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.message__email {
+  margin-top: 40px;
+  color: #0000ff;
+  font-weight: bold;
+}
+
+.message__date {
+  color: #88531e;
+}
+
+.message__text {
+  color: #1bc72f;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.chat__input {
+  width: 100%;
+  height: 2rem;
+  margin-top: 3px;
+  border-top: none;
+  border-right: none;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.chat__sendButton {
+  padding: 8px 15px;
+  background-color: #e57e1f;
+  border-radius: 14px;
+  cursor: pointer;
+  margin: 10px auto;
+}
+
+/* ------------------- Error Pages ---------------------- */
+
+.errorContainer {
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 20px;
+}
+
+.errorTitle {
+  color: #fff;
+}
+
+.errorText {
+  width: 400px;
+  background-color: #f42f2f;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 8px;
+}
+
+/* ------------------- Server info ---------------------- */
+
+.serverInfo__container {
+  width: 700px;
+  max-width: 80%;
+  height: fit-content;
+
+  padding: 30px;
+  margin: 60px auto;
+  background-color: #333333;
+  border-radius: 20px;
+}
+
+.serverInfo__title {
+  text-align: center;
+  color: #fff;
+}
+
+.serverInfo__table {
+  width: 100%;
+  margin-top: 30px;
+  border: 1px solid #fff;
+  border-collapse: collapse;
+}
+
+.serverInfo__table-head > tr > th {
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
+}
+
+.serverInfo__table-body > tr > td {
+  min-width: 190px;
+  color: #fff;
+  padding: 8px;
+  height: fit-content;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.serverInfo__table-body > tr:hover > td {
+  background-color: #fff;
+  color: #131316;
+}

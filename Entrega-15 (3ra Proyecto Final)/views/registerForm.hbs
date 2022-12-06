@@ -1,0 +1,48 @@
+<div id="errorMessage">Mensaje de error</div>
+
+<div class="login-form__container">
+  <a href="/login" class="login--redirectionButton">Log In Form</a>
+  <h2 class="messages__title">Formulario de registro</h2>
+
+  <form class="login-form" action="/register" method="post">
+    <label for="userEmail">Email:</label>
+    <input
+      class="login__input"
+      id="userEmail"
+      name="userEmail"
+      type="email"
+      required
+      placeholder="Email del usuario"
+    />
+
+    <label for="userAlias">Nombre de usuario:</label>
+    <input
+      class="login__input"
+      id="userAlias"
+      name="userAlias"
+      type="text"
+      required
+      placeholder="Nombre de usuario"
+    />
+
+    <label for="userPass">Contraseña:</label>
+    <input
+      class="login__input"
+      id="userPass"
+      name="userPass"
+      type="password"
+      required
+      placeholder="Contraseña de usuario"
+    />
+
+    <button
+      type="submit"
+      id="register-button"
+      name=""
+      class="login-form__button"
+      onclick="registerUser()"
+    >
+      Enviar
+    </button>
+  </form>
+</div>

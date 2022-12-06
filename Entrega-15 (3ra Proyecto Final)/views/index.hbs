@@ -1,0 +1,90 @@
+<div class="chat-table__container">
+  <div class="nav__container">
+    <div></div>
+    <h2 class="messages__title">Centro de mensajes</h2>
+
+    <div class="welcome-message__container">
+      <h2>Bienvenido {{name}}</h2>
+      <a class="log-out__button" href="./logOut">Log out</a>
+    </div>
+  </div>
+  <div class="chat__container">
+    <div class="chat__messagesContainer" id="chat__messagesContainer">
+    </div>
+
+    <div class="chat__messageForm">
+      <input
+        class="chat__input"
+        id="email"
+        type="email"
+        required
+        placeholder="Ingresar email"
+      />
+
+      <input
+        class="chat__input"
+        id="name"
+        type="text"
+        required
+        placeholder="Ingresar nombre"
+      />
+
+      <input
+        class="chat__input"
+        id="lastName"
+        type="text"
+        required
+        placeholder="Ingresar apellido"
+      />
+
+      <input
+        class="chat__input"
+        id="age"
+        type="number"
+        required
+        placeholder="Ingresar edad"
+      />
+
+      <input
+        class="chat__input"
+        id="alias"
+        type="text"
+        required
+        placeholder="Ingresar alias"
+      />
+
+      <input
+        class="chat__input"
+        id="avatar"
+        type="text"
+        required
+        placeholder="Ingresar avatar (url)"
+      />
+
+      <input
+        class="chat__input"
+        id="message"
+        type="text"
+        placeholder="Ingresar mensaje"
+        required="true"
+      />
+
+      <button type="button" onclick="addMessage()" class="chat__sendButton">
+        Enviar
+      </button>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead class="table__head">
+      <th class="table__th">ID</th>
+      <th class="table__th">Nombre</th>
+      <th class="table__th">Precio</th>
+      <th class="table__th">Imagen</th>
+    </thead>
+    <tbody id="table__body">
+    </tbody>
+  </table>
+</div>
+
+<script src="/sockets.js"></script>

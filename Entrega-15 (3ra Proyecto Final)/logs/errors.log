@@ -1,0 +1,46 @@
+[2022-11-30T12:43:06.908] [ERROR] prod - Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Object.<anonymous> (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Practicas\Entregables\Entrega-14 (Loggers y GZIP)\index.js:76:38)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+    at node:internal/main/run_main_module:23:47 {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 8080
+}
+[2022-11-30T12:49:23.820] [ERROR] prod - Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1485:16)
+    at listenInCluster (node:net:1533:12)
+    at Server.listen (node:net:1621:7)
+    at Object.<anonymous> (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Practicas\Entregables\Entrega-14 (Loggers y GZIP)\index.js:76:38)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+    at node:internal/main/run_main_module:23:47 {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 8080
+}
+[2022-12-02T21:48:34.765] [ERROR] prod - Products Error: ValidationError: _title: Title is required
+[2022-12-04T11:07:27.123] [ERROR] prod - Products Error: ValidationError: _id: Cast to ObjectId failed for value "2" (type number) at path "_id" because of "BSONTypeError"
+[2022-12-04T11:10:11.643] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:10:42.121] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _id_ dup key: { _id: "2" }
+[2022-12-04T11:12:50.706] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: title_1 dup key: { title: "Nuevo producto" }
+[2022-12-04T11:13:02.299] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:13:19.648] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:18:04.479] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:19:12.679] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:21:36.428] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:26:57.697] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
+[2022-12-04T11:27:30.185] [ERROR] prod - Products Error: MongoServerError: E11000 duplicate key error collection: test.products index: _title_1 dup key: { _title: null }
