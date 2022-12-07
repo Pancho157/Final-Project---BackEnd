@@ -1,31 +1,10 @@
 const { Router } = require("express");
-const { productsDao } = require("../Persistence/DAOs/DAOselector");
-const { logger } = require("../../loggers-testing/loggers/log4js-config");
+const { getProducts, postProduct } = require("../Controller/apiProducts");
 
 const apiProducts = Router();
 
-apiProducts.get("/products", async (req, res) => {
-  try {
-    const products = await productsDao.getProducts();
-    res.json(products);
-  } catch (err) {
-    logger.error(err);
-  }
-});
+apiProducts.get("/products", getProducts);
 
-apiProducts.post("/products", async (req, res) => {
-  const { title, price, thumbnail, stock } = req.body;
-
-  if (!title || !price || !thumbnail || !stock) {
-    res.send("ingrese todos los datos necesarios");
-  }
-
-  try {
-    const product = await productsDao.insertProduct(req.body);
-    res.send("producto agregado exitosamente");
-  } catch (err) {
-    logger.error(err);
-  }
-});
+apiProducts.post("/products", postProduct);
 
 module.exports = { apiProducts };

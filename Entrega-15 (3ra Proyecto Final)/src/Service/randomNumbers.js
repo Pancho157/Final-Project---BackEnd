@@ -18,11 +18,11 @@ function getNumbersObject(quantity = 100000000) {
 //   console.log(`worker #${process.pid} cerrado`);
 // });
 
-// process.on("message", (reps) => {
-//   console.log(`Creating object`);
-//   const obj = getNumbersObject(reps);
-//   process.send(obj);
-//   process.exit();
-// });
+process.on("message", (reps) => {
+  console.log(`Creating object`);
+  const obj = getNumbersObject(reps);
+  process.send(obj);
+  process.exit();
+});
 
-module.exports = { getNumbersObject };
+// module.exports = { getNumbersObject };

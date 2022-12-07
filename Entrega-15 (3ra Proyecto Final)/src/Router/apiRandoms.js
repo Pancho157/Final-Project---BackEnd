@@ -1,24 +1,8 @@
 const { Router } = require("express");
-const { getNumbersObject } = require("../Service/randomNumbers");
-// const { fork } = require("child_process");
-// const path = require("path");
+const { getRandoms } = require("../Controller/apiRandoms");
 
 const apiRandoms = Router();
 
-apiRandoms.get("/randoms:reps?", (req, res) => {
-  const repetitions = parseInt(req.query.reps);
-
-  getNumbersObject(repetitions);
-
-  // const randomObject = fork(
-  //   path.resolve(__dirname, "../child-process/randomNumbers.js")
-  // );
-
-  // randomObject.on("message", (object) => {
-  //   res.send(object);
-  // });
-
-  // randomObject.send(repetitions);
-});
+apiRandoms.get("/randoms:reps?", getRandoms);
 
 module.exports = { apiRandoms };
