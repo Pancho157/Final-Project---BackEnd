@@ -4,7 +4,7 @@
 // getMessages()
 
 const { db } = require("../../utils/firebaseConnection");
-const { logger } = require("../../../loggers/log4js-config");
+const { logger } = require("../../../../loggers-testing/loggers/log4js-config");
 
 class ChatControllerFirebase {
   constructor() {

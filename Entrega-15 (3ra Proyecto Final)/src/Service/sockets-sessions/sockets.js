@@ -1,5 +1,5 @@
-const { productsDao, chatDao } = require("../DB/DAOs/DAOselector");
-const { logger } = require("../loggers/log4js-config");
+const { productsDao, chatDao } = require("../../Persistence/DAOs/DAOselector");
+const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 
 async function sockets(io) {
   io.on(`connection`, async (socket) => {

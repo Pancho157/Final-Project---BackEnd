@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getNumbersObject } = require("../child-process/randomNumbers");
+const { getNumbersObject } = require("../Service/randomNumbers");
 // const { fork } = require("child_process");
 // const path = require("path");
 

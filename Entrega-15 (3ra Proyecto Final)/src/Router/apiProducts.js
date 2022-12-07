@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const { productsDao } = require("../ToOrganize/DB/DAOs/DAOselector");
-const { logger } = require("../ToOrganize/loggers/log4js-config");
+const { productsDao } = require("../Persistence/DAOs/DAOselector");
+const { logger } = require("../../loggers-testing/loggers/log4js-config");
 
 const apiProducts = Router();
 

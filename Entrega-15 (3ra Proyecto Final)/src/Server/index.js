@@ -17,8 +17,8 @@ const { apiRandoms } = require("../Router/apiRandoms");
 const { apiProducts } = require("../Router/apiProducts");
 
 // BBDDs
-const { sockets } = require("./sockets-sessions/sockets");
-const { Session } = require("./sockets-sessions/sessions");
+const { sockets } = require("../Service/sockets-sessions/sockets");
+const { Session } = require("../Service/sockets-sessions/sessions");
 
 // Auth
 const passport = require("passport");
@@ -32,7 +32,7 @@ const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 
 // Loggers
-const { logger } = require("../../loggers-testing/log4js-config");
+const { logger } = require("../../loggers-testing/loggers/log4js-config");
 
 const { puerto, modo, _ } = yargs
   .alias({
