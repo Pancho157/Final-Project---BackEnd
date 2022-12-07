@@ -1,8 +1,6 @@
 const passport = require("passport");
-const { UserControllerMongo } = require("../DB/DAOs/Users/UsersController");
+const { usersDao: Users } = require("../../Persistence/DAOs/DAOselector");
 const PassportLocal = require("passport-local").Strategy;
-
-const Users = new UserControllerMongo();
 
 // Done parameters = (err, user, pass)
 passport.use(

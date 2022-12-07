@@ -11,10 +11,10 @@ const path = require("path");
 const { engine } = require("express-handlebars");
 
 //  Routers
-const userInterfaces = require("./routes/userInterfaces");
-const { info } = require("./routes/info");
-const { apiRandoms } = require("./routes/apiRandoms");
-const { apiProducts } = require("./routes/apiProducts");
+const userInterfaces = require("../Router/userInterfaces");
+const { info } = require("../Router/info");
+const { apiRandoms } = require("../Router/apiRandoms");
+const { apiProducts } = require("../Router/apiProducts");
 
 // BBDDs
 const { sockets } = require("./sockets-sessions/sockets");
@@ -22,7 +22,7 @@ const { Session } = require("./sockets-sessions/sessions");
 
 // Auth
 const passport = require("passport");
-const { connectToMongo } = require("./DB/utils/mongooseConnection");
+const { connectToMongo } = require("../Persistence/utils/mongooseConnection");
 
 // Argumentos de línea de comandos
 const yargs = require("yargs/yargs")(process.argv.slice(2));
@@ -32,7 +32,7 @@ const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 
 // Loggers
-const { logger } = require("./loggers/log4js-config");
+const { logger } = require("../../loggers-testing/log4js-config");
 
 const { puerto, modo, _ } = yargs
   .alias({

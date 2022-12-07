@@ -1,5 +1,5 @@
 const { Products } = require("../../utils/Mongoose-Schemas_Models");
-const { logger } = require("../../../loggers/log4js-config");
+const { logger } = require("../../../../loggers-testing/log4js-config");
 
 class ProductsMongoAtlas {
   constructor() {

@@ -1,11 +1,9 @@
 const { Router } = require("express");
-const { UserControllerMongo } = require("../DB/DAOs/Users/UsersController");
-const { loggerInfo } = require("../middlewares/infoLogger");
-const { isLoggedIn } = require("../middlewares/isLoggedIn");
+const { usersDao: Users } = require("../Persistence/DAOs/DAOselector");
+const { loggerInfo } = require("../Service/middlewares/infoLogger");
+const { isLoggedIn } = require("../Service/middlewares/isLoggedIn");
 
 const userInterfaces = Router();
-let Users = new UserControllerMongo();
-
 userInterfaces.use(loggerInfo);
 
 // -------------------- TABLA DE PRODUCTOS Y CHAT --------------------
