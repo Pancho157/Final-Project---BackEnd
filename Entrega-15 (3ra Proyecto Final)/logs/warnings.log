@@ -1,1 +1,2 @@
 [2022-12-06T23:54:32.625] [WARN] prod - Bad request - Route: "/favicon.ico", Method: "GET"
+[2022-12-09T09:24:58.946] [WARN] prod - Bad request - Route: "/favicon.ico", Method: "GET"

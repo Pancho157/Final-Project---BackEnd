@@ -1,27 +1,38 @@
-const { productsDao } = require("../Persistence/DAOs/DAOselector");
+const { logger } = require("../../loggers-testing/loggers/log4js-config");
+const {
+  getAllProducts,
+  insertProduct,
+  deleteProductById,
+} = require("../Service/DB Querys/products");
 
 async function getProducts(req, res) {
   try {
-    const products = await productsDao.getProducts();
+    const products = await getAllProducts();
     res.json(products);
   } catch (err) {
     logger.error(err);
+    res.status(err.errorCode).send(err.error);
   }
 }
 
 async function postProduct(req, res) {
-  const { title, price, thumbnail, stock } = req.body;
-
-  if (!title || !price || !thumbnail || !stock) {
-    res.send("ingrese todos los datos necesarios");
-  }
-
   try {
-    const product = await productsDao.insertProduct(req.body);
-    res.send("producto agregado exitosamente");
+    const product = await insertProduct(req.body);
+    res.send(product);
   } catch (err) {
     logger.error(err);
+    res.status(err.errorCode).send(err.error);
   }
 }
 
-module.exports = { getProducts, postProduct };
+async function deleteProduct(req, res) {
+  try {
+    const id = req.query.id;
+    res.send(await deleteProductById(id));
+  } catch (err) {
+    logger.error(err);
+    res.status(err.errorCode).send(err.error);
+  }
+}
+
+module.exports = { getProducts, postProduct, deleteProduct };
