@@ -1,4 +1,5 @@
-const { usersDao } = require("../Persistence/DAOs/DAOselector");
+const { login } = require("../Service/DB Querys/login-user");
+const { registerUser } = require("../Service/DB Querys/register-user");
 
 // -------------------- CONTENT PAGES --------------------
 function getLandingPage(req, res) {
@@ -19,19 +20,15 @@ function getLoginPage(req, res) {
 }
 
 async function postLoginForm(req, res) {
-  const { user, userPass } = req.body;
-  let response;
-
+  let loggedIn = {};
   try {
-    response = await usersDao.verifyUser(user, userPass);
+    loggedIn.alias = await login(req.body);
   } catch (err) {
-    res.send({ Error: true, message: err.message });
+    res.status(err.errorCode).send(err.error);
   }
 
-  if (typeof response == "string") {
-    res.render("loginError");
-  } else {
-    req.session.userName = response.alias;
+  if (loggedIn) {
+    req.session.userName = loggedIn.alias;
     res.redirect("/");
   }
 }
@@ -55,23 +52,10 @@ function getRegisterForm(req, res) {
 }
 
 async function postRegisterForm(req, res) {
-  const { userEmail, userAlias, userPass } = req.body;
-  let response;
-
   try {
-    response = await usersDao.createUser(userAlias, userEmail, userPass);
+    res.send(await registerUser(req.body));
   } catch (err) {
-    res.send({ error: true, message: err.message });
-  }
-
-  //  En caso de existir un email y/o alias la respuesta es un objeto con el valor encontrado
-  if (response.alias || response.email) {
-    res.render("registerError", {
-      email: response.email,
-      alias: response.alias,
-    });
-  } else {
-    req.session.userName = response.newUserAlias;
+    res.status(err.errorCode).send(err.error);
   }
 }
 

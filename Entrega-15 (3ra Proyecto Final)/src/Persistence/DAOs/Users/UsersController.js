@@ -6,64 +6,47 @@ class UserControllerMongo {
 
   // * -------------------------- Creación de usuario ----------------------------
   async createUser(alias, email, password) {
-    // Error al existir el email o alias
-    try {
-      const userExists = await Users.findOne({
-        $or: [{ email: email }, { alias: alias }],
-      });
-
-      if (userExists) {
-        let exists = {};
-        if (userExists.email == email) {
-          exists.email = userExists.email;
-        }
-        if (userExists.alias == alias) {
-          exists.alias = userExists.alias;
-        }
-
-        return exists;
-      }
-    } catch (err) {
-      return err.message;
-    }
-
     // Guardando el usuario
     try {
       const newUser = new Users({ alias, email, password });
-      newUser.password = md5(password);
       await newUser.save();
     } catch (err) {
-      return err.message;
+      logger.error(`Users Error: ${err}`);
     }
 
     // Devuelve el alias para guardarlo en session
     return { newUserAlias: alias };
   }
 
-  // * -------------------------- Auth de usuario ----------------------------
-  async verifyUser(userIdentifier, userPassword) {
-    // userIdentifier = email || alias
-    let userExists;
+  // * -------------------------- Obtener información ----------------------------
 
+  async verifyAlias(alias) {
     try {
-      userExists = await Users.findOne({
-        $or: [{ email: userIdentifier }, { alias: userIdentifier }],
-      });
-
-      if (!userExists) {
-        return "El usuario ingresado no existe";
-      }
+      const aliasExists = await Users.findOne({ alias: alias });
+      return aliasExists ? true : false;
     } catch (err) {
-      return err.message;
+      logger.error(`Users Error: ${err}`);
     }
+  }
 
-    // Comparacion de contraseñas (email encontrado)
-    if (md5(userPassword) == userExists.password) {
-      return { alias: userExists.alias };
+  async verifyEmail(email) {
+    try {
+      const emailExists = await Users.findOne({ email: email });
+      return emailExists ? true : false;
+    } catch (err) {
+      logger.error(`Users Error: ${err}`);
     }
+  }
 
-    // usuario o contraseña incorrecto
-    return "Contraseña incorrecta";
+  async getUserInfo(user) {
+    try {
+      let userToFind = await Users.findOne({
+        $or: [{ email: user }, { alias: user }],
+      });
+      return userToFind;
+    } catch (err) {
+      logger.error(`Users Error: ${err}`);
+    }
   }
 }
 

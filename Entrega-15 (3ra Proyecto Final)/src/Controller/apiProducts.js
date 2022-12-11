@@ -28,8 +28,7 @@ async function postProduct(req, res) {
 async function deleteProduct(req, res) {
   try {
     const id = parseInt(req.params.id);
-    const productToDelete = await deleteProductById(id);
-    res.send(`Se eliminó exitosamente el producto con id = ${id}`);
+    res.send(await deleteProductById(id));
   } catch (err) {
     logger.error(err);
     res.status(err.errorCode).send(err.error);

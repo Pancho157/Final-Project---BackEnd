@@ -42,6 +42,18 @@
 
 - Realizar una prueba de performance en modo local, con y sin clúster, utilizando Artillery en el endpoint del listado de productos (con el usuario vez logueado). Verificar los resultados
 
+### Organización de las capas:
+
+---
+
+Cada capa solo puede comunicarse con la que se encuentra arriba o debajo de la misma (a exepción de Server para utilizar sockets o sessions)
+
+1. Server
+2. Router
+3. Controller
+4. Service
+5. Persistence
+
 ### Método de entrega:
 
 ---

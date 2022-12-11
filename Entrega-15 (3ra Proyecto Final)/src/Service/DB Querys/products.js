@@ -60,7 +60,7 @@ async function deleteProductById(id) {
 
   try {
     const productToDelete = await productsDao.deleteById(id);
-    return `Producto eliminado exitosamente (id = ${productToDelete._id})`;
+    return `Producto eliminado exitosamente (id = ${id})`;
   } catch (err) {
     throw {
       error: "Ha ocurrido un error al eliminar el producto",
