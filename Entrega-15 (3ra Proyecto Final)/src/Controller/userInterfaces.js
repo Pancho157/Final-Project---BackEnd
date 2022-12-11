@@ -1,3 +1,5 @@
+const { usersDao } = require("../Persistence/DAOs/DAOselector");
+
 // -------------------- CONTENT PAGES --------------------
 function getLandingPage(req, res) {
   if (req.session.userName == undefined) {
@@ -21,7 +23,7 @@ async function postLoginForm(req, res) {
   let response;
 
   try {
-    response = await Users.verifyUser(user, userPass);
+    response = await usersDao.verifyUser(user, userPass);
   } catch (err) {
     res.send({ Error: true, message: err.message });
   }
@@ -57,7 +59,7 @@ async function postRegisterForm(req, res) {
   let response;
 
   try {
-    response = await Users.createUser(userAlias, userEmail, userPass);
+    response = await usersDao.createUser(userAlias, userEmail, userPass);
   } catch (err) {
     res.send({ error: true, message: err.message });
   }

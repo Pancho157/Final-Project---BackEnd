@@ -19,7 +19,7 @@ const MessageSchema = mongoose.Schema(
     ],
   },
 
-  { _id: false, timestamps: true } // CreatedAt y UpdatedAt
+  { strict: false, _id: false, timestamps: true } // CreatedAt y UpdatedAt
 );
 
 let Message = mongoose.model("messages", MessageSchema);
@@ -46,7 +46,7 @@ const UserSchema = mongoose.Schema(
     },
   },
 
-  { timestamps: false, versionKey: false }
+  { strict: false, timestamps: false, versionKey: false }
 );
 
 let Users = mongoose.model("users", UserSchema);
@@ -58,27 +58,9 @@ const ProductSchema = mongoose.Schema(
     _id: {
       type: Number,
     },
-    title: {
-      type: String,
-      required: [true, "Title is required"],
-    },
-    price: {
-      type: Number,
-      required: true,
-      min: 1,
-    },
-    thumbnail: {
-      type: String,
-      required: [true, "Thumbnail is required"],
-    },
-    stock: {
-      type: Number,
-      required: [true, "Stock is required"],
-      min: 1,
-    },
   },
 
-  { timestamps: false, versionKey: false }
+  { strict: false, timestamps: false, versionKey: false }
 );
 
 let Products = mongoose.model("products", ProductSchema);

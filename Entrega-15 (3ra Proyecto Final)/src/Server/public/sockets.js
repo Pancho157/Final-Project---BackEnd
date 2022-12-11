@@ -46,7 +46,7 @@ const renderProducts = (products) => {
   products.forEach((product) => {
     document.getElementById("table__body").innerHTML += `
           <tr class='table__tr'>
-            <td class='table__td'>${product.id}</td>
+            <td class='table__td'>${product._id}</td>
             <td class='table__td'>${product.title}</td>
             <td class='table__td'>AR$ ${product.price}</td>
             <td class='table__td'><img src="${product.thumbnail}" /></td>

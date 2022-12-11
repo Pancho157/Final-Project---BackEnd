@@ -3,7 +3,7 @@ const { fork } = require("child_process");
 const path = require("path");
 
 function getRandoms(req, res) {
-  const repetitions = parseInt(req.query.reps);
+  const repetitions = parseInt(req.params.reps);
 
   // getNumbersObject(repetitions);
 
