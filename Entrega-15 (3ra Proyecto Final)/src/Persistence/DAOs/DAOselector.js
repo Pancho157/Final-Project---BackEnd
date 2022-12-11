@@ -19,15 +19,9 @@ switch (process.env.PERS) {
     break;
 
   // ------------- Mongoose -------------
-  case "mongodb":
+  default:
     const { ChatControllerMongo } = require("./Chat/ChatController_mongoose");
     chatDao = new ChatControllerMongo();
-    break;
-
-  // ------------- File System (fs) -------------
-  default:
-    const { ChatControllerFS } = require("./Chat/ChatController_FS");
-    chatDao = new ChatControllerFS("./DB/chat.txt");
     break;
 }
 

@@ -1,4 +1,3 @@
-const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 const { productsDao } = require("../../Persistence/DAOs/DAOselector");
 
 async function getAllProducts() {
@@ -15,7 +14,7 @@ async function getAllProducts() {
 
 async function insertProduct(data) {
   const { title, price, thumbnail, stock } = data;
-  let id, exists;
+  let exists;
 
   try {
     exists = await productsDao.getProductByTitle(title);

@@ -1,21 +1,25 @@
-const { productsDao, chatDao } = require("../../Persistence/DAOs/DAOselector");
 const { logger } = require("../../../loggers-testing/loggers/log4js-config");
+const { getAllProducts, insertProduct } = require("../DB Querys/products");
+const {
+  getChatMessages,
+  newChatMessage,
+} = require("../DB Querys/chatMessages");
 
 async function sockets(io) {
   io.on(`connection`, async (socket) => {
     logger.info("Nuevo cliente conectado");
 
-    socket.emit("productsFromServer", await productsDao.getProducts());
-    socket.emit("messagesFromServer", await chatDao.getMessages());
+    socket.emit("productsFromServer", await getAllProducts());
+    socket.emit("messagesFromServer", await getChatMessages());
 
     socket.on("new-message", async (data) => {
-      await chatDao.insertMessage(data);
-      io.sockets.emit("messagesFromServer", await chatDao.getMessages());
+      await newChatMessage(data);
+      io.sockets.emit("messagesFromServer", await getChatMessages());
     });
 
     socket.on("new-product", async (data) => {
-      await productsDao.insertProduct(data);
-      io.socket.emit("productsFromServer", await productsDao.getProducts());
+      await insertProduct(data);
+      io.socket.emit("productsFromServer", await getAllProducts());
     });
   });
 }

@@ -1,5 +1,4 @@
 const { Users } = require("../../utils/Mongoose-Schemas_Models");
-const md5 = require("md5");
 
 class UserControllerMongo {
   constructor() {}

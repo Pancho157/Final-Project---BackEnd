@@ -12,23 +12,10 @@ class ChatControllerMongo {
 
   async insertMessage(data) {
     try {
-      await Message.create({
-        message: data.message,
-        author: [
-          new mongoose.Schema({
-            email: `${data.author.email}`,
-            name: `${data.author.name}`,
-            lastName: `${data.author.lastName}`,
-            age: data.author.age,
-            alias: `${data.author.alias}`,
-            avatar: `${data.author.avatar}`,
-          }),
-        ],
-      });
+      await Message.create({ data });
     } catch (err) {
       logger.error(`Error: ${err}`);
     }
-    // El ID del autor es su email
   }
 
   async getMessages() {
