@@ -12,7 +12,7 @@ async function login(data) {
   }
 
   try {
-    userInfo = usersDao.getUserInfo(user);
+    userInfo = await usersDao.getUserInfo(user);
     if (!userInfo) {
       throw {
         error: "El usuario ingresado no existe",
@@ -28,8 +28,9 @@ async function login(data) {
   }
 
   if (userInfo.password == md5(password)) {
-    return true;
+    return userInfo.alias;
   } else {
+    console.log(userInfo)
     throw {
       error: "Contraseña incorrecta",
       errorCode: 400,

@@ -55,6 +55,7 @@ async function postRegisterForm(req, res) {
   try {
     res.send(await registerUser(req.body));
   } catch (err) {
+    console.log(err)
     res.status(err.errorCode).send(err.error);
   }
 }

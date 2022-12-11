@@ -3,7 +3,7 @@ const { usersDao } = require("../../Persistence/DAOs/DAOselector");
 
 async function registerUser(data) {
   const { email, alias, password } = data;
-  let exists;
+  let exists = {};
 
   // * En caso de no ingresaro todos los datos
   if (!email || !alias || !password) {
@@ -16,8 +16,9 @@ async function registerUser(data) {
   // * En caso de existir el usuario
   try {
     // if exists = true, else = false
-    exists.alias = await usersDao.verifyAlias(alias);
-    exists.email = await usersDao.verifyEmail(email);
+    if (await usersDao.verifyAlias(alias)) exists.alias = true;
+
+    if (await usersDao.verifyEmail(email)) exists.email = true;
   } catch (err) {
     throw {
       error: "Se ha producido un error",
