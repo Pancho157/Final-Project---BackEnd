@@ -3,7 +3,6 @@
 // insertMessage(data)
 // getMessages()
 
-const mongoose = require("mongoose");
 const { Message } = require("../../utils/Mongoose-Schemas_Models");
 const { logger } = require("../../../loggers/log4js-config");
 

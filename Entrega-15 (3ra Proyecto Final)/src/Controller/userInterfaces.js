@@ -20,15 +20,16 @@ function getLoginPage(req, res) {
 }
 
 async function postLoginForm(req, res) {
-  let loggedIn = {};
+  let loggedIn;
   try {
-    loggedIn.alias = await login(req.body);
+    loggedIn = await login(req.body);
   } catch (err) {
     res.status(err.errorCode).send(err.error);
   }
 
   if (loggedIn) {
     req.session.userName = loggedIn.alias;
+    req.session.userId = loggedIn.userId;
     res.redirect("/");
   }
 }
@@ -55,7 +56,7 @@ async function postRegisterForm(req, res) {
   try {
     res.send(await registerUser(req.body));
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(err.errorCode).send(err.error);
   }
 }

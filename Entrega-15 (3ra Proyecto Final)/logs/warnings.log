@@ -16,3 +16,4 @@
 [2022-12-10T22:26:12.061] [WARN] prod - Bad request - Route: "/undefined", Method: "GET"
 [2022-12-10T22:26:55.722] [WARN] prod - Bad request - Route: "/undefined", Method: "GET"
 [2022-12-10T22:28:57.129] [WARN] prod - Bad request - Route: "/undefined", Method: "GET"
+[2022-12-11T15:45:13.655] [WARN] prod - Bad request - Route: "/favicon.ico", Method: "GET"

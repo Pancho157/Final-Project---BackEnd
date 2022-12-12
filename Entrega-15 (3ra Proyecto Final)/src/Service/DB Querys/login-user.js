@@ -28,9 +28,8 @@ async function login(data) {
   }
 
   if (userInfo.password == md5(password)) {
-    return userInfo.alias;
+    return { alias: userInfo.alias, userId: userInfo._id };
   } else {
-    console.log(userInfo)
     throw {
       error: "Contraseña incorrecta",
       errorCode: 400,
