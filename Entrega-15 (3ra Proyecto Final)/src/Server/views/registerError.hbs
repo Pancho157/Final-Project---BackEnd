@@ -1,14 +1,7 @@
 <div class="errorContainer">
   <h1 class="errorTitle">Error al registrarse</h1>
-  {{#if email}}
-    <p class="errorText">El Email: (<b>{{email}}</b>) ingresado ya se encuentra
-      registrado</p>
-  {{/if}}
-
-  {{#if alias}}
-    <p class="errorText">El Alias: (<b>{{alias}}</b>) ingresado ya se encuentra
-      registrado</p>
-  {{/if}}
+  <h2 class="errorTitle">(Error: {{errorCode}})</h2>
+  <p class="errorText">{{error}}</p>
 </div>
 
 <script type="text/javascript">

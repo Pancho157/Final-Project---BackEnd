@@ -2,11 +2,11 @@ const md5 = require("md5");
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
 
 async function registerUser(data) {
-  const { email, alias, password } = data;
+  const { email, alias, direction, age, phoneNum, password } = data;
   let exists = {};
 
   // * En caso de no ingresaro todos los datos
-  if (!email || !alias || !password) {
+  if (!email || !alias || !direction || !age || !phoneNum || !password) {
     throw {
       error: "Ingrese todos los datos requeridos",
       errorCode: 400,

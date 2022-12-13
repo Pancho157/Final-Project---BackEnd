@@ -32,7 +32,7 @@ async function postLoginForm(req, res) {
   try {
     loggedIn = await login(req.body);
   } catch (err) {
-    res.status(err.errorCode).send(err.error);
+    res.render("loginError", err);
   }
 
   if (loggedIn) {
@@ -64,8 +64,7 @@ async function postRegisterForm(req, res) {
   try {
     res.send(await registerUser(req.body));
   } catch (err) {
-    console.log(err);
-    res.status(err.errorCode).send(err.error);
+    res.render("registerError", err);
   }
 }
 
