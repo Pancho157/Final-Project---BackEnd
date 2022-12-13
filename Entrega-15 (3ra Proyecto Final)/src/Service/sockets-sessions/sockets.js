@@ -17,12 +17,11 @@ async function sockets(io) {
   io.on(`connection`, async (socket) => {
     logger.info("Nuevo cliente conectado");
 
-    let userId = socket.handshake.session.userId;
-
     socket.emit("productsFromServer", await getAllProducts());
     socket.emit("messagesFromServer", await getChatMessages());
 
     socket.on("new-message", async (data) => {
+      let userId = socket.handshake.session.userId;
       const messageData = { message: data, userId: userId };
       await newChatMessage(messageData);
       io.sockets.emit("messagesFromServer", await getChatMessages());

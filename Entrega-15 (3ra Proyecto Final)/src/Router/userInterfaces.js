@@ -3,6 +3,7 @@ const { Router } = require("express");
 // Controllers
 const {
   getLandingPage,
+  getChatPage,
   getLoginPage,
   postLoginForm,
   logOut,
@@ -19,6 +20,7 @@ userInterfaces.use(loggerInfo);
 
 // -------------------- CONTENT PAGES --------------------
 userInterfaces.get("/", getLandingPage);
+userInterfaces.get("/chat", getChatPage);
 
 // ----------------- LOGIN --------------------
 userInterfaces.get("/login", getLoginPage);

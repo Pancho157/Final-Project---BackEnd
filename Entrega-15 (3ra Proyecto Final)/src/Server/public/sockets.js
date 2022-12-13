@@ -6,14 +6,14 @@ const messagesContainer = document.getElementById("messagesContainer");
 // -------------------- Renderizar mensajes y productos ---------------------
 const addMessage = (e) => {
   const message = {
-    author: {
-      email: document.getElementById("email").value,
-      name: document.getElementById("name").value,
-      lastName: document.getElementById("lastName").value,
-      age: document.getElementById("age").value,
-      alias: document.getElementById("alias").value,
-      avatar: document.getElementById("avatar").value,
-    },
+    // author: {
+    //   email: document.getElementById("email").value,
+    //   name: document.getElementById("name").value,
+    //   lastName: document.getElementById("lastName").value,
+    //   age: document.getElementById("age").value,
+    //   alias: document.getElementById("alias").value,
+    //   avatar: document.getElementById("avatar").value,
+    // },
     message: document.getElementById("message").value,
   };
 

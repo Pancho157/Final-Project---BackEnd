@@ -259,7 +259,7 @@ body {
 }
 
 .chat__container {
-  max-width: 900px;
+  max-width: 590px;
   background-color: #333333;
   border: 1px solid #fff;
   border-radius: 20px;
@@ -269,11 +269,11 @@ body {
   justify-content: space-around;
   column-gap: 20px;
   row-gap: 20px;
+  flex-direction: column;
 }
 
 .chat__messagesContainer {
   width: 100%;
-  max-width: 490px;
   min-width: 300px;
   height: 390px;
   padding: 10px 10px 10px 10px;
@@ -283,10 +283,10 @@ body {
 }
 
 .chat__messageForm {
-  width: 330px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  column-gap: 20px;
 }
 
 .message__email {
@@ -307,8 +307,7 @@ body {
 
 .chat__input {
   width: 100%;
-  height: 2rem;
-  margin-top: 3px;
+  height: 3rem;
   border-top: none;
   border-right: none;
   border-radius: 5px;
@@ -320,7 +319,6 @@ body {
   background-color: #e57e1f;
   border-radius: 14px;
   cursor: pointer;
-  margin: 10px auto;
 }
 
 /* ------------------- Error Pages ---------------------- */

@@ -1,0 +1,30 @@
+<div class="nav__container">
+  <a href="/" style="color: fff;">Ir a Productos</a>
+  <h2 class="messages__title">Centro de mensajes</h2>
+
+  <div class="welcome-message__container">
+    <h2>Bienvenido {{name}}</h2>
+    <a class="log-out__button" href="./logOut">Log out</a>
+  </div>
+</div>
+<div class="chat__container">
+  <div class="chat__messagesContainer" id="chat__messagesContainer">
+  </div>
+
+  <div class="chat__messageForm">
+
+    <input
+      class="chat__input"
+      id="message"
+      type="text"
+      placeholder="Ingresar mensaje"
+      required="true"
+    />
+
+    <button type="button" onclick="addMessage()" class="chat__sendButton">
+      Enviar
+    </button>
+  </div>
+</div>
+
+<script src="/sockets.js"></script>

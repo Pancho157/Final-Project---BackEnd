@@ -6,7 +6,15 @@ function getLandingPage(req, res) {
   if (req.session.userName == undefined) {
     res.redirect("/login");
   } else {
-    res.render("index", { name: req.session.userName });
+    res.render("products", { name: req.session.userName });
+  }
+}
+
+function getChatPage(req, res) {
+  if (req.session.userName == undefined) {
+    res.redirect("/login");
+  } else {
+    res.render("chat", { name: req.session.userName });
   }
 }
 
@@ -63,6 +71,7 @@ async function postRegisterForm(req, res) {
 
 module.exports = {
   getLandingPage,
+  getChatPage,
   getLoginPage,
   postLoginForm,
   logOut,

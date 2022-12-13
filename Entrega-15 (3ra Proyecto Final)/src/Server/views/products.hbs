@@ -1,0 +1,24 @@
+<div class="chat-table__container">
+  <div class="nav__container">
+    <a href="/chat" style="color: fff;">Ir al Chat</a>
+    <h2 class="messages__title">Listado de productos</h2>
+
+    <div class="welcome-message__container">
+      <h2>Bienvenido {{name}}</h2>
+      <a class="log-out__button" href="./logOut">Log out</a>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead class="table__head">
+      <th class="table__th">ID</th>
+      <th class="table__th">Nombre</th>
+      <th class="table__th">Precio</th>
+      <th class="table__th">Imagen</th>
+    </thead>
+    <tbody id="table__body">
+    </tbody>
+  </table>
+</div>
+
+<script src="/sockets.js"></script>
