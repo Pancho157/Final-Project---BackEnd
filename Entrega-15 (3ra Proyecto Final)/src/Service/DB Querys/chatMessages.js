@@ -12,8 +12,7 @@ async function getChatMessages() {
   }
 }
 
-async function newChatMessage(data) {
-  const { message, user } = data;
+async function newChatMessage(message, user) {
   let author;
 
   if (!message || !user) {
@@ -23,25 +22,10 @@ async function newChatMessage(data) {
     };
   }
 
-  try {
-    author = await usersDao.getUserInfo(user);
-  } catch (err) {
-    throw {
-      error: "Hubo un error, recargue la página e intentelo nuevamente",
-      errorCode: 500,
-    };
-  }
-
-  if (!author) {
-    throw {
-      error: "Usuario no encontrado",
-      errorCode: 400,
-    };
-  }
-
   const messageinfo = {
     message: message,
-    author: author._id,
+    author: user,
+    date: new Date(),
   };
 
   try {

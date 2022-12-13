@@ -21,14 +21,24 @@ async function sockets(io) {
     socket.emit("messagesFromServer", await getChatMessages());
 
     socket.on("new-message", async (data) => {
-      let userId = socket.handshake.session.userId;
-      const messageData = { message: data, userId: userId };
-      await newChatMessage(messageData);
+      // let user = socket.handshake.session.userId;
+      let user = socket.handshake.session.userName;
+      try {
+        await newChatMessage(data.message, user);
+      } catch (err) {
+        logger.warn(err);
+      }
+
       io.sockets.emit("messagesFromServer", await getChatMessages());
     });
 
     socket.on("new-product", async (data) => {
-      await insertProduct(data);
+      try {
+        await insertProduct(data);
+      } catch (err) {
+        logger.warn(err);
+      }
+
       io.socket.emit("productsFromServer", await getAllProducts());
     });
   });

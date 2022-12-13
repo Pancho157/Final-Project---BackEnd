@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 // --------------------- Messages Schema & Model ------------------------
 const MessageSchema = mongoose.Schema(
   {
-    message: { type: String, required: true },
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+    message: { type: String },
+    // author: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
   },
 
-  { strict: false, _id: false, timestamps: true } // CreatedAt y UpdatedAt
+  { strict: false, timestamps: true } // CreatedAt y UpdatedAt
 );
 
 let Message = mongoose.model("messages", MessageSchema);

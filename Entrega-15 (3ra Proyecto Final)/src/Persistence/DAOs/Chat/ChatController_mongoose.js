@@ -3,15 +3,15 @@
 // insertMessage(data)
 // getMessages()
 
+const { logger } = require("../../../../loggers-testing/loggers/log4js-config");
 const { Message } = require("../../utils/Mongoose-Schemas_Models");
-const { logger } = require("../../../loggers/log4js-config");
 
 class ChatControllerMongo {
   constructor() {}
 
   async insertMessage(data) {
     try {
-      await Message.create({ data });
+      await Message.create(data);
     } catch (err) {
       logger.error(`Error: ${err}`);
     }

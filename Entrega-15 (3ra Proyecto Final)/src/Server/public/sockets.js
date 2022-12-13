@@ -29,7 +29,7 @@ const renderMessages = (messages) => {
     .map((message) => {
       return `
         <div>
-          <span class="message__email">${message.author.alias}</span>:
+          <span class="message__email">${message.author}</span>:
           <span class="message__date">[${message.date}]<span>
           <br>
           <p class="message__text">${message.message}</p>

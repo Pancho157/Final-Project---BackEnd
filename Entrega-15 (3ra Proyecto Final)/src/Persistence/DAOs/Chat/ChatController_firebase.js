@@ -23,23 +23,9 @@ class ChatControllerFirebase {
       logger.error(`Error: ${err}`);
     }
 
-    // -------- Estructura del mensaje a guardar -------
-    var docData = {
-      author: {
-        id: data.author.email,
-        name: data.author.name,
-        lastName: data.author.lastName,
-        age: data.author.age,
-        alias: data.author.alias,
-        avatar: data.author.avatar,
-      },
-      message: data.message,
-      date: new Date(),
-    };
-
     // -------- Guarda el mensaje -------
     try {
-      await this.coleccion.doc(`${newId}`).set(docData);
+      await this.coleccion.doc(`${newId}`).set(data);
       return `${newId}`;
     } catch (err) {
       logger.error(`Error: ${err}`);

@@ -1,16 +1,1 @@
-[2022-12-10T22:17:20.247] [ERROR] prod - {
-  error: 'Se ha producido un error al generar el producto',
-  errorCode: 500
-}
-[2022-12-10T22:24:55.833] [ERROR] prod - {
-  error: 'Se ha producido un error al generar el producto',
-  errorCode: 500
-}
-[2022-12-10T22:26:58.080] [ERROR] prod - {
-  error: 'Se ha producido un error al generar el producto',
-  errorCode: 500
-}
-[2022-12-10T22:29:13.151] [ERROR] prod - {
-  error: 'Se ha producido un error al generar el producto',
-  errorCode: 500
-}
+[2022-12-12T23:42:46.771] [ERROR] prod - Error: ValidationError: _id: Cast to ObjectId failed for value "1" (type number) at path "_id" because of "BSONTypeError"
