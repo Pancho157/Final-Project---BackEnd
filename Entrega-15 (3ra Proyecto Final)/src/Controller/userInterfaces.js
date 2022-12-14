@@ -62,7 +62,9 @@ function getRegisterForm(req, res) {
 
 async function postRegisterForm(req, res) {
   try {
-    res.send(await registerUser(req.body));
+    const response = await registerUser(req.body);
+    req.session.userName = response;
+    res.redirect("/");
   } catch (err) {
     res.render("registerError", err);
   }

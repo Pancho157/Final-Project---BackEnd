@@ -45,8 +45,15 @@ async function registerUser(data) {
 
   // * Creación de usuario
   try {
-    response = await usersDao.createUser(alias, email, md5(password));
-    return `Usuario generado exitosamente`;
+    response = await usersDao.createUser(
+      email,
+      alias,
+      direction,
+      age,
+      phoneNum,
+      md5(password)
+    );
+    return alias;
   } catch (err) {
     throw {
       error: "Se ha producido un error",

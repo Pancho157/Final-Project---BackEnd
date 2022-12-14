@@ -4,17 +4,24 @@ class UserControllerMongo {
   constructor() {}
 
   // * -------------------------- Creación de usuario ----------------------------
-  async createUser(alias, email, password) {
+  async createUser(email, alias, direction, age, phoneNum, password) {
     // Guardando el usuario
     try {
-      const newUser = new Users({ alias, email, password });
+      const newUser = new Users({
+        email,
+        alias,
+        direction,
+        age,
+        phoneNum,
+        password,
+      });
       await newUser.save();
     } catch (err) {
       logger.error(`Users Error: ${err}`);
     }
 
     // Devuelve el alias para guardarlo en session
-    return { newUserAlias: alias };
+    return alias;
   }
 
   // * -------------------------- Obtener información ----------------------------

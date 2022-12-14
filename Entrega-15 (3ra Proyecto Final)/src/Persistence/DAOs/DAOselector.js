@@ -4,7 +4,6 @@ const { UserControllerMongo } = require("./Users/UsersController");
 // Por defecto FS
 
 const configs = JSON.parse(process.env.CONFIGS);
-// console.log(configs)
 let productsDao = new ProductsMongoAtlas(configs.mariadb);
 let usersDao = new UserControllerMongo();
 let chatDao;
