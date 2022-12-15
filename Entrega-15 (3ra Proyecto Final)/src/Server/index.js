@@ -15,6 +15,7 @@ const userInterfaces = require("../Router/userInterfaces");
 const { info } = require("../Router/info");
 const { apiRandoms } = require("../Router/apiRandoms");
 const { apiProducts } = require("../Router/apiProducts");
+const { carts } = require("../Router/apiCarts");
 
 // BBDDs
 const { sockets } = require("../Service/sockets-sessions/sockets");
@@ -112,6 +113,7 @@ if (modo.toLowerCase() == "cluster" && cluster.isPrimary) {
   app.use("/", info);
   app.use("/api", apiRandoms);
   app.use("/api", apiProducts);
+  app.use("/api", carts);
 
   // ----------------------- Error 404 -----------------------
   app.use((req, res) => {
