@@ -1,4 +1,5 @@
-const { login } = require("../Service/DB Querys/login-user");
+const { logger } = require("../../loggers-testing/loggers/log4js-config");
+const { login, getUserInfoFromDB } = require("../Service/DB Querys/login-user");
 const { registerUser } = require("../Service/DB Querys/register-user");
 
 // -------------------- CONTENT PAGES --------------------
@@ -23,6 +24,28 @@ function getChatPage(req, res) {
     res.redirect("/login");
   } else {
     res.render("chat", { name: req.session.userName });
+  }
+}
+
+async function getUserInfo(req, res) {
+  let userInfo;
+  if (req.session.userName == undefined) {
+    res.redirect("/login");
+  } else {
+    try {
+      userInfo = await getUserInfoFromDB(req.session.userName);
+    } catch (err) {
+      res.status(err.errorCode).send(err.error);
+    }
+
+    res.render("userInfo", {
+      name: req.session.userName,
+      alias: userInfo.alias,
+      email: userInfo.email,
+      direction: userInfo.direction,
+      age: userInfo.age,
+      phoneNum: `xxxx-xxxx${userInfo.phoneNum}`,
+    });
   }
 }
 
@@ -82,6 +105,7 @@ module.exports = {
   getLandingPage,
   getProductsPage,
   getChatPage,
+  getUserInfo,
   getLoginPage,
   postLoginForm,
   logOut,

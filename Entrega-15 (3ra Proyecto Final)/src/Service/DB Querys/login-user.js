@@ -37,4 +37,36 @@ async function login(data) {
   }
 }
 
-module.exports = { login };
+async function getUserInfoFromDB(user) {
+  try {
+    let userInfo = await usersDao.getUserInfo(user);
+
+    if (!userInfo) {
+      throw {
+        error: "El usuario ingresado no existe",
+        errorCode: 400,
+      };
+    }
+
+    let phoneLastNumbers = String(userInfo.phoneNum).slice(-2);
+    phoneLastNumbers = parseInt(phoneLastNumbers);
+
+    const filteredUserInfo = {
+      alias: userInfo.alias,
+      email: userInfo.email,
+      direction: userInfo.direction,
+      age: userInfo.age,
+      phoneNum: phoneLastNumbers,
+    };
+
+    return filteredUserInfo;
+  } catch (err) {
+    throw {
+      error:
+        "Lo sentimos, ha ocurrido un error, recargue la pábina e intentelo de nuevo",
+      errorCode: 500,
+    };
+  }
+}
+
+module.exports = { login, getUserInfoFromDB };

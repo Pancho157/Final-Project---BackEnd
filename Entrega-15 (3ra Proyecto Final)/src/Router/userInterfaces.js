@@ -10,6 +10,7 @@ const {
   logOut,
   getRegisterForm,
   postRegisterForm,
+  getUserInfo,
 } = require("../Controller/userInterfaces");
 
 // Middlewares
