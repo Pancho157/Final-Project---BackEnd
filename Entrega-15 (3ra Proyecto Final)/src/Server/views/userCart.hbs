@@ -1,0 +1,39 @@
+<div class="nav__container">
+  <a href="/" style="color: fff;">Menu</a>
+  <div></div>
+  <div class="welcome-message__container">
+    <h2>Bienvenido {{name}}</h2>
+    <a class="log-out__button" href="./logOut">Log out</a>
+  </div>
+</div>
+
+<div class="cartContainer">
+  <div class="cart">
+    <h1>Carrito de compras</h1>
+
+    <table class="table">
+      <thead class="table__head">
+        <th class="table__th">Imagen</th>
+        <th class="table__th">Nombre</th>
+        <th class="table__th">Cantidad</th>
+        <th class="table__th">Precio</th>
+        <th class="table__th">Total unitario</th>
+      </thead>
+      <tbody id="table__body">
+        {{#each this}}
+          <tr class="table__tr">
+            <td class="table__td"><img src="${{thumbnail}}" /></td>
+            <td class="table__td">{{title}}</td>
+            <td class="table__td">{{quantity}}</td>
+            <td class="table__td">${{price}}</td>
+            <td class="table__td">{{unitaryPrice}}</td>
+          </tr>`;
+        {{/each}}
+      </tbody>
+    </table>
+
+    <p class="cart__total-to-pay">Total: ${{total}}</p>
+
+    <button class="cart__buy-button" type="button">Conprar carrito</button>
+  </div>
+</div>

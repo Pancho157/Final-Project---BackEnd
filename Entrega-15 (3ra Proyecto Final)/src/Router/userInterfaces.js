@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 // Controllers
+const { getUserCartProducts } = require("../Controller/carts");
 const {
   getLandingPage,
   getProductsPage,
@@ -25,6 +26,7 @@ userInterfaces.get("/", getLandingPage);
 userInterfaces.get("/products", getProductsPage);
 userInterfaces.get("/chat", getChatPage);
 userInterfaces.get("/userInfo", getUserInfo);
+userInterfaces.get("/userCart", isLoggedIn, getUserCartProducts);
 
 // ----------------- LOGIN --------------------
 userInterfaces.get("/login", getLoginPage);

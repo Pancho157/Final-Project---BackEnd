@@ -35,18 +35,16 @@ const numCPUs = require("os").cpus().length;
 // Loggers
 const { logger } = require("../../loggers-testing/loggers/log4js-config");
 
-const { puerto, modo, _ } = yargs
+const { puerto, _ } = yargs
   .alias({
     p: "puerto",
-    m: "modo",
   })
   .default({
     p: 8080,
-    m: "FORK",
   }).argv;
 
 //  ----------------------- Cluster Primario -----------------------
-if (modo.toLowerCase() == "cluster" && cluster.isPrimary) {
+if (process.env.CLUSTER && process.env.CLUSTER == "true" && cluster.isPrimary) {
   logger.info(`processor cores: ${numCPUs}`);
   logger.info(`Primary PID: ${process.pid}`);
 
