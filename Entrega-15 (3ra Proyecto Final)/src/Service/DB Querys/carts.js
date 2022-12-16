@@ -1,5 +1,14 @@
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
 
+async function getCartProducts(user) {
+  try {
+    let userInfo = await usersDao.getUserInfo(user);
+    return userInfo.userCart;
+  } catch (err) {
+    throw { error: "No se encontró el usuario indicado", errorCode: 400 };
+  }
+}
+
 async function addProductToUserCart(user, product) {
   let userInfo;
   try {
@@ -40,4 +49,9 @@ async function deleteProductFromUserCart(user, productId) {
 
 async function buyCart(user) {}
 
-module.exports = { addProductToUserCart, deleteProductFromUserCart, buyCart };
+module.exports = {
+  getCartProducts,
+  addProductToUserCart,
+  deleteProductFromUserCart,
+  buyCart,
+};

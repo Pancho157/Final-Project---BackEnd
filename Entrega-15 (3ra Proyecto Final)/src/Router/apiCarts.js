@@ -2,6 +2,7 @@ const { Router } = require("express");
 
 // Controllers
 const {
+  getUserCartProducts,
   addProductToCart,
   deleteProductFromCart,
   buyUserCart,
@@ -11,6 +12,8 @@ const {
 const { isLoggedIn } = require("../Service/middlewares/isLoggedIn");
 
 const carts = Router();
+
+carts.get("/", isLoggedIn, getUserCartProducts);
 
 carts.post("/", isLoggedIn, addProductToCart);
 

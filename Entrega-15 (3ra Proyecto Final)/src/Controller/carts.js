@@ -3,7 +3,20 @@ const {
   addProductToUserCart,
   deleteProductFromUserCart,
   buyCart,
+  getCartProducts,
 } = require("../Service/DB Querys/carts");
+
+async function getUserCartProducts(req, res) {
+  const user = req.session.userName;
+
+  try {
+    const cartProducts = await getCartProducts(user);
+    return cartProducts;
+  } catch (err) {
+    logger.error(err);
+    res.status(err.errorCode).send(err.error);
+  }
+}
 
 async function addProductToCart(req, res) {
   const { productId, prodQuantity } = req.body;
@@ -60,4 +73,9 @@ async function buyUserCart(req, res) {
   }
 }
 
-module.exports = { addProductToCart, deleteProductFromCart, buyUserCart };
+module.exports = {
+  getUserCartProducts,
+  addProductToCart,
+  deleteProductFromCart,
+  buyUserCart,
+};
