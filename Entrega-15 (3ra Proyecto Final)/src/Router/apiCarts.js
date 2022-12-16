@@ -4,6 +4,7 @@ const { Router } = require("express");
 const {
   addProductToCart,
   deleteProductFromCart,
+  buyUserCart,
 } = require("../Controller/carts");
 
 // Middlewares
@@ -14,5 +15,7 @@ const carts = Router();
 carts.post("/", isLoggedIn, addProductToCart);
 
 carts.delete("/", isLoggedIn, deleteProductFromCart);
+
+carts.post("/buyCart", isLoggedIn, buyUserCart);
 
 module.exports = { carts };

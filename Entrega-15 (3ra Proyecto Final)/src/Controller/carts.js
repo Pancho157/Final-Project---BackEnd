@@ -2,6 +2,7 @@ const { logger } = require("../../loggers-testing/loggers/log4js-config");
 const {
   addProductToUserCart,
   deleteProductFromUserCart,
+  buyCart,
 } = require("../Service/DB Querys/carts");
 
 async function addProductToCart(req, res) {
@@ -44,4 +45,19 @@ async function deleteProductFromCart(req, res) {
   }
 }
 
-module.exports = { addProductToCart, deleteProductFromCart };
+async function buyUserCart(req, res) {
+  const user = req.session.userName;
+  let response;
+  try {
+    response = await buyCart(user);
+  } catch (err) {
+    logger.error(err);
+    res.status(err.errorCode).send(err.error);
+  }
+
+  if (response) {
+    res.render("cartOrderSuccess", { id: response.id, phone: response.phone });
+  }
+}
+
+module.exports = { addProductToCart, deleteProductFromCart, buyUserCart };

@@ -113,7 +113,7 @@ if (modo.toLowerCase() == "cluster" && cluster.isPrimary) {
   app.use("/", info);
   app.use("/api", apiRandoms);
   app.use("/api", apiProducts);
-  app.use("/api", carts);
+  app.use("/api/carts", carts);
 
   // ----------------------- Error 404 -----------------------
   app.use((req, res) => {

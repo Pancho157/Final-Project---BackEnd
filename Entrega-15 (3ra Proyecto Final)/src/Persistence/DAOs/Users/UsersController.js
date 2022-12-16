@@ -24,6 +24,22 @@ class UserControllerMongo {
     return alias;
   }
 
+  // * -------------------------- Actualizar usuario ----------------------------
+
+  async updateCart(alias, cart) {
+    try {
+      let doc = await Users.findOneAndUpdate(
+        { alias: alias },
+        { userCart: cart },
+        { returnOriginal: false } // Así devuelve el documento modificado
+      );
+
+      return doc.userCart;
+    } catch (err) {
+      logger.error(`Users Error: ${err}`);
+    }
+  }
+
   // * -------------------------- Obtener información ----------------------------
 
   async verifyAlias(alias) {

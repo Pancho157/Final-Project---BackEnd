@@ -3,6 +3,7 @@ const { usersDao } = require("../../Persistence/DAOs/DAOselector");
 
 async function registerUser(data) {
   const { email, alias, direction, age, phoneNum, password } = data;
+  let userCart = [];
   let exists = {};
 
   // * En caso de no ingresaro todos los datos
@@ -51,6 +52,7 @@ async function registerUser(data) {
       direction,
       age,
       phoneNum,
+      userCart,
       md5(password)
     );
     return alias;
