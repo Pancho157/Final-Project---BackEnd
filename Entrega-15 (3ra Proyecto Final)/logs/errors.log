@@ -1,0 +1,23 @@
+[2022-12-17T11:37:55.972] [ERROR] prod - ReferenceError: logger is not defined
+    at UserControllerMongo.createUser (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Persistence\DAOs\Users\UsersController.js:16:7)
+    at registerUser (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Service\DB Querys\register-user.js:52:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async postRegisterForm (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\userInterfaces.js:96:22)
+[2022-12-17T11:38:34.955] [ERROR] prod - Users Error: ObjectParameterError: Parameter "obj" to Document() must be an object, got emailPrueba@gmail.com
+[2022-12-17T11:38:34.957] [ERROR] prod - ReferenceError: newUser is not defined
+    at UserControllerMongo.createUser (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Persistence\DAOs\Users\UsersController.js:21:5)
+    at registerUser (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Service\DB Querys\register-user.js:52:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async postRegisterForm (E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\userInterfaces.js:96:22)
+[2022-12-17T11:41:45.977] [ERROR] prod - Users Error: ObjectParameterError: Parameter "obj" to Document() must be an object, got emailPrueba@gmail.com
+[2022-12-17T11:41:57.544] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-17T11:49:22.169] [ERROR] prod - { error: 'El usuario ingresado no existe', errorCode: 400 }
+[2022-12-17T11:50:00.555] [ERROR] prod - { error: 'El usuario ingresado no existe', errorCode: 400 }
+[2022-12-17T11:51:21.749] [ERROR] prod - { error: 'El usuario ingresado no existe', errorCode: 400 }
+[2022-12-17T11:52:33.753] [ERROR] prod - { error: 'El usuario ingresado no existe', errorCode: 400 }
+[2022-12-17T11:53:09.003] [ERROR] prod - { error: 'El usuario ingresado no existe', errorCode: 400 }
+[2022-12-17T11:58:13.621] [ERROR] prod - Users Error: ObjectParameterError: Parameter "obj" to Document() must be an object, got emailPrueba@gmail.com
+[2022-12-17T12:01:33.715] [ERROR] prod - Users Error: ObjectParameterError: Parameter "obj" to Document() must be an object, got emailPrueba@gmail.com
+[2022-12-17T12:02:13.677] [ERROR] prod - Users Error: ObjectParameterError: Parameter "obj" to Document() must be an object, got Fr4ncisco
+[2022-12-17T12:04:03.831] [ERROR] prod - Users Error: ValidationError: password: Path `password` is required.
+[2022-12-17T12:15:15.995] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }

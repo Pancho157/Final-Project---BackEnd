@@ -1,4 +1,5 @@
 const md5 = require("md5");
+const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
 
 async function registerUser(data) {
@@ -21,6 +22,7 @@ async function registerUser(data) {
 
     if (await usersDao.verifyEmail(email)) exists.email = true;
   } catch (err) {
+    logger.error(err);
     throw {
       error: "Se ha producido un error",
       errorCode: 500,
@@ -46,17 +48,18 @@ async function registerUser(data) {
 
   // * Creación de usuario
   try {
-    response = await usersDao.createUser(
-      email,
-      alias,
-      direction,
-      age,
-      phoneNum,
-      userCart,
-      md5(password)
-    );
+    response = await usersDao.createUser({
+      email: email,
+      alias: alias,
+      direction: direction,
+      age: age,
+      phoneNum: phoneNum,
+      userCart: [],
+      password: md5(password),
+    });
     return alias;
   } catch (err) {
+    logger.error(err);
     throw {
       error: "Se ha producido un error",
       errorCode: 500,

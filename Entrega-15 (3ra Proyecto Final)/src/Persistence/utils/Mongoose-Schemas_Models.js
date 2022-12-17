@@ -32,6 +32,7 @@ const UserSchema = mongoose.Schema(
       required: true,
       minlength: [6, "La contraseña debe tener 6 caracteres como mínimo"],
     },
+    userCart: { type: Array, default: void 0 },
   },
 
   { strict: false, timestamps: false, versionKey: false }

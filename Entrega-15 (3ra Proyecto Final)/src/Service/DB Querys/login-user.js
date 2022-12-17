@@ -1,4 +1,5 @@
 const md5 = require("md5");
+const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
 
 async function login(data) {
@@ -61,6 +62,7 @@ async function getUserInfoFromDB(user) {
 
     return filteredUserInfo;
   } catch (err) {
+    logger.error(err);
     throw {
       error:
         "Lo sentimos, ha ocurrido un error, recargue la pábina e intentelo de nuevo",

@@ -1,27 +1,21 @@
+const { logger } = require("../../../../loggers-testing/loggers/log4js-config");
 const { Users } = require("../../utils/Mongoose-Schemas_Models");
 
 class UserControllerMongo {
   constructor() {}
 
   // * -------------------------- Creación de usuario ----------------------------
-  async createUser(email, alias, direction, age, phoneNum, password) {
+  async createUser(data) {
     // Guardando el usuario
     try {
-      const newUser = new Users({
-        email,
-        alias,
-        direction,
-        age,
-        phoneNum,
-        password,
-      });
+      const newUser = new Users(data);
       await newUser.save();
+
+      // Devuelve el alias para guardarlo en session
+      return newUser.alias;
     } catch (err) {
       logger.error(`Users Error: ${err}`);
     }
-
-    // Devuelve el alias para guardarlo en session
-    return alias;
   }
 
   // * -------------------------- Actualizar usuario ----------------------------

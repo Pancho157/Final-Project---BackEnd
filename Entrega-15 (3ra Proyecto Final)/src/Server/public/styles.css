@@ -434,6 +434,23 @@ body {
   color: #131316;
 }
 
+.toMenuButton {
+  padding: 5px 20px;
+  font-size: 1.2rem;
+  color: #131316;
+  background-color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: inset 0px 0px #333333;
+  transition: all 300ms;
+}
+
+.toMenuButton:hover {
+  box-shadow: inset 200px 0px #333333;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
 /* ------------------- User Info Styles ---------------------- */
 .userInfo_container {
   width: 100%;
