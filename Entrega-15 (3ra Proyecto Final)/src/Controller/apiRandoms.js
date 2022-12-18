@@ -1,4 +1,4 @@
-const { getNumbersObject } = require("../Service/randomNumbers");
+const { getNumbersObject } = require("../Service/utils/randomNumbers");
 const { fork } = require("child_process");
 const path = require("path");
 
@@ -8,7 +8,7 @@ function getRandoms(req, res) {
   // getNumbersObject(repetitions);
 
   const randomObject = fork(
-    path.resolve(__dirname, "../Service/randomNumbers.js")
+    path.resolve(__dirname, "../Service/utils/randomNumbers.js")
   );
 
   randomObject.on("message", (object) => {

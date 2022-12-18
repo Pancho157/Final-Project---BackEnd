@@ -67,7 +67,20 @@
       placeholder="Contraseña de usuario"
     />
 
-    <input class="droparea" required placeholder="Arrastrar imagen" />
+    <label for="image_uploads">Subir una imagen (PNG, JPG)</label>
+    <input
+      type="file"
+      id="image_uploads"
+      name="image_uploads"
+      accept=".jpg, .jpeg, .png"
+      required
+    />
+
+    <div class="preview">
+      <ol id="list">
+        <p>Seleccione una imagen</p>
+      </ol>
+    </div>
 
     <button
       type="submit"
@@ -81,4 +94,4 @@
   </form>
 </div>
 
-<script src="/dragAndDrop.js"></script>
+<script src="/registerImage.js"></script>
