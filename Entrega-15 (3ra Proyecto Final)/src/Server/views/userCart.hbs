@@ -11,29 +11,29 @@
   <div class="cart">
     <h1>Carrito de compras</h1>
 
-    <table class="table">
+    <table class="cartTable">
       <thead class="table__head">
-        <th class="table__th">Imagen</th>
-        <th class="table__th">Nombre</th>
-        <th class="table__th">Cantidad</th>
-        <th class="table__th">Precio</th>
-        <th class="table__th">Total unitario</th>
+        <th class="table__th table__img">Imagen</th>
+        <th class="table__th table__title">Nombre</th>
+        <th class="table__th table__quantity">Cantidad</th>
+        <th class="table__th table__price">Precio</th>
+        <th class="table__th table__total">Total unitario</th>
       </thead>
-      <tbody id="table__body">
+      <tbody id="cartTable__body">
         {{#each this}}
           <tr class="table__tr">
-            <td class="table__td"><img src="{{thumbnail}}" /></td>
+            <td class="table__td"><img src={{thumbnail}} /></td>
             <td class="table__td">{{title}}</td>
             <td class="table__td">{{quantity}}</td>
             <td class="table__td">${{price}}</td>
-            <td class="table__td">{{unitaryPrice}}</td>
-          </tr>`;
+            <td class="table__td">${{unitaryPrice}}</td>
+          </tr>
         {{/each}}
       </tbody>
     </table>
 
     <p class="cart__total-to-pay">Total: ${{total}}</p>
 
-    <button class="cart__buy-button" type="button">Conprar carrito</button>
+    <button class="cart__buy-button" type="button">Comprar carrito</button>
   </div>
 </div>

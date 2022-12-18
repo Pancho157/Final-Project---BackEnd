@@ -34,7 +34,6 @@ async function getUserInfo(req, res) {
   } else {
     try {
       userInfo = await getUserInfoFromDB(req.session.userName);
-      logger.info(userInfo);
     } catch (err) {
       res.status(err.errorCode).send(err.error);
     }

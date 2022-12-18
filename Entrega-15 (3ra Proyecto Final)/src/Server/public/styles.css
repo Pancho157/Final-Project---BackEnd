@@ -188,6 +188,35 @@ body {
   color: #333333;
 }
 
+/* ----------Estilos del Drag And Drop ------------ */
+.droparea {
+  width: 200px;
+  height: 100px;
+  border: 1px dashed #333333;
+  color: #333333;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hover {
+  color: #fff;
+  border: 1px dashed #fff;
+}
+
+.valid {
+  background-color: #80ff80;
+  border: 1px solid #1bc72f;
+  color: #131316;
+}
+
+.invalid {
+  font-weight: bold;
+  background-color: #d67d79;
+  border: 1px solid #f42f2f;
+}
+
 /* ----------Estilos del nav de la pág chat-tabla------------ */
 .nav__container {
   display: flex;
@@ -493,7 +522,7 @@ body {
 }
 
 .cart {
-  width: 600px;
+  width: 730px;
   height: fit-content;
   padding: 60px;
   border-radius: 15px;
@@ -517,16 +546,43 @@ body {
 
 .cart__buy-button {
   width: 150px;
-  color: #fff;
+  color: #131316;
+  background-color: #fff;
+  border: 1px solid #fff;
   border-radius: 5px;
   padding: 5px;
   text-decoration: none;
   font-size: 1.5rem;
+  margin-left: 460px;
   box-shadow: inset 0px 0px #fff;
   transition: box-shadow 300ms;
 }
 
 .cart__buy-button:hover {
-  box-shadow: inset 200px 0px #fff;
-  color: #131316;
+  box-shadow: inset 200px 0px #131316;
+  color: #fff;
+}
+
+.table__img {
+  width: 72px;
+}
+
+.table__quantity {
+  width: 70px;
+}
+
+.table__price {
+  width: 70px;
+}
+
+.table__total {
+  width: 100px;
+}
+
+.cartTable {
+  width: 80%;
+  min-width: 600px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border-collapse: collapse;
 }

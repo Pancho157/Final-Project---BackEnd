@@ -21,3 +21,5 @@
 [2022-12-17T12:02:13.677] [ERROR] prod - Users Error: ObjectParameterError: Parameter "obj" to Document() must be an object, got Fr4ncisco
 [2022-12-17T12:04:03.831] [ERROR] prod - Users Error: ValidationError: password: Path `password` is required.
 [2022-12-17T12:15:15.995] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-17T12:36:21.868] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-17T13:33:23.404] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }

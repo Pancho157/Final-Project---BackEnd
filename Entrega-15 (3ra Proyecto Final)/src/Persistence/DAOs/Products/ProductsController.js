@@ -77,6 +77,15 @@ class ProductsMongoAtlas {
     }
   }
 
+  async findById(productId) {
+    try {
+      const product = await Products.findOne({ _id: productId });
+      return product;
+    } catch (err) {
+      logger.error(`Products Error: ${err}`);
+    }
+  }
+
   async getProductByTitle(title) {
     try {
       const product = await Products.findOne({ title: title });

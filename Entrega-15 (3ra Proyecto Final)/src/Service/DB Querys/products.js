@@ -12,6 +12,18 @@ async function getAllProducts() {
   }
 }
 
+async function getProductById(id) {
+  try {
+    const product = await productsDao.findById(id);
+    return product;
+  } catch (err) {
+    throw {
+      error: "Se ha producido un error",
+      errorCode: 500,
+    };
+  }
+}
+
 async function insertProduct(data) {
   const { title, price, thumbnail, stock } = data;
   let exists;
@@ -68,4 +80,9 @@ async function deleteProductById(id) {
   }
 }
 
-module.exports = { getAllProducts, insertProduct, deleteProductById };
+module.exports = {
+  getAllProducts,
+  getProductById,
+  insertProduct,
+  deleteProductById,
+};
