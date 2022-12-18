@@ -17,6 +17,10 @@ const {
 // Middlewares
 const { loggerInfo } = require("../Service/middlewares/infoLogger");
 const { isLoggedIn } = require("../Service/middlewares/isLoggedIn");
+const { upload } = require("../Service/middlewares/multer");
+const {
+  getPhotoPathAsReqBody,
+} = require("../Service/middlewares/getLastImagePath");
 
 const userInterfaces = Router();
 userInterfaces.use(loggerInfo);
@@ -39,6 +43,11 @@ userInterfaces.get("/logout", isLoggedIn, logOut);
 // -------------------- REGISTER --------------------
 userInterfaces.get("/register", getRegisterForm);
 
-userInterfaces.post("/register", postRegisterForm);
+userInterfaces.post(
+  "/register",
+  upload,
+  getPhotoPathAsReqBody,
+  postRegisterForm
+);
 
 module.exports = userInterfaces;

@@ -3,8 +3,16 @@ const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
 
 async function registerUser(data) {
-  const { email, alias, direction, age, prefix, phoneNum, password, photo } =
-    data;
+  const {
+    email,
+    alias,
+    direction,
+    age,
+    prefix,
+    phoneNum,
+    password,
+    pathToPhoto,
+  } = data;
   let exists = {};
 
   // * En caso de no ingresaro todos los datos
@@ -13,9 +21,10 @@ async function registerUser(data) {
     !alias ||
     !direction ||
     !age ||
+    !prefix ||
     !phoneNum ||
     !password ||
-    !photo
+    !pathToPhoto
   ) {
     throw {
       error: "Ingrese todos los datos requeridos",
@@ -54,8 +63,6 @@ async function registerUser(data) {
     };
   }
 
-  // * Guardado de la foto
-
   // * Creación de usuario
   try {
     response = await usersDao.createUser({
@@ -63,10 +70,11 @@ async function registerUser(data) {
       alias: alias,
       direction: direction,
       age: age,
+      prefix: prefix,
       phoneNum: phoneNum,
       userCart: [],
       password: md5(password),
-      // photoURL: photoURL,
+      pathToPhoto: pathToPhoto,
     });
     return alias;
   } catch (err) {
