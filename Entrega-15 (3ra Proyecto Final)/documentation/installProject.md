@@ -15,9 +15,20 @@
 3.  Configurar un archivo .env con las siguientes variables:
 
         ENV = "prod" ó "dev"
-        PERS = "mongodb" ó "firebase"
+        PERS = "mongodb" ó "firebase" (BBDD para el chat)
+
+        ADMIN_EMAIL = (Email al cual enviar correos de registro de usuario y pedidos de compra)
+        ADMIN_PHONE = (N° de teléfono al cual enviar mensajes de registro de usuario y pedidos de compra)
+
+        NODEMAILER_EMAIL = (Email de nodemailer)
+        NODEMAILER_PASS = (Pass del email ubicado arriba)
+
+        TWILIO_SID = (SID de twilio)
+        TWILIO_TOKEN = (Token de twilio)
+        TWILIO_NUMBER = (Número de teléfono de twilio para enviar los mensajes)
+
         MONGO_URL = (mongoDB Atlas connection url)
-        
+
         FIREBASE_CONFIG = (Config ubicada debajo como JSON.Stringify)
             {
                 type: (Dado por firebase),

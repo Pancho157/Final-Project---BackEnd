@@ -1,7 +1,7 @@
 const { createTransport } = require("nodemailer");
 const { logger } = require("../config/logger.config.js");
 
-const sendBuyEmailToAdmin = async (pedido, usuario) => {
+const sendBuyEmailToAdmin = async (cart, user) => {
   const transporter = createTransport({
     service: "gmail",
     port: 465, // Único puerto seguro (según nodemailer)
@@ -12,35 +12,38 @@ const sendBuyEmailToAdmin = async (pedido, usuario) => {
     },
   });
 
-  body = "";
-  for (let i = 0; i < pedido.length; i++) {
-    body += `   
+  messageBody = "";
+
+  for (let i = 0; i < cart.length; i++) {
+    messageBody += `   
         <tr>
-            <td> ${pedido[i].name} </td>
-            <td> ${pedido[i].description} </td>
-            <td> ${pedido[i].price} </td>
+            <td> ${cart[i].title} </td>
+            <td> ${cart[i].description} </td>
+            <td> ${cart[i].quantity} </td>
+            <td> ${cart[i].price} </td>
         </tr>`;
   }
 
-  const mailOptions = {
+  const emailOptions = {
     from: `Nodemailer - ${process.env.NODEMAILER_EMAIL}`,
-    to: process.env.NODEMAILER_EMAIL,
-    subject: `Nuevo pedido de: ${usuario.nombre} - ${usuario.email}`,
+    to: process.env.ADMIN_EMAIL,
+    subject: `Nuevo pedido de: ${user.nombre} - ${user.email}`,
     html: ` 
         <table>
             <thead>
                 <th>Producto</th>
                 <th>Descripcion</th>
+                <th>Cantidad</th>
                 <th>Precio</th>
             </thead>
-            <tbody>${body}</tbody>
+            <tbody>${messageBody}</tbody>
         </table>`,
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail(emailOptions);
   } catch (err) {
-    logger.err("No se puedo enviar Email al administrador");
+    logger.error("No se puedo enviar Email al administrador");
   }
 };
 
