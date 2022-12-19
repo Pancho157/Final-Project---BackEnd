@@ -1,6 +1,7 @@
 const md5 = require("md5");
 const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
+const { deleteUserPhoto } = require("../utils/deleteUserPhoto");
 
 async function registerUser(data) {
   const {
@@ -78,6 +79,7 @@ async function registerUser(data) {
     });
     return alias;
   } catch (err) {
+    deleteUserPhoto(pathToPhoto);
     logger.error(err);
     throw {
       error: "Se ha producido un error",

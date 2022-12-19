@@ -1,10 +1,7 @@
 const { ProductsMongoAtlas } = require("./Products/ProductsController");
 const { UserControllerMongo } = require("./Users/UsersController");
 
-// Por defecto FS
-
-const configs = JSON.parse(process.env.CONFIGS);
-let productsDao = new ProductsMongoAtlas(configs.mariadb);
+let productsDao = new ProductsMongoAtlas();
 let usersDao = new UserControllerMongo();
 let chatDao;
 
