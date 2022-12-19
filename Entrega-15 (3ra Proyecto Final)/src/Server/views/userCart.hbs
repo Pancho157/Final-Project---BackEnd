@@ -18,15 +18,33 @@
         <th class="table__th table__quantity">Cantidad</th>
         <th class="table__th table__price">Precio</th>
         <th class="table__th table__total">Total unitario</th>
+        <th class="table__th table__price">Eliminar</th>
       </thead>
       <tbody id="cartTable__body">
         {{#each this}}
           <tr class="table__tr">
             <td class="table__td"><img src={{thumbnail}} /></td>
             <td class="table__td">{{title}}</td>
-            <td class="table__td">{{quantity}}</td>
+            <td class="table__td">{{quantity}}
+              <div class="addRemoveButtonsContainer">
+                <button
+                  class="cartAddButton"
+                  onclick="removeOneFromCartProduct()"
+                >+</button>
+                <button
+                  class="cartRemoveOneFromProduct"
+                  onclick="addProductToCart()"
+                >-</button>
+              </div>
+            </td>
             <td class="table__td">${{price}}</td>
             <td class="table__td">${{unitaryPrice}}</td>
+            <td class="table__td">
+              <button
+                class="cartDeleteButton"
+                onclick="removeProductFromCart()"
+              ></button>
+            </td>
           </tr>
         {{/each}}
       </tbody>
@@ -37,3 +55,5 @@
     <button class="cart__buy-button" type="button">Comprar carrito</button>
   </div>
 </div>
+
+<script src="/userCart.js"></script>

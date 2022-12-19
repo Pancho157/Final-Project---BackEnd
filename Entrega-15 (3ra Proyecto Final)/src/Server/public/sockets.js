@@ -39,9 +39,10 @@ const renderProducts = (products) => {
     document.getElementById("table__body").innerHTML += `
           <tr class='table__tr'>
             <td class='table__td'>${product._id}</td>
-            <td class='table__td'>${product.title}</td>
+            <td class='table__td table__name'>${product.title}</td>
             <td class='table__td'>AR$ ${product.price}</td>
             <td class='table__td'><img src="${product.thumbnail}" /></td>
+            <td class='table__td'><button class="productsAddItem" onclick="addProductToCart(${product._id})">Agregar al carrito</button></td>
           </tr>`;
   });
 };

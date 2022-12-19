@@ -242,6 +242,7 @@ body {
 
 .table__td {
   background-color: #fff;
+  text-align: center;
 }
 
 .table__th {
@@ -250,10 +251,26 @@ body {
   border: 1px solid #fff;
 }
 
+.table__addProduct {
+  width: 150px;
+}
+
+.table__name {
+  text-align: left;
+  padding-left: 30px;
+}
+
 .table__td > img {
   width: 50px;
   height: 50px;
   object-fit: contain;
+}
+
+.productsAddItem {
+  padding: 5px 10px;
+  background-color: #93dc97;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* ---------- Estilos del chat ------------- */
@@ -562,4 +579,38 @@ body {
   margin: 0 auto;
   margin-top: 60px;
   border-collapse: collapse;
+}
+
+.addRemoveButtonsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartAddButton {
+  width: 25px;
+  height: 25px;
+  background-color: #93dc97;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cartRemoveOneFromProduct {
+  width: 25px;
+  height: 25px;
+  background-color: #df7777;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cartDeleteButton {
+  width: 30px;
+  height: 30px;
+  background-color: #df7777;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/1200px-Trash_font_awesome.svg.png");
+  background-size: contain;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  cursor: pointer;
 }
