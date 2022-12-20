@@ -40,3 +40,4 @@
 [2022-12-19T22:28:56.229] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
     at E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:37:35
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2022-12-20T00:38:37.122] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }

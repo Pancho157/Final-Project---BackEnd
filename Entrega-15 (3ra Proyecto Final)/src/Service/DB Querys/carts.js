@@ -18,8 +18,14 @@ async function addProductToUserCart(user, product) {
   }
 
   let cart = userInfo.userCart;
-  cart.push(product);
-  // product = { productId, quantity }
+
+  const productIndex = cart.findIndex((prod) => prod._id == product.id);
+  if (productIndex == -1) {
+    cart.push(product);
+    // product = { productId, quantity }
+  } else {
+    cart[productIndex].quantity += 1;
+  }
 
   try {
     usersDao.updateCart(userInfo.alias, cart);
@@ -38,7 +44,7 @@ async function deleteProductFromUserCart(user, productId) {
 
   let cart = userInfo.userCart;
   cart = cart.filter((product) => product.id != productId);
-  // filtra el producto del carrito
+  // Elimina el producto del carrito
 
   try {
     usersDao.updateCart(userInfo.alias, cart);

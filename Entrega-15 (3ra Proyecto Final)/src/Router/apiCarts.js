@@ -2,10 +2,10 @@ const { Router } = require("express");
 
 // Controllers
 const {
-  getUserCartProducts,
-  addProductToCart,
+  addOneToCartProduct,
   deleteProductFromCart,
   buyUserCart,
+  removeOneFromCartProduct,
 } = require("../Controller/carts");
 
 // Middlewares
@@ -13,9 +13,11 @@ const { isLoggedIn } = require("../Service/middlewares/isLoggedIn");
 
 const carts = Router();
 
-carts.post("/", isLoggedIn, addProductToCart);
+carts.post("/", isLoggedIn, addOneToCartProduct);
 
-carts.delete("/", isLoggedIn, deleteProductFromCart);
+carts.delete("/", isLoggedIn, removeOneFromCartProduct);
+
+carts.delete("/deleteProduct", isLoggedIn, deleteProductFromCart);
 
 carts.post("/buyCart", isLoggedIn, buyUserCart);
 

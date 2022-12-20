@@ -30,6 +30,7 @@ async function getUserCartProducts(req, res) {
     let userCartProducts = [];
     let total = 0;
 
+    // for of = secuencial  -  forEach = paralelo (deja los await como promesas)
     for (const product of cartProducts) {
       try {
         const foundProduct = await getProductById(product.id);
@@ -53,7 +54,7 @@ async function getUserCartProducts(req, res) {
   }
 }
 
-async function addProductToCart(req, res) {
+async function addOneToCartProduct(req, res) {
   const { productId, prodQuantity } = req.body;
   let response;
 
@@ -73,6 +74,10 @@ async function addProductToCart(req, res) {
   if (response) {
     res.status(200);
   }
+}
+
+async function removeOneFromCartProduct(req, res) {
+  
 }
 
 async function deleteProductFromCart(req, res) {
@@ -110,7 +115,8 @@ async function buyUserCart(req, res) {
 
 module.exports = {
   getUserCartProducts,
-  addProductToCart,
+  addOneToCartProduct,
+  removeOneFromCartProduct,
   deleteProductFromCart,
   buyUserCart,
 };
