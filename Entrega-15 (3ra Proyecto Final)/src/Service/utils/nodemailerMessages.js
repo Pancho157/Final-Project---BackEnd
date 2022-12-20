@@ -3,7 +3,7 @@ const { logger } = require("../config/logger.config.js");
 
 const sendBuyEmailToAdmin = async (cart, user) => {
   const transporter = createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
     port: 465, // Único puerto seguro (según nodemailer)
     secure: true,
     auth: {

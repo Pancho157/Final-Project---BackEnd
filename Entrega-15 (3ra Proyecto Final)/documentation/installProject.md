@@ -18,10 +18,10 @@
         PERS = "mongodb" ó "firebase" (BBDD para el chat)
 
         ADMIN_EMAIL = (Email al cual enviar correos de registro de usuario y pedidos de compra)
-        ADMIN_PHONE = (N° de teléfono al cual enviar mensajes de registro de usuario y pedidos de compra)
+        ADMIN_PHONE = (N° de teléfono al cual enviar mensajes de registro de usuario y pedidos de compra - debe incluír el prefijo)
 
-        NODEMAILER_EMAIL = (Email de nodemailer)
-        NODEMAILER_PASS = (Pass del email ubicado arriba)
+        NODEMAILER_EMAIL = (Cuenta de gmail con verif de dos pasos y contraseña para aplicaciones)
+        NODEMAILER_PASS = (contraseña para aplicaciones de la cuenta de gmail)
 
         TWILIO_SID = (SID de twilio)
         TWILIO_TOKEN = (Token de twilio)

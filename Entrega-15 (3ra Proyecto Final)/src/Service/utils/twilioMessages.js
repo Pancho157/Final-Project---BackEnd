@@ -1,10 +1,7 @@
 const twilio = require("twilio");
 const { logger } = require("../config/logger.config.js");
 
-const accountSid = process.env.TWILIO_SID;
-const authToken = process.env.TWILIO_TOKEN;
-
-const client = twilio(accountSid, authToken);
+const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 const sendMessageToAdmin = async (order, user) => {
   mensaje = `Nuevo pedido de: ${user.alias} - ${user.email}\nPedido:`;
@@ -12,7 +9,7 @@ const sendMessageToAdmin = async (order, user) => {
     message += `\n-Producto: ${order[i].name}\n-Descripcion: ${order[i].description}\n-Precio: ${order[i].price}\n ------ \n`;
   }
   const body = message;
-  const from = process.env.TWILIO_NUMBER;
+  const from = `whatsapp:${process.env.TWILIO_NUMBER}`;
   const to = `whatsapp:${process.env.ADMIN_PHONE}`;
 
   try {
@@ -23,8 +20,8 @@ const sendMessageToAdmin = async (order, user) => {
 };
 
 const sendMessageToUser = async (user) => {
-  const from = process.env.TWILIO_NUMBER;
-  const to = `${user.phoneNum}`;
+  const from = `whatsapp:${process.env.TWILIO_NUMBER}`;
+  const to = `whatsapp:${user.prefix}${user.phoneNum}`;
   const body = `${user.alias}, tu pedido esta siendo procesado. Te mantendremos informado sobre su estado. \n\nGracias por tu compra!!`;
 
   try {

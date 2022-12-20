@@ -1,1 +1,2 @@
 [2022-12-19T07:27:53.611] [WARN] prod - Bad request - Route: "/favicon.ico", Method: "GET"
+[2022-12-20T12:16:07.568] [WARN] prod - Bad request - Route: "/api/carts/deleteProduct", Method: "POST"
