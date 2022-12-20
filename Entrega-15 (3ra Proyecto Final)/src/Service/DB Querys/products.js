@@ -53,7 +53,6 @@ async function insertProduct(data) {
     const newProduct = await productsDao.insertProduct(data);
     return `Producto agregado exitosamente`;
   } catch (err) {
-    console.log(err);
     throw {
       error: "Se ha producido un error al generar el producto",
       errorCode: 500,

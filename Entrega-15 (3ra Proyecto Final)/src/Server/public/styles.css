@@ -271,6 +271,14 @@ body {
   background-color: #93dc97;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: inset;
+  box-shadow: inset 0px 0px #6ab06d;
+  transition: all 300ms;
+}
+
+.productsAddItem:hover {
+  color: #fff;
+  box-shadow: inset 0px -100px #6ab06d;
 }
 
 /* ---------- Estilos del chat ------------- */
@@ -573,6 +581,13 @@ body {
   width: 100px;
 }
 
+.table__td--quantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .cartTable {
   width: 80%;
   min-width: 600px;
@@ -593,6 +608,13 @@ body {
   border: 1px solid #333333;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: inset 0px 0px #6ab06d;
+  transition: all 300ms;
+}
+
+.cartAddButton:hover {
+  color: #fff;
+  box-shadow: inset 0px -100px #6ab06d;
 }
 
 .cartRemoveOneFromProduct {
@@ -602,6 +624,8 @@ body {
   border: 1px solid #333333;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: inset 0px 0px #bb6161;
+  transition: all 300ms;
 }
 
 .cartDeleteButton {
@@ -613,4 +637,12 @@ body {
   border: 1px solid #333333;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: inset 0px 0px #bb6161;
+  transition: all 300ms;
+}
+
+.cartRemoveOneFromProduct:hover,
+.cartDeleteButton:hover {
+  color: #fff;
+  box-shadow: inset -3px -3px #bb6161;
 }

@@ -19,7 +19,6 @@ const sendMessageToAdmin = async (order, user) => {
     await client.messages.create({ body, from, to });
   } catch (error) {
     logger.error("No se puedo enviar Wsp al administrador");
-    console.log(error);
   }
 };
 

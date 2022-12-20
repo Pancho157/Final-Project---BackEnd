@@ -1,3 +1,5 @@
+const { logger } = require("../../../loggers-testing/loggers/log4js-config");
+
 function getNumbersObject(quantity = 100000000) {
   let objectToReturn = {};
 
@@ -15,11 +17,11 @@ function getNumbersObject(quantity = 100000000) {
 }
 
 // process.on("exit", () => {
-//   console.log(`worker #${process.pid} cerrado`);
+//   logger.info(`worker #${process.pid} cerrado`);
 // });
 
 process.on("message", (reps) => {
-  console.log(`Creating object`);
+  logger.info(`Creating object`);
   const obj = getNumbersObject(reps);
   process.send(obj);
   process.exit();

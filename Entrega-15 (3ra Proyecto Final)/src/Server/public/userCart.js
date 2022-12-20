@@ -1,5 +1,8 @@
-async function removeProductFromCart() {}
+async function removeProductFromCart(productId) {}
 
-async function addProductToCart() {}
+async function addProductToCart(porductId) {}
 
-async function removeOneFromCartProduct() {}
+async function removeOneUnitFromCartProduct(productId) {}
+
+async function buyUserCart() {
+}

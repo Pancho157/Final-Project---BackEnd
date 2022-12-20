@@ -2,14 +2,12 @@ const autocannon = require("autocannon");
 const { PassThrough } = require("stream");
 const yargs = require("yargs/yargs")(process.argv.slice(2));
 
-const { puerto, modo, _ } = yargs
+const { port, _ } = yargs
   .alias({
-    p: "puerto",
-    m: "modo",
+    p: "port",
   })
   .default({
     p: 8080,
-    m: "FORK",
   }).argv;
 
 function run(url) {
@@ -30,7 +28,7 @@ function run(url) {
     process.stdout.write(Buffer.concat(buf));
   });
 
-  console.log("Autocannon benchmark is running");
+  logger.info("Autocannon benchmark is running");
 }
 
-run(`http://localhost:${puerto}/info`);
+run(`http://localhost:${port}/info`);

@@ -89,7 +89,7 @@ if (process.env.CLUSTER && process.env.CLUSTER == "true" && cluster.isPrimary) {
   // -----------------------  Conección a Mongo -----------------------
   try {
     connectToMongo();
-    // console.log("Connected to mongo successfully");
+    logger.info("Connected to mongo successfully");
   } catch (err) {
     logger.warn(err);
   }

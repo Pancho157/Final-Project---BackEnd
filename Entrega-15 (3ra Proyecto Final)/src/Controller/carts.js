@@ -10,7 +10,6 @@ const { getProductById } = require("../Service/DB Querys/products");
 async function getUserCartProducts(req, res) {
   const user = req.session.userName;
   let cartProducts;
-  let userCartProducts = [];
 
   try {
     cartProducts = await getCartProducts(user);
@@ -19,23 +18,39 @@ async function getUserCartProducts(req, res) {
     res.status(err.errorCode).send(err.error);
   }
 
-  cartProducts.forEach(async (product) => {
-    try {
-      const foundProduct = await getProductById(product.id);
-      userCartProducts.push({
-        thumbnail: foundProduct.thumbnail,
-        title: foundProduct.title,
-        quantity: this.quantity,
-        price: foundProduct.price,
-        unitaryPrice: foundProduct.price * this.quantity,
-      });
-    } catch (err) {
-      logger.error(err);
-      res.status(err.errorCode).send(err.error);
-    }
-  });
+  if (cartProducts == []) {
+    userCartProducts.push({
+      thumbnail: "",
+      title: "No hay productos en el carrito",
+      quantity: "",
+      price: "",
+      unitaryPrice: "",
+    });
+  } else {
+    let userCartProducts = [];
+    let total = 0;
 
-  res.render("userCart", userCartProducts);
+    for (const product of cartProducts) {
+      try {
+        const foundProduct = await getProductById(product.id);
+
+        const cartProductInfo = {
+          thumbnail: foundProduct.thumbnail,
+          title: foundProduct.title,
+          quantity: product.quantity,
+          price: foundProduct.price,
+          unitaryPrice: foundProduct.price * product.quantity,
+        };
+
+        userCartProducts.push(cartProductInfo);
+        total += cartProductInfo.unitaryPrice;
+      } catch (err) {
+        logger.error(err);
+        res.status(err.errorCode).send(err.error);
+      }
+    }
+    res.render("userCart", { userCartProducts, total });
+  }
 }
 
 async function addProductToCart(req, res) {

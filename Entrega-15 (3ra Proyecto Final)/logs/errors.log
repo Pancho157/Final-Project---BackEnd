@@ -24,3 +24,19 @@
 [2022-12-17T12:36:21.868] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
 [2022-12-17T13:33:23.404] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
 [2022-12-19T07:55:37.921] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-19T22:23:08.185] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-19T22:25:59.440] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:26:33
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2022-12-19T22:27:58.368] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:35:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2022-12-19T22:27:59.890] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:35:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2022-12-19T22:28:18.825] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:35:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2022-12-19T22:28:56.229] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:37:35
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

@@ -21,15 +21,16 @@
         <th class="table__th table__price">Eliminar</th>
       </thead>
       <tbody id="cartTable__body">
-        {{#each this}}
+
+        {{#each userCartProducts}}
           <tr class="table__tr">
             <td class="table__td"><img src={{thumbnail}} /></td>
             <td class="table__td">{{title}}</td>
-            <td class="table__td">{{quantity}}
+            <td class="table__td table__td--quantity">{{quantity}}
               <div class="addRemoveButtonsContainer">
                 <button
                   class="cartAddButton"
-                  onclick="removeOneFromCartProduct()"
+                  onclick="removeOneUnitFromCartProduct()"
                 >+</button>
                 <button
                   class="cartRemoveOneFromProduct"
@@ -47,12 +48,14 @@
             </td>
           </tr>
         {{/each}}
+
       </tbody>
     </table>
 
     <p class="cart__total-to-pay">Total: ${{total}}</p>
 
-    <button class="cart__buy-button" type="button">Comprar carrito</button>
+    <button class="cart__buy-button" type="button" onclick="buyUserCart()">Comprar
+      carrito</button>
   </div>
 </div>
 
