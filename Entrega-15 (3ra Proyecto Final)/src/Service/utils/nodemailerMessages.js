@@ -13,8 +13,10 @@ const sendBuyEmailToAdmin = async (cart, user) => {
   });
 
   messageBody = "";
+  let total = 0;
 
   for (let i = 0; i < cart.length; i++) {
+    total += cart[i].price * cart[i].quantity;
     messageBody += `   
         <tr>
             <td> ${cart[i].title} </td>
@@ -23,6 +25,8 @@ const sendBuyEmailToAdmin = async (cart, user) => {
             <td> ${cart[i].price} </td>
         </tr>`;
   }
+
+  messageBody += `<br><br> <h2> ------ Total: ${total} ------ </h2>`;
 
   const emailOptions = {
     from: `Nodemailer - ${process.env.NODEMAILER_EMAIL}`,

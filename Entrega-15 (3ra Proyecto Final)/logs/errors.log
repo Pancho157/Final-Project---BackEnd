@@ -41,3 +41,13 @@
     at E:\Proyectos\Programación\CoderHouse\Curso BackEnd\Proyecto Final\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:37:35
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 [2022-12-20T00:38:37.122] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-22T06:10:17.567] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-22T06:10:20.416] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-22T20:17:56.645] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-22T20:18:58.325] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-23T09:22:22.538] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-23T09:22:50.717] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-23T09:42:29.702] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-23T09:42:58.485] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-24T19:01:49.344] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-27T18:45:40.607] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }

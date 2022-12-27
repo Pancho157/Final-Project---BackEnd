@@ -1,6 +1,7 @@
 const { logger } = require("../../loggers-testing/loggers/log4js-config");
 const {
   addProductToUserCart,
+  removeOneFromCartProduct,
   deleteProductFromUserCart,
   buyCart,
   getCartProducts,
@@ -9,16 +10,17 @@ const { getProductById } = require("../Service/DB Querys/products");
 
 async function getUserCartProducts(req, res) {
   const user = req.session.userName;
+  let userCartProducts = [];
   let cartProducts;
 
   try {
     cartProducts = await getCartProducts(user);
   } catch (err) {
     logger.error(err);
-    res.status(err.errorCode).send(err.error);
+    return res.status(err.errorCode).send(err.error);
   }
 
-  if (cartProducts == []) {
+  if (cartProducts.length == 0) {
     userCartProducts.push({
       thumbnail: "",
       title: "No hay productos en el carrito",
@@ -27,7 +29,6 @@ async function getUserCartProducts(req, res) {
       unitaryPrice: "",
     });
   } else {
-    let userCartProducts = [];
     let total = 0;
 
     // for of = secuencial  -  forEach = paralelo (deja los await como promesas)
@@ -50,13 +51,12 @@ async function getUserCartProducts(req, res) {
         res.status(err.errorCode).send(err.error);
       }
     }
-    res.render("userCart", { userCartProducts, total });
+    res.render("userCart", { userCartProducts, total, name: user });
   }
 }
 
 async function addOneToCartProduct(req, res) {
   const { productId, prodQuantity } = req.body;
-  let response;
 
   const user = req.session.userName;
   const product = {
@@ -65,36 +65,36 @@ async function addOneToCartProduct(req, res) {
   };
 
   try {
-    response = await addProductToUserCart(user, product);
+    const response = await addProductToUserCart(user, product);
+    res.json(response);
   } catch (err) {
     logger.error(err);
     res.status(err.errorCode).send(err.error);
   }
-
-  if (response) {
-    res.status(200);
-  }
 }
 
-async function removeOneFromCartProduct(req, res) {
-  
+async function removeOneOfProduct(req, res) {
+  const { productId } = req.body;
+
+  try {
+    const response = await removeOneFromCartProduct(productId);
+    res.json(response);
+  } catch (err) {
+    logger.error(err);
+    res.status(err.errorCode).send(err.error);
+  }
 }
 
 async function deleteProductFromCart(req, res) {
   const { productId } = req.body;
   const user = req.session.userName;
 
-  let response;
-
   try {
-    response = await deleteProductFromUserCart(user, productId);
+    const response = await deleteProductFromUserCart(user, productId);
+    res.json(response);
   } catch (err) {
     logger.error(err);
     res.status(err.errorCode).send(err.error);
-  }
-
-  if (response) {
-    res.status(200);
   }
 }
 
@@ -116,7 +116,7 @@ async function buyUserCart(req, res) {
 module.exports = {
   getUserCartProducts,
   addOneToCartProduct,
-  removeOneFromCartProduct,
+  removeOneOfProduct,
   deleteProductFromCart,
   buyUserCart,
 };

@@ -30,11 +30,11 @@
               <div class="addRemoveButtonsContainer">
                 <button
                   class="cartAddButton"
-                  onclick="removeOneUnitFromCartProduct()"
+                  onclick="removeOneUnitFromCartProduct({{_id}})"
                 >+</button>
                 <button
                   class="cartRemoveOneFromProduct"
-                  onclick="addProductToCart()"
+                  onclick="addProductToCart({{_id}})"
                 >-</button>
               </div>
             </td>
@@ -43,7 +43,7 @@
             <td class="table__td">
               <button
                 class="cartDeleteButton"
-                onclick="removeProductFromCart()"
+                onclick="removeProductFromCart({{_id}})"
               ></button>
             </td>
           </tr>
@@ -54,8 +54,11 @@
 
     <p class="cart__total-to-pay">Total: ${{total}}</p>
 
-    <button class="cart__buy-button" type="button" onclick="buyUserCart()">Comprar
-      carrito</button>
+    <button
+      class="cart__buy-button"
+      type="button"
+      onclick="buyUserCart()"
+    >Comprar carrito</button>
   </div>
 </div>
 

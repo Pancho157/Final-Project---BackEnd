@@ -5,7 +5,7 @@ const {
   addOneToCartProduct,
   deleteProductFromCart,
   buyUserCart,
-  removeOneFromCartProduct,
+  removeOneOfProduct,
 } = require("../Controller/carts");
 
 // Middlewares
@@ -15,7 +15,7 @@ const carts = Router();
 
 carts.post("/", isLoggedIn, addOneToCartProduct);
 
-carts.delete("/", isLoggedIn, removeOneFromCartProduct);
+carts.delete("/", isLoggedIn, removeOneOfProduct);
 
 carts.delete("/deleteProduct", isLoggedIn, deleteProductFromCart);
 
