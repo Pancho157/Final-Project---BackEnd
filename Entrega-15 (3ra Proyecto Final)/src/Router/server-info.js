@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getServerInfo } = require("../Controller/info");
+const { getServerInfo } = require("../Controller/server-info");
 
 
 const info = Router();

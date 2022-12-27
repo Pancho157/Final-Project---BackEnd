@@ -11,11 +11,11 @@ const path = require("path");
 const { engine } = require("express-handlebars");
 
 //  Routers
-const userInterfaces = require("../Router/userInterfaces");
-const { info } = require("../Router/info");
-const { apiRandoms } = require("../Router/apiRandoms");
-const { apiProducts } = require("../Router/apiProducts");
-const { carts } = require("../Router/apiCarts");
+const userInterfaces = require("../Router/user-interfaces");
+const { info } = require("../Router/server-info");
+const { apiRandoms } = require("../Router/api-randoms");
+const { apiProducts } = require("../Router/api-products");
+const { carts } = require("../Router/api-carts");
 
 // BBDDs
 const { sockets } = require("../Service/sockets-sessions/sockets");

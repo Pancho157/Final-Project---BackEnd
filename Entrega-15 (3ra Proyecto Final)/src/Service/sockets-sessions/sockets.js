@@ -6,7 +6,7 @@ const { getAllProducts, insertProduct } = require("../DB Querys/products");
 const {
   getChatMessages,
   newChatMessage,
-} = require("../DB Querys/chatMessages");
+} = require("../DB Querys/chat-messages");
 
 async function sockets(io) {
   io.use(

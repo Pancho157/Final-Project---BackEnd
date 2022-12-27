@@ -12,7 +12,7 @@ const {
   getRegisterForm,
   postRegisterForm,
   getUserInfo,
-} = require("../Controller/userInterfaces");
+} = require("../Controller/user-interfaces");
 
 // Middlewares
 const { loggerInfo } = require("../Service/middlewares/infoLogger");
