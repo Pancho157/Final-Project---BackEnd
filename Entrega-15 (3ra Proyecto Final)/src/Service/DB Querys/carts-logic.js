@@ -1,10 +1,10 @@
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
+const { getProductById } = require("./products");
 
 async function getCartProducts(user) {
   let userInfo;
   try {
     userInfo = await usersDao.getUserInfo(user);
-    console.log(userInfo);
   } catch (err) {
     throw { error: "No se encontró el usuario indicado", errorCode: 400 };
   }
@@ -34,6 +34,7 @@ async function getCartProducts(user) {
           quantity: product.quantity,
           price: foundProduct.price,
           unitaryPrice: foundProduct.price * product.quantity,
+          _id: foundProduct._id,
         };
 
         userCartProducts.push(cartProductInfo);
@@ -51,6 +52,10 @@ async function getCartProducts(user) {
 }
 
 async function addProductToUserCart(user, productId, prodQuantity = 1) {
+  if (productId == null) {
+    throw { error: "Producto no especificado", errorCode: 400 };
+  }
+
   let userInfo;
   try {
     userInfo = await usersDao.getUserInfo(user);
@@ -110,7 +115,7 @@ async function deleteProductFromUserCart(user, productId) {
 
   let cart = userInfo.userCart;
 
-  const productIndex = cart.findIndex((prod) => prod._id == productId);
+  const productIndex = cart.findIndex((prod) => prod.id == productId);
   if (productIndex == -1) {
     throw { error: "Producto no encontrado", errorCode: 400 };
   } else {

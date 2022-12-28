@@ -11,7 +11,6 @@ const { getProductById } = require("../Service/DB Querys/products");
 async function getUserCartProducts(req, res) {
   try {
     const userAndCart = await getCartProducts(req.session.userName);
-    console.log(userAndCart);
     res.render("userCart", userAndCart);
   } catch (err) {
     logger.error(err);
@@ -23,8 +22,10 @@ async function addOneToCartProduct(req, res) {
   const { productId, prodQuantity } = req.body;
   const user = req.session.userName;
 
+  console.log(productId);
+
   try {
-    let userCart = addProductToUserCart(user, productId, prodQuantity);
+    let userCart = await addProductToUserCart(user, productId, prodQuantity);
     if (userCart) res.redirect("/userCart");
   } catch (err) {
     logger.error(err);
@@ -37,7 +38,7 @@ async function removeOneOfProduct(req, res) {
   const user = req.session.userName;
 
   try {
-    let userCart = removeOneFromCartProduct(user, productId);
+    let userCart = await removeOneFromCartProduct(user, productId);
     if (userCart) res.redirect("/userCart");
   } catch (err) {
     logger.error(err);
@@ -50,7 +51,7 @@ async function deleteProductFromCart(req, res) {
   const user = req.session.userName;
 
   try {
-    let userCart = deleteProductFromUserCart(user, productId);
+    let userCart = await deleteProductFromUserCart(user, productId);
     res.redirect("/userCart");
   } catch (err) {
     logger.error(err);

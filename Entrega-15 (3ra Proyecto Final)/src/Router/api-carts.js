@@ -6,7 +6,6 @@ const {
   deleteProductFromCart,
   buyUserCart,
   removeOneOfProduct,
-// } = require("../Controller/carts");
 } = require("../Controller/api-carts");
 
 // Middlewares

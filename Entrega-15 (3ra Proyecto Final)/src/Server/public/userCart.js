@@ -37,7 +37,7 @@ async function deleteData(url = "", data = {}) {
 // -------- Delete methods ----------
 async function removeProductFromCart(productId) {
   const url = "http://localhost:8080/api/carts/deleteProduct";
-  const data = { id: productId };
+  const data = { productId: productId };
 
   try {
     const response = await deleteData(url, data);

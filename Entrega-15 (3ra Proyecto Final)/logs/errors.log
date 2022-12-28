@@ -62,3 +62,59 @@
 [2022-12-28T07:59:31.492] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
 [2022-12-28T08:41:47.152] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
 [2022-12-28T08:58:40.251] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-28T09:44:41.042] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:40:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-28T09:45:05.854] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:40:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-28T09:45:16.073] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:40:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-28T09:54:21.859] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:40:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-28T09:55:16.563] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:40:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-28T09:56:09.118] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:40:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-28T09:59:01.708] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T09:59:09.157] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T09:59:25.679] [ERROR] prod - TypeError: Cannot read properties of null (reading 'thumbnail')
+    at getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\carts.js:40:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-28T09:59:36.585] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:00:22.423] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:01:59.688] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:02:02.329] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:02:12.431] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:03:05.392] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:03:30.654] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:05:13.824] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:05:14.023] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:05:51.102] [ERROR] prod - { errorCode: 500, error: 'Error al buscar un producto del carrito' }
+[2022-12-28T10:09:04.075] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:09:06.198] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:10:07.247] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:10:12.536] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:11:42.110] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:12:00.153] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:13:24.139] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:13:25.491] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:14:58.056] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:14:59.718] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:15:01.039] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:15:01.845] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:27:34.551] [ERROR] prod - TypeError: Cannot read properties of null (reading 'userCart')
+    at getCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Service\DB Querys\carts-logic.js:12:16)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async getUserCartProducts (C:\Users\pc22\Desktop\Francisco Muñiz\Final-Project---BackEnd\Entrega-15 (3ra Proyecto Final)\src\Controller\api-carts.js:13:25)
+[2022-12-28T10:27:42.182] [ERROR] prod - { error: 'Producto no especificado', errorCode: 400 }
+[2022-12-28T10:31:30.664] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:31:34.493] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:31:38.575] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:31:48.367] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:31:56.605] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:31:57.613] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }

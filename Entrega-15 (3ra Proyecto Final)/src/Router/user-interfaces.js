@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 // Controllers
-const { getUserCartProducts } = require("../Controller/carts");
+const { getUserCartProducts } = require("../Controller/api-carts");
 const {
   getLandingPage,
   getProductsPage,
