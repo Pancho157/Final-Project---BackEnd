@@ -60,7 +60,7 @@ async function addProductToUserCart(user, productId, prodQuantity = 1) {
 
   let cart = userInfo.userCart;
 
-  const productIndex = cart.findIndex((prod) => prod._id == productId);
+  const productIndex = cart.findIndex((prod) => prod.id == productId);
   if (productIndex == -1) {
     cart.push({ id: productId, quantity: prodQuantity });
   } else {
@@ -85,7 +85,7 @@ async function removeOneFromCartProduct(user, productId) {
 
   let cart = userInfo.userCart;
 
-  const productIndex = cart.findIndex((prod) => prod._id == productId);
+  const productIndex = cart.findIndex((prod) => prod.id == productId);
   if (productIndex == -1) {
     throw { error: "Producto no encontrado", errorCode: 400 };
   } else {
