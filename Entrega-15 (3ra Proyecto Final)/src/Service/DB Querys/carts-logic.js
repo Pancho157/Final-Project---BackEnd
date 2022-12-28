@@ -130,7 +130,9 @@ async function deleteProductFromUserCart(user, productId) {
   }
 }
 
-async function buyCart(user) {}
+async function buyCart(user) {
+  throw { error: "Error al realizar la compra del carrito", errorCode: 500 };
+}
 
 module.exports = {
   getCartProducts,

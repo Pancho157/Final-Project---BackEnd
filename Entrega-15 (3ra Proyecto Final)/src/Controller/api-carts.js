@@ -6,7 +6,6 @@ const {
   buyCart,
   getCartProducts,
 } = require("../Service/DB Querys/carts-logic");
-const { getProductById } = require("../Service/DB Querys/products");
 
 async function getUserCartProducts(req, res) {
   try {
@@ -59,7 +58,17 @@ async function deleteProductFromCart(req, res) {
   }
 }
 
-async function buyUserCart(req, res) {}
+async function buyUserCart(req, res) {
+  const user = req.session.userName;
+
+  try {
+    const response = await buyCart(user);
+    res.render("buyCartSuccess", response);
+  } catch (err) {
+    logger.error(err);
+    res.render("buyCartError", err);
+  }
+}
 
 module.exports = {
   getUserCartProducts,

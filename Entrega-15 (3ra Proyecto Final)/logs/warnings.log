@@ -40,3 +40,5 @@
 [2022-12-28T10:34:54.415] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
 [2022-12-28T10:34:55.358] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
 [2022-12-28T10:34:58.779] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
+[2022-12-28T10:35:39.346] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
+[2022-12-28T10:36:29.782] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"

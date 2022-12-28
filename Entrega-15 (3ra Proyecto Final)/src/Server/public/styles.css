@@ -556,6 +556,7 @@ body {
   text-decoration: none;
   font-size: 1.5rem;
   margin-left: 460px;
+  cursor: pointer;
   box-shadow: inset 0px 0px #fff;
   transition: box-shadow 300ms;
 }

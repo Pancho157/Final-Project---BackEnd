@@ -26,8 +26,8 @@ async function deleteData(url = "", data = {}) {
     redirect: "follow",
     body: JSON.stringify(data),
   });
-
-  return JSON.parse(response);
+  return response
+  // return JSON.parse(response);
 }
 
 // *------------------------------------------------------------------*
@@ -79,7 +79,6 @@ async function buyUserCart() {
 
   try {
     const response = await postData(url, data);
-    location.reload();
   } catch (err) {
      location.reload();
   }

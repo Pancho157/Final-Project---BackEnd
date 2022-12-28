@@ -118,3 +118,10 @@
 [2022-12-28T10:31:48.367] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
 [2022-12-28T10:31:56.605] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
 [2022-12-28T10:31:57.613] [ERROR] prod - { error: 'Producto no encontrado', errorCode: 400 }
+[2022-12-28T10:46:41.941] [ERROR] prod - { error: 'Error al realizar la compra del carrito', errorCode: 500 }
+[2022-12-28T10:46:44.373] [ERROR] prod - { error: 'Error al realizar la compra del carrito', errorCode: 500 }
+[2022-12-28T10:47:27.838] [ERROR] prod - { error: 'Error al realizar la compra del carrito', errorCode: 500 }
+[2022-12-28T10:47:29.629] [ERROR] prod - { error: 'Error al realizar la compra del carrito', errorCode: 500 }
+[2022-12-28T10:47:30.691] [ERROR] prod - { error: 'Error al realizar la compra del carrito', errorCode: 500 }
+[2022-12-28T10:48:41.672] [ERROR] prod - { error: 'Error al realizar la compra del carrito', errorCode: 500 }
+[2022-12-28T10:48:43.262] [ERROR] prod - { error: 'Error al realizar la compra del carrito', errorCode: 500 }
