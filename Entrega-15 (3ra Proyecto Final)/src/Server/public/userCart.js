@@ -63,7 +63,7 @@ async function removeOneUnitFromCartProduct(productId) {
 
 async function addProductToCart(productId) {
   const url = "http://localhost:8080/api/carts";
-  const data = { id: productId };
+  const data = { productId: productId };
 
   try {
     const response = await postData(url, data);

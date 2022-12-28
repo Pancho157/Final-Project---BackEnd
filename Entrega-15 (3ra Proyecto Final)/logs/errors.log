@@ -59,3 +59,6 @@
 [2022-12-27T19:24:50.971] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
 [2022-12-27T22:02:33.488] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
 [2022-12-27T22:22:03.796] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-28T07:59:31.492] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-28T08:41:47.152] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }
+[2022-12-28T08:58:40.251] [ERROR] prod - { error: 'No se encontró el usuario indicado', errorCode: 400 }

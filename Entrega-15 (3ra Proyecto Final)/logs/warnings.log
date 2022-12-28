@@ -20,3 +20,7 @@
 [2022-12-28T07:28:51.252] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
 [2022-12-28T07:28:51.988] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
 [2022-12-28T07:28:53.984] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
+[2022-12-28T09:08:18.755] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
+[2022-12-28T09:08:21.187] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
+[2022-12-28T09:09:33.387] [WARN] prod - Bad request - Route: "/userCart", Method: "DELETE"
+[2022-12-28T09:10:32.943] [WARN] prod - Bad request - Route: "/favicon.ico", Method: "GET"

@@ -11,6 +11,7 @@ const { getProductById } = require("../Service/DB Querys/products");
 async function getUserCartProducts(req, res) {
   try {
     const userAndCart = await getCartProducts(req.session.userName);
+    console.log(userAndCart);
     res.render("userCart", userAndCart);
   } catch (err) {
     logger.error(err);

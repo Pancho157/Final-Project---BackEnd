@@ -4,18 +4,21 @@ async function getCartProducts(user) {
   let userInfo;
   try {
     userInfo = await usersDao.getUserInfo(user);
+    console.log(userInfo);
   } catch (err) {
     throw { error: "No se encontró el usuario indicado", errorCode: 400 };
   }
 
-  if (userInfo.userCart.length == 0) {
-    return {
+  if (userInfo.userCart == []) {
+    const emptyCart = {
       thumbnail: "",
       title: "No hay productos en el carrito",
       quantity: "",
       price: "",
       unitaryPrice: "",
     };
+
+    return { userCartProducts: emptyCart, total: 0, name: user };
   } else {
     const cartProducts = userInfo.userCart;
     let userCartProducts = [];
