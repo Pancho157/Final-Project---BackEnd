@@ -6,7 +6,8 @@ const {
   deleteProductFromCart,
   buyUserCart,
   removeOneOfProduct,
-} = require("../Controller/carts");
+// } = require("../Controller/carts");
+} = require("../Controller/api-carts");
 
 // Middlewares
 const { isLoggedIn } = require("../Service/middlewares/isLoggedIn");
