@@ -31,9 +31,31 @@ async function addOneToCartProduct(req, res) {
   }
 }
 
-async function removeOneOfProduct(req, res) {}
+async function removeOneOfProduct(req, res) {
+  const { productId } = req.body;
+  const user = req.session.userName;
 
-async function deleteProductFromCart(req, res) {}
+  try {
+    let userCart = removeOneFromCartProduct(user, productId);
+    if (userCart) res.redirect("/userCart");
+  } catch (err) {
+    logger.error(err);
+    res.status(err.errorCode).send(err.error);
+  }
+}
+
+async function deleteProductFromCart(req, res) {
+  const { productId } = req.body;
+  const user = req.session.userName;
+
+  try {
+    let userCart = deleteProductFromUserCart(user, productId);
+    res.redirect("/userCart");
+  } catch (err) {
+    logger.error(err);
+    res.status(err.errorCode).send(err.error);
+  }
+}
 
 async function buyUserCart(req, res) {}
 
