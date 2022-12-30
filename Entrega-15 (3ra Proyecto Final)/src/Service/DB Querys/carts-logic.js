@@ -1,4 +1,8 @@
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
+const {
+  sendNewOrderMessageToAdmin,
+  sendOrderConfirmationMessageToUser,
+} = require("../utils/twilioMessages");
 const { getProductById } = require("./products");
 
 async function getCartProducts(user) {
@@ -131,7 +135,33 @@ async function deleteProductFromUserCart(user, productId) {
 }
 
 async function buyCart(user) {
-  throw { error: "Error al realizar la compra del carrito", errorCode: 500 };
+  let userInfo;
+  let userCart;
+
+  try {
+    userInfo = await usersDao.getUserInfo(user);
+  } catch (err) {
+    throw { error: "No se encontró el usuario indicado", errorCode: 400 };
+  }
+
+  try {
+    userCart = await getCartProducts(user);
+  } catch (err) {
+    throw { error: "No se ", errorCode: 400 };
+  }
+
+  try {
+    // Twilio Messages
+    await sendNewOrderMessageToAdmin(userCart.userCartProducts, userInfo);
+    await sendOrderConfirmationMessageToUser(userInfo);
+
+    // Nodemailer Messages
+    await sendNewOrderMessageToAdmin(userCart.userCartProducts, userInfo);
+  } catch (err) {
+    throw { error: err, errorCode: 400 };
+  }
+
+  return { status: 200 };
 }
 
 module.exports = {

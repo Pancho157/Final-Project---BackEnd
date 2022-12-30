@@ -63,10 +63,10 @@ async function buyUserCart(req, res) {
 
   try {
     const response = await buyCart(user);
-    res.render("buyCartSuccess", response);
+    res.status(response.status).send();
   } catch (err) {
     logger.error(err);
-    res.render("buyCartError", err);
+    res.status(err.errorCode).send(err.error);
   }
 }
 

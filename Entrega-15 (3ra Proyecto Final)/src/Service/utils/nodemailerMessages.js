@@ -1,7 +1,7 @@
 const { createTransport } = require("nodemailer");
-const { logger } = require("../config/logger.config.js");
+const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 
-const sendBuyEmailToAdmin = async (cart, user) => {
+const sendNewOrderEmailToAdmin = async (cart, user) => {
   const transporter = createTransport({
     host: "smtp.gmail.com",
     port: 465, // Único puerto seguro (según nodemailer)
@@ -31,7 +31,7 @@ const sendBuyEmailToAdmin = async (cart, user) => {
   const emailOptions = {
     from: `Nodemailer - ${process.env.NODEMAILER_EMAIL}`,
     to: process.env.ADMIN_EMAIL,
-    subject: `Nuevo pedido de: ${user.nombre} - ${user.email}`,
+    subject: `Nuevo pedido de: ${user.alias} - ${user.email}`,
     html: ` 
         <table>
             <thead>
@@ -48,7 +48,8 @@ const sendBuyEmailToAdmin = async (cart, user) => {
     await transporter.sendMail(emailOptions);
   } catch (err) {
     logger.error("No se puedo enviar Email al administrador");
+    throw { error: err.message, errorCode: err.status };
   }
 };
 
-module.exports = { sendBuyEmailToAdmin };
+module.exports = { sendNewOrderEmailToAdmin };

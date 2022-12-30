@@ -1,9 +1,9 @@
 const twilio = require("twilio");
-const { logger } = require("../config/logger.config.js");
+const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 
 const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
-const sendMessageToAdmin = async (order, user) => {
+const sendNewOrderMessageToAdmin = async (order, user) => {
   let total = 0;
   let message = `Nuevo pedido de: ${user.alias} - ${user.email}\nPedido:`;
 
@@ -20,12 +20,13 @@ const sendMessageToAdmin = async (order, user) => {
 
   try {
     await client.messages.create({ body, from, to });
-  } catch (error) {
+  } catch (err) {
     logger.error("No se puedo enviar Wsp al administrador");
+    throw { error: err.message, errorCode: err.status };
   }
 };
 
-const sendMessageToUser = async (user) => {
+const sendOrderConfirmationMessageToUser = async (user) => {
   const from = `whatsapp:${process.env.TWILIO_NUMBER}`;
   const to = `whatsapp:${user.prefix}${user.phoneNum}`;
   const body = `${user.alias}, tu pedido esta siendo procesado. Te mantendremos informado sobre su estado. \n\nGracias por tu compra!!`;
@@ -34,7 +35,11 @@ const sendMessageToUser = async (user) => {
     await client.messages.create({ body, from, to });
   } catch (err) {
     logger.error("Error al enviar el mensaje al cliente");
+    throw { error: err.message, errorCode: err.status };
   }
 };
 
-module.exports = { sendMessageToAdmin, sendMessageToUser };
+module.exports = {
+  sendNewOrderMessageToAdmin,
+  sendOrderConfirmationMessageToUser,
+};

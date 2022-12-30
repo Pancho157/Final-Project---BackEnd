@@ -14,7 +14,8 @@ async function postData(url = "", data = {}) {
     body: JSON.stringify(data),
   });
 
-  return JSON.parse(response);
+  // return JSON.parse(response);
+  return response;
 }
 
 async function deleteData(url = "", data = {}) {
@@ -26,7 +27,7 @@ async function deleteData(url = "", data = {}) {
     redirect: "follow",
     body: JSON.stringify(data),
   });
-  return response
+  return response;
   // return JSON.parse(response);
 }
 
@@ -43,7 +44,7 @@ async function removeProductFromCart(productId) {
     const response = await deleteData(url, data);
     location.reload();
   } catch (err) {
-     location.reload();
+    location.reload();
   }
 }
 
@@ -69,7 +70,7 @@ async function addProductToCart(productId) {
     const response = await postData(url, data);
     location.reload();
   } catch (err) {
-     location.reload();
+    location.reload();
   }
 }
 
@@ -79,7 +80,10 @@ async function buyUserCart() {
 
   try {
     const response = await postData(url, data);
+    response.status == 200
+      ? (alert("Felicidades por tu compra!"), (window.location.href = "/"))
+      : alert("Lo sentimos, ha ocurrido un error al comprar el carrito");
   } catch (err) {
-     location.reload();
+    alert("Lo sentimos, ha ocurrido un error");
   }
 }
