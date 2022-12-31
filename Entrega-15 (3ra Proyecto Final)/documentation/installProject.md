@@ -10,15 +10,15 @@
 
 1.  Tener instalado Node.js en la PC a ejecutar el proyecto
 
-2.  Tener una cuenta de nodemailer y twilio
+2.  Tener una cuenta de nodemailer y twilio (como Twilio CLI, no test)
 
-3.  Configurar un archivo .env con las siguientes variables:
+3.  Configurar un archivo [.env](./env_file_template.md) con las siguientes variables :
 
         ENV = "prod" ó "dev"
         PERS = "mongodb" ó "firebase" (BBDD para el chat)
 
         ADMIN_EMAIL = (Email al cual enviar correos de registro de usuario y pedidos de compra)
-        ADMIN_PHONE = (N° de teléfono al cual enviar mensajes de registro de usuario y pedidos de compra - debe incluír el prefijo)
+        ADMIN_PHONE = (N° de teléfono al cual enviar mensajes de registro de usuario y pedidos de compra - debe incluír el prefijo. Ejemplo: +5493764111111)
 
         NODEMAILER_EMAIL = (Cuenta de gmail con verif de dos pasos y contraseña para aplicaciones)
         NODEMAILER_PASS = (contraseña para aplicaciones de la cuenta de gmail)

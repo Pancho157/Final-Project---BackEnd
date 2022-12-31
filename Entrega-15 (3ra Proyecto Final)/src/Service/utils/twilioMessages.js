@@ -19,9 +19,10 @@ const sendNewOrderMessageToAdmin = async (order, user) => {
   const to = `whatsapp:${process.env.ADMIN_PHONE}`;
 
   try {
-    await client.messages.create({ body, from, to });
+    await client.messages.create({ to, from, body });
+    return { result: true };
   } catch (err) {
-    logger.error("No se puedo enviar Wsp al administrador");
+    logger.error("No se puedo enviar el mensaje al administrador");
     throw { error: err.message, errorCode: err.status };
   }
 };
@@ -32,7 +33,7 @@ const sendOrderConfirmationMessageToUser = async (user) => {
   const body = `${user.alias}, tu pedido esta siendo procesado. Te mantendremos informado sobre su estado. \n\nGracias por tu compra!!`;
 
   try {
-    await client.messages.create({ body, from, to });
+    await client.messages.create({ from, body, to });
   } catch (err) {
     logger.error("Error al enviar el mensaje al cliente");
     throw { error: err.message, errorCode: err.status };

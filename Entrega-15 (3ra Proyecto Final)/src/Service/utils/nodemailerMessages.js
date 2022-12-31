@@ -46,6 +46,7 @@ const sendNewOrderEmailToAdmin = async (cart, user) => {
 
   try {
     await transporter.sendMail(emailOptions);
+    return { result: true };
   } catch (err) {
     logger.error("No se puedo enviar Email al administrador");
     throw { error: err.message, errorCode: err.status };

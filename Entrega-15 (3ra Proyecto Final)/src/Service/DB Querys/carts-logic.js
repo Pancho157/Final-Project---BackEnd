@@ -1,4 +1,5 @@
 const { usersDao } = require("../../Persistence/DAOs/DAOselector");
+const { sendNewOrderEmailToAdmin } = require("../utils/nodemailerMessages");
 const {
   sendNewOrderMessageToAdmin,
   sendOrderConfirmationMessageToUser,
@@ -156,7 +157,7 @@ async function buyCart(user) {
     await sendOrderConfirmationMessageToUser(userInfo);
 
     // Nodemailer Messages
-    await sendNewOrderMessageToAdmin(userCart.userCartProducts, userInfo);
+    await sendNewOrderEmailToAdmin(userCart.userCartProducts, userInfo);
   } catch (err) {
     throw { error: err, errorCode: 400 };
   }
