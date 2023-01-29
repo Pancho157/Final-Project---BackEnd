@@ -1,0 +1,65 @@
+<div class="nav__container">
+  <a href="/" class="toMenuButton">Menu</a>
+  <div></div>
+  <div class="welcome-message__container">
+    <h2>Bienvenido {{name}}</h2>
+    <a class="log-out__button" href="./logOut">Log out</a>
+  </div>
+</div>
+
+<div class="cartContainer">
+  <div class="cart">
+    <h1>Carrito de compras</h1>
+
+    <table class="cartTable">
+      <thead class="table__head">
+        <th class="table__th table__img">Imagen</th>
+        <th class="table__th table__title">Nombre</th>
+        <th class="table__th table__quantity">Cantidad</th>
+        <th class="table__th table__price">Precio</th>
+        <th class="table__th table__total">Total unitario</th>
+        <th class="table__th table__price">Eliminar</th>
+      </thead>
+      <tbody id="cartTable__body">
+
+        {{#each userCartProducts}}
+          <tr class="table__tr">
+            <td class="table__td"><img src={{thumbnail}} /></td>
+            <td class="table__td">{{title}}</td>
+            <td class="table__td table__td--quantity">{{quantity}}
+              <div class="addRemoveButtonsContainer">
+                <button
+                  class="cartAddButton"
+                  onclick="addProductToCart({{_id}})"
+                >+</button>
+                <button
+                  class="cartRemoveOneFromProduct"
+                  onclick="removeOneUnitFromCartProduct({{_id}})"
+                >-</button>
+              </div>
+            </td>
+            <td class="table__td">${{price}}</td>
+            <td class="table__td">${{unitaryPrice}}</td>
+            <td class="table__td">
+              <button
+                class="cartDeleteButton"
+                onclick="removeProductFromCart({{_id}})"
+              ></button>
+            </td>
+          </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+
+    <p class="cart__total-to-pay">Total: ${{total}}</p>
+
+    <button
+      class="cart__buy-button"
+      type="button"
+      onclick="buyUserCart()"
+    >Comprar carrito</button>
+  </div>
+</div>
+
+<script src="/userCart.js"></script>
