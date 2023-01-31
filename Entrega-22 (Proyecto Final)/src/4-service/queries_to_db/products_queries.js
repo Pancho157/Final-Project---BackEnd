@@ -25,6 +25,14 @@ class ProductsQueries {
     }
   }
 
+  async getByCategory(category) {
+    try {
+      return await ProductsDao.getByCategory(category);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async create(data) {
     try {
       return await ProductsDao.add(data);
@@ -35,7 +43,7 @@ class ProductsQueries {
 
   async update(id, data) {
     try {
-      return await ProductsDao.updateById(data);
+      return await ProductsDao.updateById(id, data);
     } catch (err) {
       console.log(err);
     }

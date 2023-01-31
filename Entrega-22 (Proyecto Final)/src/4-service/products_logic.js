@@ -29,6 +29,14 @@ class Products {
     }
   }
 
+  async getByCategory(category) {
+    try {
+      return await products.getByCategory(category);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async create(data) {
     try {
       return await products.create(data);
@@ -39,7 +47,7 @@ class Products {
 
   async update(id, data) {
     try {
-      return await products.update(data);
+      return await products.update(id, data);
     } catch (err) {
       console.log(err);
     }

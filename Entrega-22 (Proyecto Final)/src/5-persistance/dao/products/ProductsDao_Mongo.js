@@ -43,20 +43,31 @@ class ProductsMongo extends ProductsDao {
     }
   }
 
-  async add(data) {
+  async getByCategory(category) {
     try {
-      return await this.model.create({
-        title: data.title,
-        price: data.price,
-        thumbnail: data.thumbnail,
-        stock: data.stock,
-      });
+      return await this.model.find({ category });
     } catch (err) {
       console.log(err);
     }
   }
 
-  async updateById(id, data) {}
+  async add(data) {
+    try {
+      return await this.model.create(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async updateById(id, data) {
+    try {
+      return await Products.findByIdAndUpdate(id, data, {
+        new: true,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async deleteById(id) {}
 

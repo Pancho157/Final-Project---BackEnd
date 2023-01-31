@@ -12,14 +12,32 @@ async function findProductById(req, res) {
   res.send(product);
 }
 
-async function newProduct(req, res) {
-  const { title, price, thumbnail, stock } = req.body;
+async function findProductsByCategory(req, res) {
+  const productsByCat = await products.getByCategory(req.params.category);
+  res.send(productsByCat);
+}
 
-  if (!title || !price || !thumbnail || !stock) {
+async function newProduct(req, res) {
+  const { title, price, thumbnail, stock, category } = req.body;
+
+  if (!title || !price || !thumbnail || !stock || !category) {
     res.send("Faltan ingresar datos del producto");
   }
 
-  res.send(await products.create({ title, price, thumbnail, stock }));
+  res.send(await products.create({ title, price, thumbnail, stock, category }));
+}
+
+async function updateProduct(req, res) {
+  if (Object.keys(req.body).length === 0) {
+    res.send("No se envio información para actualizar el producto");
+  } else if (!req.body.id) {
+    res.send("No se ingresó nungún id");
+  }
+
+  const id = req.body.id;
+  delete req.body.id; // Para no generar la propiedad "id"
+
+  res.send(await products.update(id, req.body));
 }
 
 async function deleteProductById(req, res) {
@@ -29,6 +47,8 @@ async function deleteProductById(req, res) {
 module.exports = {
   getAllProducts,
   findProductById,
+  findProductsByCategory,
   newProduct,
+  updateProduct,
   deleteProductById,
 };
