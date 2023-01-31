@@ -41,7 +41,7 @@ async function updateProduct(req, res) {
 }
 
 async function deleteProductById(req, res) {
-  res.send("Funciona?");
+  res.send(await products.deleteById(req.params.id));
 }
 
 module.exports = {

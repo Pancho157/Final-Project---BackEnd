@@ -69,9 +69,13 @@ class ProductsMongo extends ProductsDao {
     }
   }
 
-  async deleteById(id) {}
+  async deleteById(id) {
+    return await Products.deleteOne({ _id: id });
+  }
 
-  async deleteAll() {}
+  async deleteAll() {
+    return await Products.deleteMany({});
+  }
 }
 
 module.exports = { ProductsMongo };
