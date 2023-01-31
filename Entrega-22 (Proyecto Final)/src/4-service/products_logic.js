@@ -21,9 +21,9 @@ class Products {
     }
   }
 
-  async getById() {
+  async getById(id) {
     try {
-      return await products.getById();
+      return await products.getById(id);
     } catch (err) {
       console.log(err);
     }

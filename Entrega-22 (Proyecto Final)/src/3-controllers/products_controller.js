@@ -8,11 +8,18 @@ async function getAllProducts(req, res) {
 }
 
 async function findProductById(req, res) {
-  res.send("Funciona?");
+  const product = await products.getById(req.params.id);
+  res.send(product);
 }
 
 async function newProduct(req, res) {
-  res.send("Funciona?");
+  const { title, price, thumbnail, stock } = req.body;
+
+  if (!title || !price || !thumbnail || !stock) {
+    res.send("Faltan ingresar datos del producto");
+  }
+
+  res.send(await products.create({ title, price, thumbnail, stock }));
 }
 
 async function deleteProductById(req, res) {

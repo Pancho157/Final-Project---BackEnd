@@ -1,7 +1,19 @@
-const jwt = require("jsonwebtoken");
+const { Router } = require("express");
+const {
+  getCart,
+  insertOneToCart,
+  removeOneFromCart,
+  deleteProductFromCart,
+} = require("../3-controllers/carts_controller");
 
-class CartsController {
-  constructor() {}
-}
+const carts = Router();
 
-module.exports = { CartsController };
+carts.get("/", getCart);
+
+carts.post("/", insertOneToCart);
+
+carts.delete("/:id", removeOneFromCart);
+
+carts.delete("/:id", deleteProductFromCart);
+
+module.exports = { carts };

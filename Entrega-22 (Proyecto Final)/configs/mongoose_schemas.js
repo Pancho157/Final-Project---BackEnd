@@ -44,8 +44,8 @@ let Users = mongoose.model("users", UserSchema);
 
 const ProductSchema = mongoose.Schema(
   {
-    _id: {
-      type: Number,
+    title: {
+      type: String,
     },
   },
 

@@ -30,12 +30,31 @@ class ProductsMongo extends ProductsDao {
     try {
       const products = await this.model.find();
       return products;
-    } catch (error) {}
+    } catch (error) {
+      console.log(err);
+    }
   }
 
-  async getById(id) {}
+  async getById(id) {
+    try {
+      return await this.model.find({ _id: id });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  async add(data) {}
+  async add(data) {
+    try {
+      return await this.model.create({
+        title: data.title,
+        price: data.price,
+        thumbnail: data.thumbnail,
+        stock: data.stock,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async updateById(id, data) {}
 
