@@ -13,11 +13,11 @@ const { engine } = require("express-handlebars");
 const { sockets } = require("../3-controllers/sockets");
 const { Session } = require("../../configs/sessions_connection");
 
-// Routes
-const { crudProducts } = require("../2-routes/products_routes");
-
 // BBDD
 const { connectToMongo } = require("../../configs/mongo_atlas_connection");
+
+// Routes
+const { crudProducts } = require("../2-routes/products_routes");
 
 // ----------------------- Inicialización de servidor HTTP -----------------------
 var app = express();
@@ -36,13 +36,6 @@ connectedServer.on("error", (err) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
-//
-// // -----------------------  Conección a MongoDB Atlas -----------------------
-// try {
-//   connectToMongo();
-// } catch (err) {
-//   console.log(err);
-// }
 
 // ----------------------- Handlebars -----------------------
 app.set("views", path.join(__dirname, "views"));
@@ -56,7 +49,7 @@ app.use(Session);
 sockets(io);
 
 // ----------------------- Routes -----------------------
-app.use("/products", crudProducts);
+app.use("/productos", crudProducts);
 
 // ----------------------- Error 404 -----------------------
 app.use((req, res) => {
