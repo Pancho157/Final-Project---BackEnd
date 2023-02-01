@@ -12,18 +12,6 @@ class ProductsMongo extends ProductsDao {
     }
     ProductsMongo.instance = this;
     this.model = Products;
-    this.getLastId();
-  }
-
-  async getLastId() {
-    try {
-      const lastProduct = await this.model.find().sort({ _id: -1 }).limit(1);
-      lastProduct[0]._id
-        ? (this.lastId = lastProduct[0]._id)
-        : (this.lastId = 1);
-    } catch (err) {
-      console.log(err);
-    }
   }
 
   async getAll() {

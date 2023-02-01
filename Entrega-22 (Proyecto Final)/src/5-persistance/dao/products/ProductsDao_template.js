@@ -7,6 +7,10 @@ class ProductsDao {
     throw { errorCode: 500, error: "getById method not implemented!" };
   }
 
+  async getByCategory(category) {
+    throw { errorCode: 500, error: "getByCategory method not implemented!" };
+  }
+
   async add(prodNuevo) {
     throw { errorCode: 500, error: "add method not implemented!" };
   }

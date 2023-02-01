@@ -52,3 +52,8 @@ module.exports = {
   updateProduct,
   deleteProductById,
 };
+
+// Clase 42
+// Clase 36
+// Clase 28
+// Clase 26
