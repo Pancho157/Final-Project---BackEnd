@@ -3,7 +3,7 @@ let UsersDao;
 let ChatDao;
 
 switch (process.env.PERS) {
-  case "MONGO":
+  case "MONGO": {
     // requires
     const {
       connectToMongo,
@@ -15,9 +15,11 @@ switch (process.env.PERS) {
     // UsersDao = new UsersMongo();
     // ChatDao = new ChatMongo();
     break;
+  }
 
-  default:
+  default: {
     throw new Error("Please select a database");
+  }
 }
 
 module.exports = { ProductsDao, UsersDao, ChatDao };

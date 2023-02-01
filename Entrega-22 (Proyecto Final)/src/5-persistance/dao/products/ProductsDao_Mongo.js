@@ -18,7 +18,7 @@ class ProductsMongo extends ProductsDao {
     try {
       const products = await this.model.find();
       return products;
-    } catch (error) {
+    } catch (err) {
       console.log(err);
     }
   }
