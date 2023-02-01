@@ -13,14 +13,13 @@ const { engine } = require("express-handlebars");
 const { sockets } = require("../3-controllers/sockets");
 const { Session } = require("../../configs/sessions_connection");
 
-// BBDD
-const { connectToMongo } = require("../../configs/mongo_atlas_connection");
-
 // Routes
 const { crudProducts } = require("../2-routes/products_routes");
+const { views }=require("../2-routes/views.js");
+
 
 // ----------------------- Inicialización de servidor HTTP -----------------------
-var app = express();
+const app = express();
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
@@ -50,6 +49,7 @@ sockets(io);
 
 // ----------------------- Routes -----------------------
 app.use("/productos", crudProducts);
+app.use("/", views);
 
 // ----------------------- Error 404 -----------------------
 app.use((req, res) => {

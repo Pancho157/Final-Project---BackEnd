@@ -49,12 +49,13 @@ body {
 .login-form__container {
   width: 100%;
   min-height: 100vh;
+  padding: 30px;
 
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   row-gap: 40px;
+  column-gap: 40px;
 }
 
 .login--redirectionButton {
@@ -286,7 +287,8 @@ body {
 .messages__title {
   color: #fff;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .chat__container {

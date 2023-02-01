@@ -25,7 +25,7 @@ class ProductsMongo extends ProductsDao {
 
   async getById(id) {
     try {
-      return await this.model.find({ _id: id });
+      return await this.model.findOne({ _id: id });
     } catch (err) {
       console.log(err);
     }
