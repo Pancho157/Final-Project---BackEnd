@@ -73,7 +73,7 @@ Ejemplo: { "id": String, "title": String }
 
         PUT - http://localhost:8080/productos/:id
 
-Elimina un producto (siempre y cuando el producto espesificado exista) y devuelve la siguiente respuesta en caso de éxito: 
+Elimina un producto (siempre y cuando el producto espesificado exista) y devuelve la siguiente respuesta en caso de éxito:
 
 {
 "acknowledged": true,

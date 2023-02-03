@@ -9,14 +9,15 @@ const { Server: IOServer } = require("socket.io");
 
 const { engine } = require("express-handlebars");
 
-// Sockets - Sessions
+// Sockets - Sessions - Passport
 const { sockets } = require("../3-controllers/sockets");
 const { Session } = require("../../configs/sessions_connection");
+require("../4-service/middlewares/user_auth");
 
 // Routes
+const { auth } = require("../2-routes/auth_routes");
+const { views } = require("../2-routes/views.js");
 const { crudProducts } = require("../2-routes/products_routes");
-const { views }=require("../2-routes/views.js");
-
 
 // ----------------------- Inicialización de servidor HTTP -----------------------
 const app = express();
@@ -50,6 +51,7 @@ sockets(io);
 // ----------------------- Routes -----------------------
 app.use("/productos", crudProducts);
 app.use("/", views);
+app.use("/", auth);
 
 // ----------------------- Error 404 -----------------------
 app.use((req, res) => {

@@ -9,10 +9,12 @@ switch (process.env.PERS) {
       connectToMongo,
     } = require("../../../configs/mongo_atlas_connection.js");
     const { ProductsMongo } = require("./products/ProductsDao_Mongo.js");
+    const { UsersMongo } = require("./users/UsersDao_Mongo.js");
+
     // instanciation - BBDD connection
     connectToMongo();
     ProductsDao = new ProductsMongo();
-    // UsersDao = new UsersMongo();
+    UsersDao = new UsersMongo();
     // ChatDao = new ChatMongo();
     break;
   }

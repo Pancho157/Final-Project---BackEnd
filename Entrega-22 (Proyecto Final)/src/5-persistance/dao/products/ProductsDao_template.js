@@ -1,4 +1,4 @@
-class ProductsDao {
+class ProductsMethodsTemplate {
   async getAll() {
     throw { errorCode: 500, error: "getAll method not implemented!" };
   }
@@ -28,4 +28,4 @@ class ProductsDao {
   }
 }
 
-module.exports = { ProductsDao };
+module.exports = { ProductsMethodsTemplate };

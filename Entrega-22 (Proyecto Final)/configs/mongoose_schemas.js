@@ -15,12 +15,6 @@ let Message = mongoose.model("messages", MessageSchema);
 // --------------------- Users Schema & Model ------------------------
 const UserSchema = mongoose.Schema(
   {
-    alias: {
-      type: String,
-      required: [true, "Alias is required"],
-      unique: true,
-      dropDups: true,
-    },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -32,7 +26,6 @@ const UserSchema = mongoose.Schema(
       required: true,
       minlength: [6, "La contraseña debe tener 6 caracteres como mínimo"],
     },
-    userCart: { type: Array, default: void 0 },
   },
 
   { strict: false, timestamps: false, versionKey: false }

@@ -1,7 +1,7 @@
-const { ProductsDao } = require("./ProductsDao_template");
+const { ProductsMethodsTemplate } = require("./ProductsDao_template");
 const { Products } = require("../../../../configs/mongoose_schemas");
 
-class ProductsMongo extends ProductsDao {
+class ProductsMongo extends ProductsMethodsTemplate {
   static instance;
   constructor() {
     super();
