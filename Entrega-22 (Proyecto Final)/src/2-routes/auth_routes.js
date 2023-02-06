@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const auth = Router();
 
+// ------------- Post - Register -------------
 auth.post(
   "/register",
   passport.authenticate("signup", { session: false }),
@@ -15,6 +16,7 @@ auth.post(
   }
 );
 
+// ------------- Post - Login -------------
 auth.post("/", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
@@ -55,6 +57,7 @@ auth.post("/", async (req, res, next) => {
   })(req, res, next);
 });
 
+// ------------- Authenticate token -------------
 auth.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
