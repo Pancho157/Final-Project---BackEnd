@@ -195,6 +195,10 @@ body {
   color: #333333;
 }
 
+.register_form--radio {
+  color: #fff;
+}
+
 /* ----------Estilos del nav de la pág chat-tabla------------ */
 .nav__container {
   display: flex;

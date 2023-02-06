@@ -17,7 +17,7 @@ async function findProductsByCategory(req, res) {
   res.send(productsByCat);
 }
 
-async function newProduct(req, res) {
+async function newProduct(req, res, next) {
   const { title, price, thumbnail, stock, category } = req.body;
 
   if (!title || !price || !thumbnail || !stock || !category) {
@@ -28,7 +28,34 @@ async function newProduct(req, res) {
     });
   }
 
-  res.send(await products.create({ title, price, thumbnail, stock, category }));
+  try {
+    const productData = await products.create({
+      title,
+      price,
+      thumbnail,
+      stock,
+      category,
+    });
+
+    req.productData = productData;
+  } catch (err) {
+    console.log(err);
+    throw { error: "No se ha podido generar el producto", errorCode: 500 };
+  }
+
+  if (!req.file) {
+    res.send(req.productData);
+  } else {
+    const fileNewName =
+      req.productData._id + req.file.originalname.split(".").pop();
+
+    updateProduct(req.productData._id, { thumbnail: fileNewName });
+    next();
+  }
+}
+
+function sendNewProductResponse(req, res) {
+  res.send(req.productData);
 }
 
 async function updateProduct(req, res) {
@@ -63,6 +90,7 @@ module.exports = {
   findProductById,
   findProductsByCategory,
   newProduct,
+  sendNewProductResponse,
   updateProduct,
   deleteProductById,
 };

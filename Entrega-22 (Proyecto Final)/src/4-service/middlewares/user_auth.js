@@ -14,11 +14,28 @@ passport.use(
     {
       usernameField: "email",
       passwordField: "password",
+      passReqToCallback: true,
     },
-    async (email, password, done) => {
+    async (req, email, password, done) => {
+      const { name, lastName, phone, rol } = req.body;
+
+      if (!name || !lastName || !phone || !rol) {
+        done("No se ingresaron los datos requeridos");
+      }
+
+      const encryptedPass = md5(password);
+
+      const userData = {
+        fullname: { name: name, lastName: lastName },
+        email: email,
+        phone: phone,
+        userRol: rol,
+        userCart: [],
+        password: encryptedPass,
+      };
+
       try {
-        const encryptedPass = md5(password);
-        const user = await Users.create({ email, password: encryptedPass });
+        const user = await Users.create(userData);
         return done(null, user);
       } catch (err) {
         done(err);
@@ -36,20 +53,26 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await Users.findByEmail(email);
+        const user = await Users.getByEmail(email);
 
-        if (!user.email) {
-          return done(null, false, {
-            error: "No se encontró el usuario especificado",
-            errorCode: 400,
-          });
+        if (!user) {
+          return done(
+            {
+              error: "No se encontró el usuario especificado",
+              errorCode: 400,
+            },
+            false
+          );
         }
 
         if (md5(password) != user.password) {
-          return done(null, false, {
-            error: "Contraseña incorrecta",
-            errorCode: 401,
-          });
+          return done(
+            {
+              error: "Contraseña incorrecta",
+              errorCode: 401,
+            },
+            false
+          );
         }
 
         done(null, user);

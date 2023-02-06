@@ -19,6 +19,7 @@ auth.post("/", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
+        console.log(err);
         return res.render("error", {
           error: err.error,
           errorCode: err.errorCode,
@@ -26,18 +27,21 @@ auth.post("/", async (req, res, next) => {
       }
 
       req.login(user, { session: false }, async (err) => {
-        if (err)
+        if (err) {
           return res.render("error", {
             error: err.error,
             errorCode: err.errorCode,
           });
+        }
 
         const body = {
           id: user._id,
+          name: user.fullname.name,
           email: user.email,
           thumbnail: user.thumbnail,
           rol: user.rol,
         };
+
         const token = jwt.sign({ user: body }, "top_secret_secret_key");
 
         return res.json({ token });

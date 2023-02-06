@@ -8,8 +8,11 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "../../1-server/public/images"));
   },
   filename: (req, file, cb) => {
-    // Saves the file name with the date of upload (for error handling)
-    cb(null, Date.now() + path.extname(file.originalname));
+    // Saves the file with MongoDB id and file extension
+    cb(
+      null,
+      req.productData._id.toString() + file.originalname.split(".").pop()
+    );
   },
 });
 
