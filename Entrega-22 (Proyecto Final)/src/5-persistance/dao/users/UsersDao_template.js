@@ -6,6 +6,10 @@ class UsersMethodsTemplate {
   async add(data) {
     throw { errorCode: 500, error: "add method not implemented!" };
   }
+
+  async updateCart(email, data) {
+    throw { errorCode: 500, error: "updateCart method not implemented!" };
+  }
 }
 
 module.exports = { UsersMethodsTemplate };

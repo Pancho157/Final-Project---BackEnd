@@ -25,6 +25,14 @@ class UsersQueries {
       console.log(err);
     }
   }
+
+  async updateCart(email, data) {
+    try {
+      return await UsersDao.updateCart(email, data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 module.exports = { UsersQueries };

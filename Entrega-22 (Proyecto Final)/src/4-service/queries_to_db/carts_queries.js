@@ -12,11 +12,35 @@ class CartsQueries {
     }
     ProductsQueries.instance = this;
   }
-  async getUserCart(user) {}
+  async getUserCart(email) {
+    try {
+      const user = await UsersDao.getByEmail(email);
 
-  async updateUserCart(user, data) {}
+      if (!user) {
+        throw { error: "Usuario no encontrado", errorCode: 400 };
+      }
 
-  async deleteUserCart(user) {}
+      return user.userCart;
+    } catch (err) {
+      consle.log(err);
+    }
+  }
+
+  async updateUserCart(email, data) {
+    try {
+      return await UsersDao.updateCart(email, data);
+    } catch (err) {
+      consle.log(err);
+    }
+  }
+
+  async deleteUserCart(email) {
+    try {
+      return await UsersDao.updateCart(email, { userCart: [] });
+    } catch (err) {
+      consle.log(err);
+    }
+  }
 }
 
 module.exports = { CartsQueries };

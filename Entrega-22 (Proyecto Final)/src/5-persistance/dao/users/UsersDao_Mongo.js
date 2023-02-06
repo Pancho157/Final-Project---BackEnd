@@ -29,6 +29,14 @@ class UsersMongo extends UsersMethodsTemplate {
       console.log(err);
     }
   }
+
+  async updateCart(email, data) {
+    return await this.model.findOneAndUpdate(
+      { email: email },
+      { userCart: data },
+      { new: true }
+    );
+  }
 }
 
 module.exports = { UsersMongo };
