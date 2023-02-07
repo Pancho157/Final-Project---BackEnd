@@ -21,9 +21,9 @@ async function sockets(io) {
     socket.on("new-message", async (data) => {
       try {
         await chat.insertMessage({
-          email: socket.handshake.session.userName,
+          email: "probando@gmail.com",
           message: data.message,
-          rol: socket.handshake.session.rol,
+          rol: "user",
         });
       } catch (err) {
         console.log(err);
