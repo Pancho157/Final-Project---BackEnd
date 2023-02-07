@@ -30,6 +30,14 @@ class ChatMongo extends ChatMethodsTemplate {
       console.log(err);
     }
   }
+
+  async getUserMessages(email) {
+    try {
+      return await Message.find({ author: email });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 module.exports = { ChatMongo };

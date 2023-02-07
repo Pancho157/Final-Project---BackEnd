@@ -18,6 +18,7 @@ require("../4-service/middlewares/user_auth");
 const { auth } = require("../2-routes/auth_routes");
 const { views } = require("../2-routes/views.js");
 const { crudProducts } = require("../2-routes/products_routes");
+const { chat } = require("../2-routes/chat_routes");
 
 // ----------------------- Inicialización de servidor HTTP -----------------------
 const app = express();
@@ -50,6 +51,7 @@ sockets(io);
 
 // ----------------------- Routes -----------------------
 app.use("/productos", crudProducts);
+app.use("/chat", chat);
 app.use("/", views);
 app.use("/", auth);
 
