@@ -1,29 +1,29 @@
 class ProductsMethodsTemplate {
-  async getAll() {
+  getAll() {
     throw { errorCode: 500, error: "getAll method not implemented!" };
   }
 
-  async getById(id) {
+  getById(id) {
     throw { errorCode: 500, error: "getById method not implemented!" };
   }
 
-  async getByCategory(category) {
+  getByCategory(category) {
     throw { errorCode: 500, error: "getByCategory method not implemented!" };
   }
 
-  async add(prodNuevo) {
+  add(prodNuevo) {
     throw { errorCode: 500, error: "add method not implemented!" };
   }
 
-  async updateById(id, data) {
+  updateById(id, data) {
     throw { errorCode: 500, error: "updateById method not implemented!" };
   }
 
-  async deleteById(id) {
+  deleteById(id) {
     throw { errorCode: 500, error: "deleteById method not implemented!" };
   }
 
-  async deleteAll() {
+  deleteAll() {
     throw { errorCode: 500, error: "deleteAll method not implemented!" };
   }
 }
