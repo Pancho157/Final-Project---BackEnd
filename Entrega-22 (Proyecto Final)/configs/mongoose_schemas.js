@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// --------------------- Messages Schema & Model ------------------------
+// --------------------- Chat Schema & Model ------------------------
 const MessageSchema = mongoose.Schema(
   {
     message: { type: String },
@@ -33,6 +33,15 @@ const UserSchema = mongoose.Schema(
 
 let Users = mongoose.model("users", UserSchema);
 
+// --------------------- Carts Schema & Model ------------------------
+const CartsSchema = mongoose.Schema(
+  {},
+
+  { strict: false, timestamps: false, versionKey: false }
+);
+
+let Carts = mongoose.model("carts", CartsSchema);
+
 // --------------------- Products Schema & Model ------------------------
 
 const ProductSchema = mongoose.Schema(
@@ -47,4 +56,13 @@ const ProductSchema = mongoose.Schema(
 
 let Products = mongoose.model("products", ProductSchema);
 
-module.exports = { Message, Users, Products };
+// --------------------- Purchases Schema & Model ------------------------
+const PurchasesSchema = mongoose.Schema(
+  {},
+
+  { strict: false, timestamps: false, versionKey: false }
+);
+
+let Purchases = mongoose.model("purchases", PurchasesSchema);
+
+module.exports = { Message, Users, Products, Carts, Purchases };

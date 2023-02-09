@@ -31,11 +31,15 @@ class UsersMongo extends UsersMethodsTemplate {
   }
 
   async updateCart(email, data) {
-    return await this.model.findOneAndUpdate(
-      { email: email },
-      { userCart: data },
-      { new: true }
-    );
+    try {
+      return await this.model.findOneAndUpdate(
+        { email: email },
+        { userCart: data },
+        { new: true }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

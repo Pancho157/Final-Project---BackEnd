@@ -14,13 +14,43 @@ class CartsMongo extends CartsMethodsTemplate {
     this.model = Carts;
   }
 
-  newCart() {}
+  async newCart() {
+    try {
+      return await this.model.create(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  getCart(id) {}
+  async getCart(id) {
+    try {
+      return await this.model.findOne({ _id: id });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  updateCart(id, data) {}
+  async updateCart(id, data) {
+    try {
+      return await this.model.findOneAndUpdate({ _id: id }, data, {
+        new: true,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  emptyCart(id) {}
+  async emptyCart(id) {
+    try {
+      return await this.model.findOneAndUpdate(
+        { _id: id },
+        { items: [] },
+        { new: true }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 module.exports = { CartsMongo };

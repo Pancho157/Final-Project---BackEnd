@@ -14,9 +14,21 @@ class PurchasesMongo extends PurchaseMethodsTemplate {
     this.model = Purchases;
   }
 
-  addPurchase() {}
+  async addPurchase(data) {
+    try {
+      return await this.model.create(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  changeStatus(id) {}
+  async changeStatus(id, status) {
+    return await this.model.findOneAndUpdate(
+      { id: id },
+      { status: status },
+      { new: true }
+    );
+  }
 }
 
 module.exports = { PurchasesMongo };
