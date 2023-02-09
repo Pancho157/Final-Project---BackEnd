@@ -1,161 +1,168 @@
-const {
-  deleteUserCart,
-  updateUserCart,
-  getUserCart,
-} = require("./queries_to_db/carts_queries");
-const Products = require("./products_logic");
+const { CartsQueries } = require("./queries_to_db/carts_queries");
+const { ProductsQueries } = require("./queries_to_db/products_queries");
 
 // Messages
 const { sendNewOrderEmailToAdmin } = require("../../configs/nodemailer");
+
+const carts = new CartsQueries();
+const products = new ProductsQueries();
 
 class Carts {
   constructor() {}
 
   // ---------------------------------------------------------------
-  async getProducts(user) {
-    let userCart;
-
+  async create(userId, email, delivery) {
     try {
-      userCart = await getUserCart(user);
-      console.log(userCart);
+      const cart = await products.createCart({
+        email,
+        delivery,
+      });
+
+      await products.update(userId, { userCart: cart._id });
+
+      return cart;
     } catch (err) {
-      throw { error: "No se encontró el usuario indicado", errorCode: 400 };
-    }
-
-    if (userCart == []) {
-      return { userCartProducts: [], total: 0, name: user };
-    } else {
-      let userCartProducts = [];
-      let total = 0;
-      // for of = secuencial  -  forEach = paralelo (deja los await como promesas)
-      for (const product of userCart) {
-        try {
-          const productInfo = await getProductById(product.id);
-
-          const productDetail = {
-            thumbnail: productInfo.thumbnail,
-            title: productInfo.title,
-            quantity: product.quantity,
-            price: productInfo.price,
-            unitaryPrice: productInfo.price * product.quantity,
-            _id: productInfo._id,
-          };
-
-          userCartProducts.push(productDetail);
-          total += productDetail.unitaryPrice;
-        } catch (err) {
-          throw {
-            errorCode: 500,
-            error: "Error al buscar un producto del carrito",
-          };
-        }
-      }
-
-      return { userCartProducts, total, name: user };
+      console.log(err);
+      throw { error: "Error al generar el carrito", errorCode: 500 };
     }
   }
 
   // ---------------------------------------------------------------
-  async addOne(user, productId, prodQuantity = 1) {
+  async getProducts(email) {
+    let userCart, detailedCart;
+    let totalPrice = 0;
+    try {
+      userCart = await carts.getUserCart(email);
+    } catch (err) {
+      console.log(err);
+      throw { error: "No se encontró el carrito indicado", errorCode: 404 };
+    }
+
+    for (const product of userCart) {
+      const productDetails = await products.getById(product.id);
+
+      const quantity =
+        product.quantity > productDetails.stock
+          ? (product.quantity = product.stock)
+          : product.quantity;
+
+      const productData = {
+        id: product.id,
+        quantity: quantity,
+        thumbnail: productDetails.thumbnail,
+        title: productDetails.title,
+        price: productDetails.price,
+        unitaryPrice: productDetails.price * product.quantity,
+      };
+
+      detailedCart.push(productData);
+      totalPrice += productData.unitaryPrice;
+    }
+
+    return { cart: detailedCart, total: totalPrice, userEmail: email };
+  }
+
+  // ---------------------------------------------------------------
+  // Searchs cart, finds productId index and updates cart with product quantity +1
+  async addOne(email, productId) {
     if (productId == null) {
       throw { error: "Producto no especificado", errorCode: 400 };
     }
-
     let userCart;
     try {
-      userCart = await getUserCart(user);
+      userCart = await carts.getUserCart(email);
     } catch (err) {
-      throw { error: "No se encontró el usuario indicado", errorCode: 400 };
+      throw { error: "No se encontró el usuario indicado", errorCode: 404 };
     }
-
     const productIndex = userCart.findIndex((prod) => prod.id == productId);
+    // Adds product if not found
     if (productIndex == -1) {
       userCart.push({ id: productId, quantity: prodQuantity });
     } else {
       userCart[productIndex].quantity += 1;
     }
-
     try {
-      const response = await updateUserCart(user, userCart);
-      return response;
+      return await carts.updateUserCart(email, userCart);
     } catch (err) {
       throw { error: "Error al actualizar el carrito", errorCode: 500 };
     }
   }
 
   // ---------------------------------------------------------------
-  async removeOne(user, productId) {
-    let cart;
-    try {
-      cart = await getUserCart(user);
-    } catch (err) {
-      throw { error: "No se encontró el usuario indicado", errorCode: 400 };
+  // Searchs cart, finds productId index and updates cart with product quantity -1
+  async removeOne(email, productId) {
+    if (productId == null) {
+      throw { error: "Producto no especificado", errorCode: 400 };
     }
-
-    const productIndex = cart.findIndex((prod) => prod.id == productId);
-    if (productIndex == -1) {
-      throw { error: "Producto no encontrado", errorCode: 400 };
-    } else if (cart[productIndex].quantity > 1) {
-      cart[productIndex].quantity -= 1;
-    }
-
-    try {
-      const response = await updateUserCart(user, cart);
-      return response;
-    } catch (err) {
-      throw { error: "Error al actualizar el carrito", errorCode: 500 };
-    }
-  }
-
-  // ---------------------------------------------------------------
-  async deleteProduct(user, productId) {
-    let cart;
-    try {
-      cart = await getUserCart(user);
-    } catch (err) {
-      throw { error: "No se encontró el usuario indicado", errorCode: 400 };
-    }
-
-    const productIndex = cart.findIndex((prod) => prod.id == productId);
-    if (productIndex == -1) {
-      throw { error: "Producto no encontrado", errorCode: 400 };
-    } else {
-      cart.splice(productIndex, 1);
-    }
-
-    try {
-      const response = await updateUserCart(user, cart);
-      return response;
-    } catch (err) {
-      throw { error: "Error al actualizar el carrito", errorCode: 500 };
-    }
-  }
-
-  // ---------------------------------------------------------------
-  async buy(user) {
-    let userInfo;
     let userCart;
-
     try {
-      userInfo = await getDetailedUserInfo(user);
+      userCart = await carts.getUserCart(email);
     } catch (err) {
-      throw { error: "No se encontró el usuario indicado", errorCode: 400 };
+      throw { error: "No se encontró el usuario indicado", errorCode: 404 };
     }
-
+    const productIndex = userCart.findIndex((prod) => prod.id == productId);
+    // Adds product if not found
+    if (productIndex != -1) {
+      userCart.push({ id: productId, quantity: prodQuantity });
+    } else if (userCart[productIndex].quantity > 1) {
+      userCart[productIndex].quantity -= 1;
+    }
     try {
-      userCart = await getUserCartProducts(user);
+      return await carts.updateUserCart(email, userCart);
+    } catch (err) {
+      throw { error: "Error al actualizar el carrito", errorCode: 500 };
+    }
+  }
+
+  // ---------------------------------------------------------------
+  async deleteProduct(email, productId) {
+    let userCart;
+    try {
+      userCart = await carts.getUserCart(email);
+    } catch (err) {
+      throw { error: "No se encontró el usuario indicado", errorCode: 404 };
+    }
+    const productIndex = userCart.findIndex((prod) => prod.id == productId);
+    if (productIndex == -1) {
+      throw { error: "Producto no encontrado", errorCode: 404 };
+    } else {
+      userCart.splice(productIndex, 1);
+    }
+    try {
+      const response = await updateUserCart(email, userCart);
+      return response;
+    } catch (err) {
+      throw { error: "Error al actualizar el carrito", errorCode: 500 };
+    }
+  }
+
+  // ---------------------------------------------------------------
+  async buy(email) {
+    let userCart;
+    try {
+      userCart = await this.getProducts(email);
     } catch (err) {
       throw { error: "No se ", errorCode: 400 };
     }
 
     try {
-      await sendNewOrderEmailToAdmin(userCart.userCartProducts, userInfo);
-      await deleteUserCart(user);
+      await sendNewOrderEmailToAdmin(userCart);
     } catch (err) {
-      throw { error: err, errorCode: 400 };
+      throw {
+        error: "Error al enviar el email al administrador",
+        errorCode: 400,
+      };
     }
 
-    return { status: 200 };
+    try {
+      await carts.emptyUserCart(email);
+    } catch (err) {
+      throw {
+        error: "Error al vaciar el carrito",
+        errorCode: 400,
+      };
+    }
+    return { message: "Carrito comprado exitosamente" };
   }
 }
 

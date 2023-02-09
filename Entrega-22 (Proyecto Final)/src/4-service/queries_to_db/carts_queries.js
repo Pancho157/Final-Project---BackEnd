@@ -12,6 +12,19 @@ class CartsQueries {
     }
     ProductsQueries.instance = this;
   }
+
+  async createCart(email, delivery) {
+    try {
+      return await this.model.create({
+        user: email,
+        cart: [],
+        deliveryAddress: delivery,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getUserCart(email) {
     try {
       const user = await UsersDao.getByEmail(email);
@@ -22,7 +35,7 @@ class CartsQueries {
 
       return user.userCart;
     } catch (err) {
-      consle.log(err);
+      console.log(err);
     }
   }
 
@@ -30,15 +43,15 @@ class CartsQueries {
     try {
       return await UsersDao.updateCart(email, data);
     } catch (err) {
-      consle.log(err);
+      console.log(err);
     }
   }
 
-  async deleteUserCart(email) {
+  async emptyUserCart(email) {
     try {
       return await UsersDao.updateCart(email, { userCart: [] });
     } catch (err) {
-      consle.log(err);
+      console.log(err);
     }
   }
 }

@@ -1,7 +1,7 @@
 const { createTransport } = require("nodemailer");
 const { logger } = require("../../../loggers-testing/loggers/log4js-config");
 
-const sendNewOrderEmailToAdmin = async (cart, user) => {
+const sendNewOrderEmailToAdmin = async (purchase) => {
   const transporter = createTransport({
     host: "smtp.gmail.com",
     port: 465, // Único puerto seguro (según nodemailer)
@@ -13,25 +13,23 @@ const sendNewOrderEmailToAdmin = async (cart, user) => {
   });
 
   messageBody = "";
-  let total = 0;
 
-  for (let i = 0; i < cart.length; i++) {
-    total += cart[i].price * cart[i].quantity;
+  for (let i = 0; i < purchase.cart.length; i++) {
     messageBody += `   
         <tr>
-            <td> ${cart[i].title} </td>
-            <td> ${cart[i].description} </td>
-            <td> ${cart[i].quantity} </td>
-            <td> ${cart[i].price} </td>
+            <td> ${purchase.cart[i].title} </td>
+            <td> ${purchase.cart[i].description} </td>
+            <td> ${purchase.cart[i].quantity} </td>
+            <td> ${purchase.cart[i].price} </td>
+            <td> ${purchase.cart[i].unitaryPrice} </td>
         </tr>`;
   }
-
-  messageBody += `<br><br> <h2> ------ Total: ${total} ------ </h2>`;
+  messageBody += `<br><br> <h2> ------ Total: ${purchase.total} ------ </h2>`;
 
   const emailOptions = {
     from: `Nodemailer - ${process.env.NODEMAILER_EMAIL}`,
     to: process.env.ADMIN_EMAIL,
-    subject: `Nuevo pedido de: ${user.alias} - ${user.email}`,
+    subject: `Nuevo pedido de: ${purchase.email}`,
     html: ` 
         <table>
             <thead>
