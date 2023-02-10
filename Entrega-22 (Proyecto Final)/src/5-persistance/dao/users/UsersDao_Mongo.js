@@ -1,5 +1,6 @@
 const { UsersMethodsTemplate } = require("./UsersDao_template");
 const { Users } = require("../../../../configs/mongoose_schemas");
+const { logger } = require("../../../../configs/logger");
 
 class UsersMongo extends UsersMethodsTemplate {
   static instance;
@@ -18,7 +19,7 @@ class UsersMongo extends UsersMethodsTemplate {
     try {
       return await this.model.findOne({ email: email });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -26,7 +27,7 @@ class UsersMongo extends UsersMethodsTemplate {
     try {
       return await this.model.create(data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -38,7 +39,7 @@ class UsersMongo extends UsersMethodsTemplate {
         { new: true }
       );
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 }

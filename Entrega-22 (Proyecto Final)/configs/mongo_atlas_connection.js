@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { logger } = require("./logger");
 
 function connectToMongo() {
   mongoose.connect(process.env.MONGO_URL, {
@@ -6,7 +7,7 @@ function connectToMongo() {
     useUnifiedTopology: true,
   });
 
-  console.log("Connected to MongoDB successfully");
+  logger.info("Connected to MongoDB successfully");
 }
 
 mongoose.set("strictQuery", false);

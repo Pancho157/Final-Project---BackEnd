@@ -8,6 +8,7 @@ const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
 
 const { engine } = require("express-handlebars");
+const { logger } = require("../../configs/logger");
 
 // Sockets - Sessions - Passport
 const { sockets } = require("../3-controllers/sockets");
@@ -26,12 +27,12 @@ const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
 const connectedServer = httpServer.listen(process.env.PORT || 8080, () => {
-  console.log(`Http - Socket Server On - Port: ${process.env.PORT || 8080}`);
+  logger.info(`Http - Socket Server On - Port: ${process.env.PORT || 8080}`);
 });
 
 // En caso de fallar el servidor de sockets
 connectedServer.on("error", (err) => {
-  console.log(err);
+  logger.error(err);
 });
 
 app.use(express.json());

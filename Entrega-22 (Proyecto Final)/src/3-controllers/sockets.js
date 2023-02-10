@@ -1,6 +1,8 @@
 const sharedsession = require("express-socket.io-session");
 const { Session } = require("../../configs/sessions_connection");
 
+const { logger } = require("../../configs/logger");
+
 const { Chat } = require("../4-service/chat_logic");
 const chat = new Chat();
 
@@ -13,7 +15,7 @@ async function sockets(io) {
   );
   // On new client
   io.on(`connection`, async (socket) => {
-    console.log("Nuevo cliente conectado");
+    logger.info("Nuevo cliente conectado");
 
     socket.emit("messagesFromServer", await chat.getMessages());
 
@@ -26,7 +28,7 @@ async function sockets(io) {
           rol: "user",
         });
       } catch (err) {
-        console.log(err);
+        logger.error(err);
       }
 
       io.sockets.emit("messagesFromServer", await chat.getMessages());

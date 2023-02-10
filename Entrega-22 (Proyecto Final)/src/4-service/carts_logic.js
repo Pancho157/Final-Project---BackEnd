@@ -1,3 +1,6 @@
+const { logger } = require("../../configs/logger");
+
+// queries controllers
 const { CartsQueries } = require("./queries_to_db/carts_queries");
 const { ProductsQueries } = require("./queries_to_db/products_queries");
 const { UsersQueries } = requrie("./queries_to_db/users_queries.js");
@@ -26,7 +29,7 @@ class Carts {
 
       return cart;
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       throw { error: "Error al generar el carrito", errorCode: 500 };
     }
   }
@@ -38,7 +41,7 @@ class Carts {
     try {
       userCart = await carts.getUserCart(email);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       throw { error: "No se encontró el carrito indicado", errorCode: 404 };
     }
 

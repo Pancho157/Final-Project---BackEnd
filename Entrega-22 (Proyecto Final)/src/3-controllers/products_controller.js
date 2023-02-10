@@ -1,3 +1,4 @@
+const { logger } = require("../../configs/logger");
 const Products = require("../4-service/products_logic");
 
 const products = new Products();
@@ -39,7 +40,7 @@ async function newProduct(req, res, next) {
 
     req.productData = productData;
   } catch (err) {
-    console.log(err);
+    logger.error(err);
     throw { error: "No se ha podido generar el producto", errorCode: 500 };
   }
 

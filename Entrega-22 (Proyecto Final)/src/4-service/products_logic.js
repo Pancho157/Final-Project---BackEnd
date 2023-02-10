@@ -1,3 +1,4 @@
+const { logger } = require("../../configs/logger");
 const { ProductsQueries } = require("./queries_to_db/products_queries");
 
 const products = new ProductsQueries();
@@ -17,7 +18,7 @@ class Products {
     try {
       return await products.getAll();
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -25,7 +26,7 @@ class Products {
     try {
       return await products.getById(id);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -33,7 +34,7 @@ class Products {
     try {
       return await products.getByCategory(category);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -41,7 +42,7 @@ class Products {
     try {
       return await products.create(data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -49,7 +50,7 @@ class Products {
     try {
       return await products.update(id, data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -57,7 +58,7 @@ class Products {
     try {
       return await products.deleteById(id);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -65,7 +66,7 @@ class Products {
     try {
       return await products.deleteAll();
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 }

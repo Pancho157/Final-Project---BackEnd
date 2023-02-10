@@ -21,10 +21,10 @@ auth.post("/", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
-        console.log(err);
+        logger.error(err);
         return res.render("error", {
-          error: err.error,
-          errorCode: err.errorCode,
+          error: user ? err.error : "Usuario no especificado",
+          errorCode: user ? err.status : 400,
         });
       }
 

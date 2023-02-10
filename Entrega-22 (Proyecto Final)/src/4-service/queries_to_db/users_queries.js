@@ -1,3 +1,4 @@
+const { logger } = require("../../../configs/logger");
 const { UsersDao } = require("../../5-persistance/dao/daoSelector");
 
 class UsersQueries {
@@ -14,7 +15,7 @@ class UsersQueries {
     try {
       return await UsersDao.getByEmail(email);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -22,7 +23,7 @@ class UsersQueries {
     try {
       return await UsersDao.add(data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -30,7 +31,7 @@ class UsersQueries {
     try {
       return await UsersDao.updateCart(email, data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 }

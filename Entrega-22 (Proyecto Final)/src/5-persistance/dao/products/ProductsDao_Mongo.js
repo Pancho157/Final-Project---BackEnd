@@ -1,5 +1,6 @@
 const { ProductsMethodsTemplate } = require("./ProductsDao_template");
 const { Products } = require("../../../../configs/mongoose_schemas");
+const { logger } = require("../../../../configs/logger");
 
 class ProductsMongo extends ProductsMethodsTemplate {
   static instance;
@@ -19,7 +20,7 @@ class ProductsMongo extends ProductsMethodsTemplate {
       const products = await this.model.find();
       return products;
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -27,7 +28,7 @@ class ProductsMongo extends ProductsMethodsTemplate {
     try {
       return await this.model.findOne({ _id: id });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -35,7 +36,7 @@ class ProductsMongo extends ProductsMethodsTemplate {
     try {
       return await this.model.find({ category });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -43,7 +44,7 @@ class ProductsMongo extends ProductsMethodsTemplate {
     try {
       return await this.model.create(data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -53,7 +54,7 @@ class ProductsMongo extends ProductsMethodsTemplate {
         new: true,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 

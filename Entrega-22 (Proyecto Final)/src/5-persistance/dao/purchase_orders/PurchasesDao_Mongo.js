@@ -1,5 +1,6 @@
 const { PurchaseMethodsTemplate } = require("./PurchasesDao_template");
 const { Purchases } = require("../../../../configs/mongoose_schemas");
+const { logger } = require("../../../../configs/logger");
 
 class PurchasesMongo extends PurchaseMethodsTemplate {
   static instance;
@@ -18,7 +19,7 @@ class PurchasesMongo extends PurchaseMethodsTemplate {
     try {
       return await this.model.create(data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 

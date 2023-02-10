@@ -1,5 +1,6 @@
 const { CartsMethodsTemplate } = require("./CartsDao_template");
 const { Carts } = require("../../../../configs/mongoose_schemas");
+const { logger } = require("../../../../configs/logger");
 
 class CartsMongo extends CartsMethodsTemplate {
   static instance;
@@ -18,25 +19,25 @@ class CartsMongo extends CartsMethodsTemplate {
     try {
       return await this.model.create(data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
-  async getCart(id) {
+  async getCart(email) {
     try {
-      return await this.model.findOne({ _id: id });
+      return await this.model.findOne({ email: email });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
-  async updateCart(id, data) {
+  async updateCart(email, data) {
     try {
-      return await this.model.findOneAndUpdate({ _id: id }, data, {
+      return await this.model.findOneAndUpdate({ email: email }, data, {
         new: true,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -48,7 +49,7 @@ class CartsMongo extends CartsMethodsTemplate {
         { new: true }
       );
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 }

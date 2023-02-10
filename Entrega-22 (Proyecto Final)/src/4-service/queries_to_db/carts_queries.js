@@ -1,7 +1,5 @@
-const {
-  UsersDao,
-  ProductsDao,
-} = require("../../5-persistance/dao/daoSelector");
+const { logger } = require("../../../configs/logger");
+const { CartsDao } = require("../../5-persistance/dao/daoSelector");
 
 class CartsQueries {
   static instance;
@@ -15,43 +13,43 @@ class CartsQueries {
 
   async createCart(email, delivery) {
     try {
-      return await this.model.create({
+      return await CartsDao.newCart({
         user: email,
         cart: [],
         deliveryAddress: delivery,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
   async getUserCart(email) {
     try {
-      const user = await UsersDao.getByEmail(email);
+      const cart = await CartsDao.getCart(email);
 
-      if (!user) {
+      if (!cart) {
         throw { error: "Usuario no encontrado", errorCode: 400 };
       }
 
-      return user.userCart;
+      return cart.cart;
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
   async updateUserCart(email, data) {
     try {
-      return await UsersDao.updateCart(email, data);
+      return await CartsDao.updateCart(email, data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
   async emptyUserCart(email) {
     try {
-      return await UsersDao.updateCart(email, { userCart: [] });
+      return await CartsDao.updateCart(email, { cart: [] });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 }

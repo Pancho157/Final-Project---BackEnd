@@ -1,5 +1,6 @@
 const { ChatMethodsTemplate } = require("./ChatDao_template.js");
 const { Message } = require("../../../../configs/mongoose_schemas");
+const { logger } = require("../../../../configs/logger.js");
 
 class ChatMongo extends ChatMethodsTemplate {
   static instance;
@@ -19,7 +20,7 @@ class ChatMongo extends ChatMethodsTemplate {
     try {
       return await Message.create(data);
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -27,7 +28,7 @@ class ChatMongo extends ChatMethodsTemplate {
     try {
       return await Message.find();
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 
@@ -35,7 +36,7 @@ class ChatMongo extends ChatMethodsTemplate {
     try {
       return await Message.find({ author: email });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
     }
   }
 }
