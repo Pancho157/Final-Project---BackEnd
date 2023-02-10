@@ -1,11 +1,15 @@
 const { CartsQueries } = require("./queries_to_db/carts_queries");
 const { ProductsQueries } = require("./queries_to_db/products_queries");
+const { UsersQueries } = requrie("./queries_to_db/users_queries.js");
+const { PurchasesQueries } = require("./queries_to_db/purchases_queries");
 
 // Messages
 const { sendNewOrderEmailToAdmin } = require("../../configs/nodemailer");
 
 const carts = new CartsQueries();
 const products = new ProductsQueries();
+const users = new UsersQueries();
+const purchases = new PurchasesQueries();
 
 class Carts {
   constructor() {}
@@ -18,7 +22,7 @@ class Carts {
         delivery,
       });
 
-      await products.update(userId, { userCart: cart._id });
+      await users.update(userId, { userCart: cart._id });
 
       return cart;
     } catch (err) {
@@ -146,11 +150,23 @@ class Carts {
     }
 
     try {
-      await sendNewOrderEmailToAdmin(userCart);
+      const purchaseInfo = userCart;
+      purchaseInfo.date = new Date();
+      await sendNewOrderEmailToAdmin(purchaseInfo);
     } catch (err) {
       throw {
         error: "Error al enviar el email al administrador",
         errorCode: 400,
+      };
+    }
+
+    try {
+      await purchases.addPurchase(userCart);
+    } catch (err) {
+      logger.error(err);
+      throw {
+        error: "Error al generar la orden de compra",
+        errorCode: 500,
       };
     }
 

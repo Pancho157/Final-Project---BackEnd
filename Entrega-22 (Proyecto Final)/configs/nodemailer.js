@@ -1,5 +1,5 @@
 const { createTransport } = require("nodemailer");
-const { logger } = require("../../../loggers-testing/loggers/log4js-config");
+const { logger } = require("../configs/logger");
 
 const sendNewOrderEmailToAdmin = async (purchase) => {
   const transporter = createTransport({

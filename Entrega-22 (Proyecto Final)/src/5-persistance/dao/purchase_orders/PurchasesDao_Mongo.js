@@ -7,10 +7,10 @@ class PurchasesMongo extends PurchaseMethodsTemplate {
     super();
 
     // -!!- of "undefined" = false
-    if (!!CartsMongo.instance) {
-      return CartsMongo.instance;
+    if (!!PurchasesMongo.instance) {
+      return PurchasesMongo.instance;
     }
-    CartsMongo.instance = this;
+    PurchasesMongo.instance = this;
     this.model = Purchases;
   }
 

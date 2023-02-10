@@ -10,7 +10,7 @@ const MessageSchema = mongoose.Schema(
   { strict: false, timestamps: true } // CreatedAt y UpdatedAt
 );
 
-let Message = mongoose.model("messages", MessageSchema);
+let Message = mongoose.model("mensajes", MessageSchema);
 
 // --------------------- Users Schema & Model ------------------------
 const UserSchema = mongoose.Schema(
@@ -31,7 +31,7 @@ const UserSchema = mongoose.Schema(
   { strict: false, timestamps: false, versionKey: false }
 );
 
-let Users = mongoose.model("users", UserSchema);
+let Users = mongoose.model("usuarios", UserSchema);
 
 // --------------------- Carts Schema & Model ------------------------
 const CartsSchema = mongoose.Schema(
@@ -40,7 +40,7 @@ const CartsSchema = mongoose.Schema(
   { strict: false, timestamps: false, versionKey: false }
 );
 
-let Carts = mongoose.model("carts", CartsSchema);
+let Carts = mongoose.model("carrito", CartsSchema);
 
 // --------------------- Products Schema & Model ------------------------
 
@@ -54,7 +54,7 @@ const ProductSchema = mongoose.Schema(
   { strict: false, timestamps: false, versionKey: false }
 );
 
-let Products = mongoose.model("products", ProductSchema);
+let Products = mongoose.model("productos", ProductSchema);
 
 // --------------------- Purchases Schema & Model ------------------------
 const PurchasesSchema = mongoose.Schema(
@@ -63,6 +63,6 @@ const PurchasesSchema = mongoose.Schema(
   { strict: false, timestamps: false, versionKey: false }
 );
 
-let Purchases = mongoose.model("purchases", PurchasesSchema);
+let Purchases = mongoose.model("ordenes", PurchasesSchema);
 
 module.exports = { Message, Users, Products, Carts, Purchases };
