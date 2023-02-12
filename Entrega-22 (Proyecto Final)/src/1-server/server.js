@@ -20,6 +20,7 @@ const { auth } = require("../2-routes/auth_routes");
 const { views } = require("../2-routes/views.js");
 const { crudProducts } = require("../2-routes/products_routes");
 const { chat } = require("../2-routes/chat_routes");
+const { carts } = require("../2-routes/carts_routes");
 
 // ----------------------- Inicialización de servidor HTTP -----------------------
 const app = express();
@@ -53,6 +54,7 @@ sockets(io);
 // ----------------------- Routes -----------------------
 app.use("/productos", crudProducts);
 app.use("/chat", chat);
+app.use("/carrito", carts);
 app.use("/", views);
 app.use("/", auth);
 

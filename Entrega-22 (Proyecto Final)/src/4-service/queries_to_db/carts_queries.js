@@ -5,10 +5,10 @@ class CartsQueries {
   static instance;
   constructor() {
     // -!!- of "undefined" == false
-    if (!!ProductsQueries.instance) {
-      return ProductsQueries.instance;
+    if (!!CartsQueries.instance) {
+      return CartsQueries.instance;
     }
-    ProductsQueries.instance = this;
+    CartsQueries.instance = this;
   }
 
   async createCart(email, delivery) {
@@ -31,7 +31,7 @@ class CartsQueries {
         throw { error: "Usuario no encontrado", errorCode: 400 };
       }
 
-      return cart.cart;
+      return cart;
     } catch (err) {
       logger.error(err);
     }

@@ -15,7 +15,7 @@ class CartsMongo extends CartsMethodsTemplate {
     this.model = Carts;
   }
 
-  async newCart() {
+  async newCart(data) {
     try {
       return await this.model.create(data);
     } catch (err) {
@@ -25,7 +25,7 @@ class CartsMongo extends CartsMethodsTemplate {
 
   async getCart(email) {
     try {
-      return await this.model.findOne({ email: email });
+      return await this.model.findOne({ user: email });
     } catch (err) {
       logger.error(err);
     }
@@ -33,7 +33,7 @@ class CartsMongo extends CartsMethodsTemplate {
 
   async updateCart(email, data) {
     try {
-      return await this.model.findOneAndUpdate({ email: email }, data, {
+      return await this.model.findOneAndUpdate({ user: email }, data, {
         new: true,
       });
     } catch (err) {
@@ -45,7 +45,7 @@ class CartsMongo extends CartsMethodsTemplate {
     try {
       return await this.model.findOneAndUpdate(
         { _id: id },
-        { items: [] },
+        { cart: [] },
         { new: true }
       );
     } catch (err) {

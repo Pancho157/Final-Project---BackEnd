@@ -37,6 +37,7 @@ const sendNewOrderEmailToAdmin = async (purchase) => {
                 <th>Descripcion</th>
                 <th>Cantidad</th>
                 <th>Precio</th>
+                <th>Precio unitario</th>
             </thead>
             <tbody>${messageBody}</tbody>
         </table>`,

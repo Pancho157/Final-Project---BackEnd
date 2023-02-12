@@ -2,10 +2,6 @@ function getLoginRegisterPage(req, res) {
   res.render("login_register_forms");
 }
 
-function getProductsPage(req, res) {
-  res.render("products_list");
-}
-
 function getChatPage(req, res) {
   res.render("chat_view");
 }
@@ -16,7 +12,6 @@ function getUserMessagesPage(req, res) {
 
 module.exports = {
   getLoginRegisterPage,
-  getProductsPage,
   getChatPage,
   getUserMessagesPage,
 };

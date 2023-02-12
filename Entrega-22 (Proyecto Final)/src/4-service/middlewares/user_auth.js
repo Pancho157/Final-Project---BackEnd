@@ -4,8 +4,11 @@ const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 const md5 = require("md5");
 const { UsersQueries } = require("../queries_to_db/users_queries");
+const { CartsQueries } = require("../queries_to_db/carts_queries");
+const { logger } = require("../../../configs/logger");
 
 const Users = new UsersQueries();
+const Carts = new CartsQueries();
 
 // nombre completo, número de teléfono, email, password, carrito y rol
 passport.use(
@@ -17,21 +20,44 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
-      const { name, lastName, phone, rol } = req.body;
+      const { name, lastName, phone, rol, deliveryAdress, passwordDup } =
+        req.body;
 
-      if (!name || !lastName || !phone || !rol) {
-        done("No se ingresaron los datos requeridos");
+      if (
+        !name ||
+        !lastName ||
+        !phone ||
+        !rol ||
+        !deliveryAdress ||
+        !passwordDup
+      ) {
+        done({
+          error: "No se ingresaron los datos requeridos",
+          errorCode: 400,
+        });
       }
 
-      const encryptedPass = md5(password);
+      if (passwordDup != password) {
+        done({
+          error: "La contraseña y su duplicado no cohinciden",
+          errorCode: 400,
+        });
+      }
+
+      let cart;
+      try {
+        cart = await Carts.createCart(email, deliveryAdress);
+      } catch (err) {
+        logger.error(err);
+      }
 
       const userData = {
         fullname: { name: name, lastName: lastName },
         email: email,
         phone: phone,
         userRol: rol,
-        userCart: [],
-        password: encryptedPass,
+        userCart: cart._id,
+        password: md5(password),
       };
 
       try {

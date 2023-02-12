@@ -1,19 +1,19 @@
 const { logger } = require("../../../configs/logger");
-const { PurchaseDao } = require("../../5-persistance/dao/daoSelector");
+const { PurchasesDao } = require("../../5-persistance/dao/daoSelector");
 
-class CartsQueries {
+class PurchasesQueries {
   static instance;
   constructor() {
     // -!!- of "undefined" == false
-    if (!!ProductsQueries.instance) {
-      return ProductsQueries.instance;
+    if (!!PurchasesQueries.instance) {
+      return PurchasesQueries.instance;
     }
-    ProductsQueries.instance = this;
+    PurchasesQueries.instance = this;
   }
 
   async addPurchase(data) {
     try {
-      return await PurchaseDao.addPurchase(data);
+      return await PurchasesDao.addPurchase(data);
     } catch (err) {
       logger.error(err);
     }
@@ -21,11 +21,11 @@ class CartsQueries {
 
   async changeStatus(purchaseId, status) {
     try {
-      return await PurchaseDao.changeStatus(purchaseId, status);
+      return await PurchasesDao.changeStatus(purchaseId, status);
     } catch (err) {
       logger.error(err);
     }
   }
 }
 
-module.exports = { CartsQueries };
+module.exports = { PurchasesQueries };
