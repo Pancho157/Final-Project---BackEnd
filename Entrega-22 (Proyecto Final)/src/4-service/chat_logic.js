@@ -1,3 +1,4 @@
+const { logger } = require("../../configs/logger");
 const { ChatQueries } = require("./queries_to_db/chat_queries");
 
 const chat = new ChatQueries();
@@ -49,11 +50,24 @@ class Chat {
         author: data.email,
         message: data.message,
         rol: data.rol,
+        responses: [],
         date: new Date(),
       });
     } catch (err) {
       throw {
         error: "Se ha producido un error al guardar el mensaje",
+        errorCode: 500,
+      };
+    }
+  }
+
+  async insertResponse(messageId, data) {
+    try {
+      return await chat.newResponse(messageId, data);
+    } catch (err) {
+      logger.error(err);
+      throw {
+        error: "Se ha producido un error al guardar la respuesta",
         errorCode: 500,
       };
     }

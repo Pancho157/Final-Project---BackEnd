@@ -33,6 +33,22 @@ async function sockets(io) {
 
       io.sockets.emit("messagesFromServer", await chat.getMessages());
     });
+
+    // On new response
+    socket.on("new-response", async (data) => {
+      try {
+        await chat.insertResponse(data.responseId, {
+          email: "probando@gmail.com",
+          message: data.message,
+          rol: "user",
+          date: new Date(),
+        });
+      } catch (err) {
+        logger.error(err);
+      }
+
+      io.sockets.emit("messagesFromServer", await chat.getMessages());
+    });
   });
 }
 

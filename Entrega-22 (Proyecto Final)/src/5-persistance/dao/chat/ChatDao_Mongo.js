@@ -24,6 +24,17 @@ class ChatMongo extends ChatMethodsTemplate {
     }
   }
 
+  async addResponse(messageId, data) {
+    try {
+      return await Message.findOneAndUpdate(
+        { _id: messageId },
+        { $push: { responses: data } }
+      );
+    } catch (err) {
+      logger.error(err);
+    }
+  }
+
   async getMessages() {
     try {
       return await Message.find();

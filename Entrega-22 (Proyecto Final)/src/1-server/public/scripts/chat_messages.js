@@ -5,16 +5,34 @@ const socket = io.connect();
 const renderMessages = (messages) => {
   const messagesHTML = messages
     .map((message) => {
-      return `
-        <div>
+      let messageHTML = `
+      <div class="message">
+        <span class="message__email">${
+          message.rol == "admin" ? "Sistema" : message.author
+        }</span>:
+        <span class="message__date">[${message.date}]<span>
+        <br>
+        <span class="message__text">Id del mensaje: ${message._id}</span>
+        <br>
+        <p class="message__text">Mensaje: ${message.message}</p>
+      </div>
+      `;
+
+      // Renders responses
+      message.responses.forEach((response) => {
+        messageHTML += `
+        <div class="message__response">
           <span class="message__email">${
-            message.rol == "admin" ? "Sistema" : message.author
+            response.rol == "admin" ? "Sistema" : response.email
           }</span>:
-          <span class="message__date">[${message.date}]<span>
+          <span class="message__date">[${response.date}]<span>
           <br>
-          <p class="message__text">${message.message}</p>
+          <p class="message__text">Mensaje: ${response.message}</p>
         </div>
-        `;
+      `;
+      });
+
+      return messageHTML;
     })
     .join(" ");
   document.getElementById("chat__messagesContainer").innerHTML = messagesHTML;
@@ -22,9 +40,18 @@ const renderMessages = (messages) => {
 
 // New message from client
 const addMessage = () => {
-  socket.emit("new-message", {
-    message: document.getElementById("message").value,
-  });
+  const responseId = document.getElementById("responseTo").value;
+  const message = document.getElementById("message").value;
+  if (responseId != "") {
+    socket.emit("new-response", {
+      responseId: responseId,
+      message: message,
+    });
+  } else {
+    socket.emit("new-message", {
+      message: message,
+    });
+  }
 };
 
 // Messages from server

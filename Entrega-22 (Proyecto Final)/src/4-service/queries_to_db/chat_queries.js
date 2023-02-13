@@ -35,6 +35,17 @@ class ChatQueries {
       };
     }
   }
+
+  async newResponse(messageId, data) {
+    try {
+      return await ChatDao.addResponse(messageId, data);
+    } catch (err) {
+      throw {
+        error: "Se ha producido un error al guardar la respuesta al mensaje",
+        errorCode: 500,
+      };
+    }
+  }
 }
 
 module.exports = { ChatQueries };
