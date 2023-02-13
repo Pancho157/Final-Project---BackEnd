@@ -10,9 +10,8 @@ const { Server: IOServer } = require("socket.io");
 const { engine } = require("express-handlebars");
 const { logger } = require("../../configs/logger");
 
-// Sockets - Sessions - Passport
+// Sockets - Passport
 const { sockets } = require("../3-controllers/sockets");
-const { Session } = require("../../configs/sessions_connection");
 require("../4-service/middlewares/user_auth");
 
 // Routes
@@ -44,9 +43,6 @@ app.use(express.static(__dirname + "/public"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", ".hbs");
 app.engine(".hbs", engine({ extname: ".hbs" }));
-
-// ----------------------- Passport & Sessions -----------------------
-app.use(Session);
 
 // ----------------------- Sockets -----------------------
 sockets(io);

@@ -27,6 +27,8 @@
     </form>
   </div>
 
+  {{!-------------------------------------------------}}
+
   <div>
     <h2 class="messages__title">Formulario de registro</h2>
 
@@ -46,21 +48,31 @@
         placeholder="Email del usuario"
       />
 
-      <label for="alias">Nombre de usuario:</label>
+      <label for="name">Nombre:</label>
       <input
         class="login__input"
-        id="alias"
-        name="alias"
+        id="name"
+        name="name"
         type="text"
         required
         placeholder="Nombre de usuario"
       />
 
-      <label for="phoneNum">Número de teléfono:</label>
+      <label for="lastName">Apellido:</label>
       <input
         class="login__input"
-        id="phoneNum"
-        name="phoneNum"
+        id="lastName"
+        name="lastName"
+        type="text"
+        required
+        placeholder="Nombre de usuario"
+      />
+
+      <label for="phone">Número de teléfono:</label>
+      <input
+        class="login__input"
+        id="phone"
+        name="phone"
         type="tel"
         required
         placeholder="Número de teléfono"
@@ -90,7 +102,7 @@
         class="login__input"
         id="passwordDup"
         name="passwordDup"
-        type="passwordDup"
+        type="password"
         required
         placeholder="Confirmar contraseña"
       />
@@ -106,7 +118,7 @@
         Administrador<br />
       </div>
 
-      <button type="submit" class="login-form__button" onclick="registerUser()">
+      <button type="submit" class="login-form__button">
         Enviar
       </button>
     </form>

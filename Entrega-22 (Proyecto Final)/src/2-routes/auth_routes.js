@@ -30,6 +30,7 @@ auth.post("/", async (req, res, next) => {
 
       req.login(user, { session: false }, async (err) => {
         if (err) {
+          console.log(err);
           return res.render("error", {
             error: err.error,
             errorCode: err.errorCode,
@@ -44,7 +45,10 @@ auth.post("/", async (req, res, next) => {
           rol: user.rol,
         };
 
-        const token = jwt.sign({ user: body }, "top_secret_secret_key");
+        const sessionTime = process.env.SESSION_TIME || 180;
+        const token = jwt.sign({ user: body }, "top_secret_secret_key", {
+          expiresIn: sessionTime,
+        });
 
         return res.json({ token });
       });

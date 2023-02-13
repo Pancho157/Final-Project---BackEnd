@@ -1,18 +1,9 @@
-const sharedsession = require("express-socket.io-session");
-const { Session } = require("../../configs/sessions_connection");
-
 const { logger } = require("../../configs/logger");
 
 const { Chat } = require("../4-service/chat_logic");
 const chat = new Chat();
 
 async function sockets(io) {
-  // Access to session variables
-  io.use(
-    sharedsession(Session, {
-      autoSave: true,
-    })
-  );
   // On new client
   io.on(`connection`, async (socket) => {
     logger.info("Nuevo cliente conectado");

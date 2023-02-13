@@ -6,6 +6,7 @@ const md5 = require("md5");
 const { UsersQueries } = require("../queries_to_db/users_queries");
 const { CartsQueries } = require("../queries_to_db/carts_queries");
 const { logger } = require("../../../configs/logger");
+const { sendNewUserEmailToAdmin } = require("../../../configs/nodemailer");
 
 const Users = new UsersQueries();
 const Carts = new CartsQueries();
@@ -55,13 +56,14 @@ passport.use(
         fullname: { name: name, lastName: lastName },
         email: email,
         phone: phone,
-        userRol: rol,
+        rol: rol,
         userCart: cart._id,
         password: md5(password),
       };
 
       try {
         const user = await Users.create(userData);
+        await sendNewUserEmailToAdmin(user);
         return done(null, user);
       } catch (err) {
         done(err);

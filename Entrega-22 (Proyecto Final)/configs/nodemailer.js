@@ -4,7 +4,7 @@ const { logger } = require("../configs/logger");
 const sendNewOrderEmailToAdmin = async (purchase) => {
   const transporter = createTransport({
     host: "smtp.gmail.com",
-    port: 465, // Único puerto seguro (según nodemailer)
+    port: 465,
     secure: true,
     auth: {
       user: process.env.NODEMAILER_EMAIL,
@@ -52,4 +52,41 @@ const sendNewOrderEmailToAdmin = async (purchase) => {
   }
 };
 
-module.exports = { sendNewOrderEmailToAdmin };
+// ------------------------------------------------
+
+const sendNewUserEmailToAdmin = async (user) => {
+  const transporter = createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.NODEMAILER_EMAIL,
+      pass: process.env.NODEMAILER_PASS,
+    },
+  });
+
+  const emailOptions = {
+    from: `Nodemailer - ${process.env.NODEMAILER_EMAIL}`,
+    to: process.env.ADMIN_EMAIL,
+    subject: `Nuevo usuario registrado: ${user.email}`,
+    html: `
+            <h1>Nuevo usuario registrado:</h1> <br>
+            <span>Tipo de usuario: ${user.rol}</span> <br>
+            <span>Nombre: ${user.fullname.name}</span> <br>
+            <span>Email: ${user.email}</span>
+          `,
+  };
+
+  try {
+    await transporter.sendMail(emailOptions);
+    return { result: true };
+  } catch (err) {
+    logger.error("No se puedo enviar Email al administrador");
+    throw {
+      error: "No se puedo enviar Email al administrador",
+      errorCode: 500,
+    };
+  }
+};
+
+module.exports = { sendNewOrderEmailToAdmin, sendNewUserEmailToAdmin };
