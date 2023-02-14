@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const passport = require("passport");
 const {
   getChatPage,
   getUserMessagesPage,
@@ -6,8 +7,12 @@ const {
 
 const chat = Router();
 
-chat.get("/", getChatPage);
+chat.get("/", passport.authenticate("jwt", { session: false }), getChatPage);
 
-chat.get("/:email", getUserMessagesPage);
+chat.get(
+  "/:email",
+  passport.authenticate("jwt", { session: false }),
+  getUserMessagesPage
+);
 
 module.exports = { chat };

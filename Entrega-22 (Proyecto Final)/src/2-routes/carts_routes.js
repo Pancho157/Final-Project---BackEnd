@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const passport = require("passport");
 const {
   getUserCart,
   addOneToCartProduct,
@@ -9,14 +10,30 @@ const {
 
 const carts = Router();
 
-carts.get("/", getUserCart);
+carts.get("/", passport.authenticate("jwt", { session: false }), getUserCart);
 
-carts.post("/", addOneToCartProduct);
+carts.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  addOneToCartProduct
+);
 
-carts.delete("/", removeOneFromCartProduct);
+carts.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  removeOneFromCartProduct
+);
 
-carts.delete("/:id", deleteCartProduct);
+carts.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  deleteCartProduct
+);
 
-carts.post("/comprar", buyCart);
+carts.post(
+  "/comprar",
+  passport.authenticate("jwt", { session: false }),
+  buyCart
+);
 
 module.exports = { carts };

@@ -5,7 +5,7 @@ const carts = new Carts();
 
 async function getUserCart(req, res) {
   try {
-    res.send(await carts.getProducts(req.body.userEmail));
+    res.send(await carts.getProducts(req.user.email));
   } catch (err) {
     logger.error(err);
     res.render("error", { error: err.error, errorCode: err.errorCode });
@@ -14,7 +14,7 @@ async function getUserCart(req, res) {
 
 async function addOneToCartProduct(req, res) {
   try {
-    res.send(await carts.addOne(req.body.userEmail, req.body.productId));
+    res.send(await carts.addOne(req.user.email, req.body.productId));
   } catch (err) {
     logger.error(err);
     res.render("error", { error: err.error, errorCode: err.errorCode });
@@ -23,7 +23,7 @@ async function addOneToCartProduct(req, res) {
 
 async function removeOneFromCartProduct(req, res) {
   try {
-    res.send(await carts.removeOne(req.body.userEmail, req.body.productId));
+    res.send(await carts.removeOne(req.user.email, req.body.productId));
   } catch (err) {
     logger.error(err);
     res.render("error", { error: err.error, errorCode: err.errorCode });
@@ -32,7 +32,7 @@ async function removeOneFromCartProduct(req, res) {
 
 async function deleteCartProduct(req, res) {
   try {
-    res.send(await carts.deleteProduct(req.body.userEmail, req.params.id));
+    res.send(await carts.deleteProduct(req.user.email, req.params.id));
   } catch (err) {
     logger.error(err);
     res.render("error", { error: err.error, errorCode: err.errorCode });
@@ -41,7 +41,7 @@ async function deleteCartProduct(req, res) {
 
 async function buyCart(req, res) {
   try {
-    res.send(await carts.buy(req.body.userEmail));
+    res.send(await carts.buy(req.user.email));
   } catch (err) {
     logger.error(err);
     res.render("error", { error: err.error, errorCode: err.errorCode });

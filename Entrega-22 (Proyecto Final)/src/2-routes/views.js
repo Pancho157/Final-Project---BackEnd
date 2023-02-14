@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const passport = require("passport");
 
 const {
   getLoginRegisterPage,
@@ -10,8 +11,16 @@ const views = Router();
 
 views.get("/", getLoginRegisterPage);
 
-views.get("/chat", getChatPage);
+views.get(
+  "/chat",
+  passport.authenticate("jwt", { session: false }),
+  getChatPage
+);
 
-views.get("/chat/:email", getUserMessagesPage);
+views.get(
+  "/chat/:email",
+  passport.authenticate("jwt", { session: false }),
+  getUserMessagesPage
+);
 
 module.exports = { views };

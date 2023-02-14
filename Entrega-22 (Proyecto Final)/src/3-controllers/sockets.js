@@ -14,9 +14,9 @@ async function sockets(io) {
     socket.on("new-message", async (data) => {
       try {
         await chat.insertMessage({
-          email: "probando@gmail.com",
+          email: data.email,
           message: data.message,
-          rol: "user",
+          rol: data.rol,
         });
       } catch (err) {
         logger.error(err);
@@ -29,9 +29,9 @@ async function sockets(io) {
     socket.on("new-response", async (data) => {
       try {
         await chat.insertResponse(data.responseId, {
-          email: "probando@gmail.com",
+          email: data.email,
           message: data.message,
-          rol: "user",
+          rol: data.rol,
           date: new Date(),
         });
       } catch (err) {

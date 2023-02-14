@@ -42,14 +42,21 @@ const renderMessages = (messages) => {
 const addMessage = () => {
   const responseId = document.getElementById("responseTo").value;
   const message = document.getElementById("message").value;
+  const userEmail = document.getElementById("user-email").innerText;
+  const userRol = document.getElementById("user-rol").innerText;
+
   if (responseId != "") {
     socket.emit("new-response", {
       responseId: responseId,
+      email: userEmail,
       message: message,
+      rol: userRol,
     });
   } else {
     socket.emit("new-message", {
       message: message,
+      email: userEmail,
+      rol: userRol,
     });
   }
 };

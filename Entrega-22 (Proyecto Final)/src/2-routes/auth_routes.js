@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const { logger } = require("../../configs/logger");
 
 const auth = Router();
 
@@ -20,17 +21,17 @@ auth.post(
 auth.post("/", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
-      if (err || !user) {
+      if (err) {
         logger.error(err);
         return res.render("error", {
-          error: user ? err.error : "Usuario no especificado",
-          errorCode: user ? err.status : 400,
+          error: err.error,
+          errorCode: err.status,
         });
       }
 
       req.login(user, { session: false }, async (err) => {
         if (err) {
-          console.log(err);
+          logger.error(err);
           return res.render("error", {
             error: err.error,
             errorCode: err.errorCode,
@@ -45,9 +46,9 @@ auth.post("/", async (req, res, next) => {
           rol: user.rol,
         };
 
-        const sessionTime = process.env.SESSION_TIME || 180;
-        const token = jwt.sign({ user: body }, "top_secret_secret_key", {
-          expiresIn: sessionTime,
+        const expirationTime = process.env.SESSION_TIME || 180;
+        const token = jwt.sign({ userInfo: body }, "top_secret_secret_key", {
+          expiresIn: expirationTime + "m",
         });
 
         return res.json({ token });
@@ -60,17 +61,5 @@ auth.post("/", async (req, res, next) => {
     }
   })(req, res, next);
 });
-
-// ------------- Authenticate token -------------
-auth.get(
-  "/profile",
-  passport.authenticate("jwt", { session: false }),
-  (req, res, next) => {
-    res.json({
-      user: req.user,
-      token: req.query.secret_token,
-    });
-  }
-);
 
 module.exports = { auth };
