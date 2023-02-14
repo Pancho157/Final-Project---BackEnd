@@ -6,10 +6,13 @@ const {
   getChatPage,
   getUserMessagesPage,
 } = require("../3-controllers/views.js");
+const {
+  verifyQueryTokenLogin,
+} = require("../4-service/middlewares/verify_query_token.js");
 
 const views = Router();
 
-views.get("/", getLoginRegisterPage);
+views.get("/", verifyQueryTokenLogin, getLoginRegisterPage);
 
 views.get(
   "/chat",
